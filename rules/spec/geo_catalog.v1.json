@@ -1,0 +1,524 @@
+{
+  "geo_catalog_version": "1.0.0",
+  "countries": [
+    {
+      "code": "ES",
+      "name": "España",
+      "aliases": [
+        "es",
+        "espana",
+        "espanol",
+        "espanola",
+        "espanoles",
+        "espanolas",
+        "spain",
+        "spanish"
+      ]
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "aliases": [
+        "portugal",
+        "portugues",
+        "portuguesa",
+        "portugueses",
+        "portuguesas"
+      ]
+    },
+    {
+      "code": "FR",
+      "name": "Francia",
+      "aliases": [
+        "francia",
+        "frances",
+        "francesa",
+        "france"
+      ]
+    },
+    {
+      "code": "DE",
+      "name": "Alemania",
+      "aliases": [
+        "alemania",
+        "aleman",
+        "alemana",
+        "germany"
+      ]
+    },
+    {
+      "code": "IT",
+      "name": "Italia",
+      "aliases": [
+        "italia",
+        "italiano",
+        "italiana",
+        "italy"
+      ]
+    }
+  ],
+  "regions": [
+    {
+      "name": "Comunidad de Madrid",
+      "aliases": [
+        "comunidad de madrid"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Cataluña",
+      "aliases": [
+        "cataluna",
+        "catalunya"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Andalucía",
+      "aliases": [
+        "andalucia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Comunidad Valenciana",
+      "aliases": [
+        "comunidad valenciana"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "País Vasco",
+      "aliases": [
+        "pais vasco",
+        "euskadi"
+      ],
+      "country": "ES"
+    }
+  ],
+  "provinces": [
+    {
+      "name": "Alava",
+      "aliases": [
+        "alava"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Albacete",
+      "aliases": [
+        "albacete"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Alicante",
+      "aliases": [
+        "alicante"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Almeria",
+      "aliases": [
+        "almeria"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Asturias",
+      "aliases": [
+        "asturias"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Avila",
+      "aliases": [
+        "avila"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Badajoz",
+      "aliases": [
+        "badajoz"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Baleares",
+      "aliases": [
+        "baleares"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Barcelona",
+      "aliases": [
+        "barcelona"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Burgos",
+      "aliases": [
+        "burgos"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Caceres",
+      "aliases": [
+        "caceres"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Cadiz",
+      "aliases": [
+        "cadiz"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Cantabria",
+      "aliases": [
+        "cantabria"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Castellon",
+      "aliases": [
+        "castellon"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Ciudad Real",
+      "aliases": [
+        "ciudad real"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Cordoba",
+      "aliases": [
+        "cordoba"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Coruna",
+      "aliases": [
+        "coruna"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Cuenca",
+      "aliases": [
+        "cuenca"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Girona",
+      "aliases": [
+        "girona"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Granada",
+      "aliases": [
+        "granada"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Guadalajara",
+      "aliases": [
+        "guadalajara"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Guipuzcoa",
+      "aliases": [
+        "guipuzcoa"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Huelva",
+      "aliases": [
+        "huelva"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Huesca",
+      "aliases": [
+        "huesca"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Jaen",
+      "aliases": [
+        "jaen"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "La Rioja",
+      "aliases": [
+        "la rioja"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Las Palmas",
+      "aliases": [
+        "las palmas"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Leon",
+      "aliases": [
+        "leon"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Lleida",
+      "aliases": [
+        "lleida"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Lugo",
+      "aliases": [
+        "lugo"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Madrid",
+      "aliases": [
+        "madrid"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Malaga",
+      "aliases": [
+        "malaga"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Murcia",
+      "aliases": [
+        "murcia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Navarra",
+      "aliases": [
+        "navarra"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Ourense",
+      "aliases": [
+        "ourense"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Palencia",
+      "aliases": [
+        "palencia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Pontevedra",
+      "aliases": [
+        "pontevedra"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Salamanca",
+      "aliases": [
+        "salamanca"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Santa Cruz de Tenerife",
+      "aliases": [
+        "santa cruz de tenerife"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Segovia",
+      "aliases": [
+        "segovia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Sevilla",
+      "aliases": [
+        "sevilla"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Soria",
+      "aliases": [
+        "soria"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Tarragona",
+      "aliases": [
+        "tarragona"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Teruel",
+      "aliases": [
+        "teruel"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Toledo",
+      "aliases": [
+        "toledo"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Valencia",
+      "aliases": [
+        "valencia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Valladolid",
+      "aliases": [
+        "valladolid"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Vizcaya",
+      "aliases": [
+        "vizcaya"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Zamora",
+      "aliases": [
+        "zamora"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Zaragoza",
+      "aliases": [
+        "zaragoza"
+      ],
+      "country": "ES"
+    }
+  ],
+  "municipalities": [
+    {
+      "name": "Madrid",
+      "aliases": [
+        "madrid"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Barcelona",
+      "aliases": [
+        "barcelona"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Valencia",
+      "aliases": [
+        "valencia"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Sevilla",
+      "aliases": [
+        "sevilla"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Bilbao",
+      "aliases": [
+        "bilbao"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Zaragoza",
+      "aliases": [
+        "zaragoza"
+      ],
+      "country": "ES"
+    },
+    {
+      "name": "Malaga",
+      "aliases": [
+        "malaga"
+      ],
+      "country": "ES"
+    }
+  ],
+  "ambiguous": {
+    "madrid": {
+      "default": {
+        "name": "Madrid",
+        "level": "municipality"
+      },
+      "alternatives": [
+        {
+          "name": "Comunidad de Madrid",
+          "level": "region"
+        },
+        {
+          "name": "Madrid",
+          "level": "province"
+        }
+      ],
+      "explicit_markers": [
+        "comunidad de madrid",
+        "provincia de madrid"
+      ]
+    }
+  }
+}

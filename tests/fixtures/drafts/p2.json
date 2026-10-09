@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 empresas de construcción en España que podrían necesitar software de gestión.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas de construcción en España que podrían necesitar software de gestión",
+    "offering": {
+      "description": "software de gestión",
+      "problem_solved": null,
+      "source_text": "software de gestión"
+    }
+  },
+  "criteria": [
+    {
+      "id": "O1",
+      "label": "Ofertas de jefe de obra/administración",
+      "dimension": "opportunity",
+      "field": "hiring.site_management_roles",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null
+    },
+    {
+      "id": "O2",
+      "label": "Herramientas de gestión visibles en la web",
+      "dimension": "opportunity",
+      "field": "web.management_stack_visible",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 empresas"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": "El usuario no indicó tamaño: no se propone ningún rango."
+  }
+}

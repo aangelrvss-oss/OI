@@ -1,0 +1,31 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "oi/rules/d010/schema.json",
+ "title": "D010 rules",
+ "description": "Forma del fichero rules.json del modelo de decisión D010. Valida estructura y tipos; las invariantes cruzadas (unit_order = units, clases con peso, potential_units) las comprueba load_rules().",
+ "type": "object",
+ "required": ["score_version", "status", "label", "unit_order", "units", "weights", "states", "hard_gates", "identity_required", "sufficiency", "eligibility_order", "score_range", "confidence_band", "coverage", "ranking", "not_probability", "not_economic_value", "calibrated"],
+ "properties": {
+  "score_version": {"type": "string", "minLength": 1},
+  "status": {"enum": ["PROPOSED", "OFFICIAL", "DEPRECATED"]},
+  "label": {"type": "string", "minLength": 1},
+  "unit_order": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+  "units": {"type": "object", "additionalProperties": {
+     "type": "object", "required": ["dimension", "class", "evidence_claim"],
+     "properties": {"dimension": {"enum": ["FIT_AFFINITY", "NEED"]}, "class": {"enum": ["CORE", "WEAK"]}, "evidence_claim": {"type": ["string", "null"]}, "name": {"type": "string"}}}},
+  "weights": {"type": "object", "required": ["CORE", "WEAK"], "properties": {"CORE": {"type": "integer", "minimum": 0}, "WEAK": {"type": "integer", "minimum": 0}}},
+  "states": {"type": "array", "minItems": 4, "items": {"enum": ["PRESENT", "NOT_OBSERVED", "UNKNOWN", "CONFLICTING"]}},
+  "hard_gates": {"type": "array", "items": {"type": "string", "minLength": 1}},
+  "identity_required": {"enum": ["KNOWN_MATCH"]},
+  "sufficiency": {"type": "object", "required": ["min_units", "min_core_units", "allow_single_high_core", "high_confidence", "weak_alone_never_sufficient"],
+     "properties": {"min_units": {"type": "integer", "minimum": 1}, "min_core_units": {"type": "integer", "minimum": 0}, "allow_single_high_core": {"type": "boolean"}, "high_confidence": {"type": "string"}, "weak_alone_never_sufficient": {"type": "boolean"}}},
+  "eligibility_order": {"type": "array", "minItems": 4, "items": {"enum": ["ELIGIBLE", "PENDING_EVIDENCE", "UNKNOWN", "NOT_ELIGIBLE"]}},
+  "score_range": {"type": "object", "required": ["fit_affinity", "need", "total"]},
+  "confidence_band": {"type": "array", "minItems": 4, "items": {"enum": ["STRONG", "MODERATE", "LOW_ONLY", "NONE"]}},
+  "coverage": {"type": "object", "required": ["potential_units", "points"], "properties": {"potential_units": {"type": "integer", "minimum": 1}, "points": {"const": false}}},
+  "ranking": {"type": "object", "required": ["official", "forbidden_tiebreaks"]},
+  "not_probability": {"const": true},
+  "not_economic_value": {"const": true},
+  "calibrated": {"const": false}
+ }
+}

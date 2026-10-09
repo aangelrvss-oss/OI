@@ -1,0 +1,185 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "evidence_input.v1.schema.json",
+ "title": "evidence_input.v1",
+ "description": "Contrato de ENTRADA de un productor de evidencia (fixture sintético hoy; productor web/Firecrawl mañana). El pipeline lo valida, deriva evidence_strength por reglas e ignora cualquier fuerza declarada. UNKNOWN != PASS; INFERRED != KNOWN; CONFLICTING != PASS.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "evidence_id",
+  "subject",
+  "field",
+  "value",
+  "source_class",
+  "claim_status",
+  "confidence",
+  "retrieved_at"
+ ],
+ "properties": {
+  "evidence_id": {
+   "$ref": "common.v1.schema.json#/$defs/non_empty_string"
+  },
+  "subject": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "entity"
+   ],
+   "properties": {
+    "entity": {
+     "type": "string",
+     "minLength": 1,
+     "description": "Clave de la entidad (dominio normalizado)."
+    },
+    "person_ref": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "field": {
+   "$ref": "common.v1.schema.json#/$defs/non_empty_string"
+  },
+  "value": {
+   "type": [
+    "string",
+    "number",
+    "boolean",
+    "null"
+   ]
+  },
+  "source_class": {
+   "$ref": "common.v1.schema.json#/$defs/source_class"
+  },
+  "claim_status": {
+   "$ref": "common.v1.schema.json#/$defs/claim_status"
+  },
+  "confidence": {
+   "enum": [
+    "HIGH",
+    "MEDIUM",
+    "LOW",
+    "UNKNOWN"
+   ],
+   "description": "Confianza declarada por el productor. Informativa; no fija la fuerza."
+  },
+  "retrieved_at": {
+   "$ref": "common.v1.schema.json#/$defs/date"
+  },
+  "source_url": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "source_label": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "note": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "dated_on": {
+   "oneOf": [
+    {
+     "type": "null"
+    },
+    {
+     "$ref": "common.v1.schema.json#/$defs/date"
+    }
+   ]
+  },
+  "corroborated": {
+   "type": "boolean"
+  },
+  "attributes": {
+   "type": "object",
+   "additionalProperties": {
+    "type": [
+     "string",
+     "number",
+     "boolean",
+     "null"
+    ]
+   },
+   "description": "Datos estructurados que el productor aporta para construir candidatos de contacto (scope, purpose, department, outreach_access, person_ref…). No son afirmaciones: la afirmación es `value`."
+  },
+  "data_mode": {
+   "enum": [
+    "SYNTHETIC",
+    "TEST_FIXTURE",
+    "REAL"
+   ],
+   "description": "Origen declarado. Un productor offline SOLO puede declarar SYNTHETIC o TEST_FIXTURE."
+  },
+  "evidence_origin": {
+   "enum": [
+    "APOLLO_FREE_LOOKUP",
+    "APOLLO_ENRICHMENT",
+    "FIRST_PARTY_WEB",
+    "HUMAN_REVIEW",
+    "OTHER_VERIFIABLE"
+   ],
+   "description": "F13: de QUIÉN procede la evidencia, sin mezclar fuentes. APOLLO_FREE_LOOKUP = captura del lookup gratuito (solo id/nombre/dominio/web); FIRST_PARTY_WEB = página oficial de la propia empresa; HUMAN_REVIEW = revisión humana; OTHER_VERIFIABLE = otra fuente verificable y citada. Opcional en los datos sintéticos de F11; obligatorio en el replay de datos reales. F13.1: APOLLO_ENRICHMENT = dato del enrichment de pago (F14): solo puede ser INFERRED/ESTIMATED/UNKNOWN, nunca KNOWN."
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "source_class": {
+      "const": "NOT_FOUND"
+     }
+    },
+    "required": [
+     "source_class"
+    ]
+   },
+   "then": {
+    "properties": {
+     "value": {
+      "type": "null"
+     },
+     "claim_status": {
+      "const": "UNKNOWN"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "claim_status": {
+      "const": "KNOWN"
+     }
+    },
+    "required": [
+     "claim_status"
+    ]
+   },
+   "then": {
+    "required": [
+     "source_label"
+    ],
+    "properties": {
+     "source_label": {
+      "type": "string",
+      "minLength": 1
+     },
+     "value": {
+      "not": {
+       "type": "null"
+      }
+     }
+    }
+   }
+  }
+ ]
+}

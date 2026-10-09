@@ -1,0 +1,10 @@
+{"version": "1.0.0", "note": "El Search Spec pide CLASES DE FUENTE (qué hay que saber); el Planner decide DÓNDE mirar con este catálogo. Añadir un proveedor = editar este fichero y el catálogo de herramientas; el spec no cambia.",
+ "classes": {
+  "company_profile":   {"description": "ficha y datos firmográficos de la empresa", "providers": ["apollo.org_enrich"]},
+  "job_postings":      {"description": "ofertas de empleo publicadas", "providers": ["apollo.job_postings"]},
+  "official_website":  {"description": "contenido del sitio oficial de la empresa", "providers": ["firecrawl.scrape"]},
+  "careers_page":      {"description": "página de empleo del sitio oficial", "providers": ["firecrawl.scrape"]},
+  "web_search":        {"description": "resultados de búsqueda web / noticias", "providers": ["firecrawl.search"]},
+  "search_visibility": {"description": "visibilidad en buscadores", "providers": ["openrush.inspect_serp"]},
+  "site_audit":        {"description": "auditoría técnica del sitio", "providers": ["openrush.audit_site"]},
+  "tender_notices":    {"description": "licitaciones y contratos públicos", "providers": []}}}

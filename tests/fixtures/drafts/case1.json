@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 empresas españolas de 50-500 empleados que puedan ser buenos clientes potenciales para servicios de automatización de procesos con IA.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas españolas de 50-500 empleados que sean buenos clientes potenciales de servicios de automatización de procesos con IA",
+    "offering": {
+      "description": "servicios de automatización de procesos con IA",
+      "problem_solved": null,
+      "source_text": "servicios de automatización de procesos con IA"
+    }
+  },
+  "criteria": [
+    {
+      "id": "G2",
+      "label": "Plantilla 50-500",
+      "dimension": "fit",
+      "field": "firmographic.employee_count",
+      "operator": "between",
+      "value": [
+        50,
+        500
+      ],
+      "strength": "gate",
+      "origin": "user",
+      "source_text": "50-500 empleados"
+    },
+    {
+      "id": "O1",
+      "label": "Ofertas de empleo en roles operativos/administrativos",
+      "dimension": "opportunity",
+      "field": "hiring.ops_admin_roles",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null,
+      "rationale": "Señal observable: contratación de perfiles de operaciones/administración. Hipótesis, no hecho."
+    },
+    {
+      "id": "O2",
+      "label": "Menciones de transformación digital en la web",
+      "dimension": "opportunity",
+      "field": "web.digital_transformation_mentions",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null,
+      "rationale": "Señal observable en la web corporativa. Hipótesis, no hecho."
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 empresas"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [
+      "Stack con herramientas heredadas visible en la web (sin campo operativo en el registry)"
+    ],
+    "llm_notes": null
+  }
+}

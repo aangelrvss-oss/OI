@@ -1,0 +1,40 @@
+{
+ "schema": "oi_presentation.v1",
+ "case_id": "reseller_pilot",
+ "locale": "es",
+ "title": "Piloto de reventa · datos sintéticos",
+ "subtitle": "Edición pública: registros sintéticos que conservan la estructura y los estados de un experimento cerrado; ninguna empresa ni contacto es real",
+ "labels": {
+  "entity_singular": "empresa",
+  "entity_plural": "empresas",
+  "offering": "productos alimentarios"
+ },
+ "facets": [
+  {
+   "key": "group",
+   "label": "Grupo",
+   "value_labels": {
+    "G1": "Candidato con enrichment existente (T1/T2 o 3C)",
+    "G2": "Revisado previamente por el revisor humano con encaje claro",
+    "G3": "Caso fronterizo (revisor humano: relevante, segmento NO)",
+    "G4": "Propuesto por el sistema, sin revisión humana previa"
+   }
+  },
+  {
+   "key": "zone",
+   "label": "Zona"
+  },
+  {
+   "key": "segment",
+   "label": "Segmento"
+  }
+ ],
+ "human_decision_vocabulary": {
+  "ACCEPT": "SÍ",
+  "MAYBE": "DUDOSA",
+  "REJECT": "NO"
+ },
+ "notes": [
+  "Experimento cerrado e inmutable. La decisión humana (SÍ/DUDOSA/NO) no equivale a encaje verificado."
+ ]
+}

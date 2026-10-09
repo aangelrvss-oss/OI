@@ -1,0 +1,124 @@
+{
+  "routing_version": "1.0.0",
+  "stages": [
+    "discovery",
+    "enrichment",
+    "evidence"
+  ],
+  "routing": {
+    "firmographic.industry": {
+      "stage": "discovery",
+      "cheap_gate": true,
+      "verify_after_discovery": true,
+      "capability_note": "El filtro de sector de discovery es aproximado (palabras clave): se verifica en enrichment. Capacidad sin verificar."
+    },
+    "firmographic.employee_count": {
+      "stage": "discovery",
+      "cheap_gate": true,
+      "verify_after_discovery": false,
+      "capability_note": "Rango de empleados como filtro/campo devuelto en discovery. Sin verificar."
+    },
+    "hiring.ops_admin_roles": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "hiring.finance_admin_roles": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "hiring.site_management_roles": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "growth.employee_growth_pct": {
+      "stage": "enrichment",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": "No está confirmado que el enrichment exponga crecimiento de plantilla. Sin verificar."
+    },
+    "growth.hiring_velocity": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "growth.geographic_expansion": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "growth.new_locations": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "growth.funding_event": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "growth.acquisitions": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "web.digital_transformation_mentions": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "web.management_stack_visible": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "web.invoicing_stack_visible": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "digital.has_website": {
+      "stage": "enrichment",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": "Depende de que el enrichment devuelva dominio/web. Sin verificar."
+    },
+    "digital.local_visibility_rank": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": "Requiere dominio conocido del candidato."
+    },
+    "digital.site_technical_issue_count": {
+      "stage": "evidence",
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": "Requiere dominio conocido del candidato."
+    },
+    "candidate.skill": {
+      "stage": null,
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    },
+    "candidate.location_city": {
+      "stage": null,
+      "cheap_gate": false,
+      "verify_after_discovery": false,
+      "capability_note": null
+    }
+  }
+}

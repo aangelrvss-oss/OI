@@ -1,0 +1,1687 @@
+{
+ "schema": "oi_e2e_synthetic_dataset.v1",
+ "data_mode": "SYNTHETIC",
+ "label": "SYNTHETIC / TEST_FIXTURE — empresas, personas y contactos INVENTADOS para probar el flujo. Ninguno existe ni representa a una empresa real.",
+ "reference_date": "2026-10-08",
+ "case_id": "construction_software",
+ "note": "El FixtureTransport devuelve estas filas con independencia de los filtros de la consulta (no simula el filtrado del proveedor).",
+ "lookup": [
+  {
+   "id": "SYNTH-ORG-0001",
+   "name": "SYNTH Alfa Construcciones",
+   "domain": "alfa-obras.example",
+   "website_url": "http://www.alfa-obras.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0002",
+   "name": "SYNTH Beta Edificaciones",
+   "domain": "beta-edif.example",
+   "website_url": "http://www.beta-edif.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0003",
+   "name": "SYNTH Gamma Infraestructuras",
+   "domain": "gamma-infra.example",
+   "website_url": "http://www.gamma-infra.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0004",
+   "name": "SYNTH Delta Obras Civiles",
+   "domain": "delta-civil.example",
+   "website_url": "http://www.delta-civil.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0005",
+   "name": "SYNTH Epsilon Rehabilitación",
+   "domain": "epsilon-rehab.example",
+   "website_url": "http://www.epsilon-rehab.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0006",
+   "name": "SYNTH Zeta Estructuras",
+   "domain": "zeta-estr.example",
+   "website_url": "http://www.zeta-estr.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0007",
+   "name": "SYNTH Eta Contratas",
+   "domain": "eta-contratas.example",
+   "website_url": "http://www.eta-contratas.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0001",
+   "name": "SYNTH Alfa Construcciones",
+   "domain": "alfa-obras.example",
+   "website_url": "http://www.alfa-obras.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0008",
+   "name": "SYNTH Theta Montajes",
+   "domain": "theta-montajes.example",
+   "website_url": "http://www.theta-montajes.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0009",
+   "name": "SYNTH Iota Instalaciones",
+   "domain": "iota-instal.example",
+   "website_url": "http://www.iota-instal.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0010",
+   "name": "SYNTH Kappa Software",
+   "domain": "kappa-soft.example",
+   "website_url": "http://www.kappa-soft.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0011",
+   "name": "SYNTH Lambda Logística",
+   "domain": "lambda-log.example",
+   "website_url": "http://www.lambda-log.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0012",
+   "name": "SYNTH Mu Construções",
+   "domain": "mu-construcoes.example",
+   "website_url": "http://www.mu-construcoes.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0013",
+   "name": "SYNTH Nu Grupo Constructor",
+   "domain": "nu-grupo.example",
+   "website_url": "http://www.nu-grupo.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0014",
+   "name": "SYNTH Nu Obras Norte",
+   "domain": "nu-grupo.example",
+   "website_url": "http://www.nu-grupo.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0015",
+   "name": "SYNTH Xi Obras",
+   "domain": "xi-obras-a.example",
+   "website_url": "http://www.xi-obras-a.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0016",
+   "name": "SYNTH Xi Obras",
+   "domain": "xi-obras-b.example",
+   "website_url": "http://www.xi-obras-b.example",
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0017",
+   "name": "SYNTH Omicron Obras",
+   "domain": null,
+   "website_url": null,
+   "logo_url": null
+  },
+  {
+   "id": "SYNTH-ORG-0018",
+   "name": "SYNTH Rho Servicios de Obra",
+   "domain": "rho-obras.example",
+   "website_url": "http://www.rho-obras.example",
+   "logo_url": null
+  }
+ ],
+ "enrich": {
+  "alfa-obras.example": {
+   "id": "SYNTH-ORG-0001",
+   "name": "SYNTH Alfa Construcciones",
+   "primary_domain": "alfa-obras.example",
+   "website_url": "http://www.alfa-obras.example",
+   "estimated_num_employees": 180,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Madrid",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 1, madrid, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.22
+  },
+  "beta-edif.example": {
+   "id": "SYNTH-ORG-0002",
+   "name": "SYNTH Beta Edificaciones",
+   "primary_domain": "beta-edif.example",
+   "website_url": "http://www.beta-edif.example",
+   "estimated_num_employees": 95,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Barcelona",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 2, barcelona, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.15
+  },
+  "gamma-infra.example": {
+   "id": "SYNTH-ORG-0003",
+   "name": "SYNTH Gamma Infraestructuras",
+   "primary_domain": "gamma-infra.example",
+   "website_url": "http://www.gamma-infra.example",
+   "estimated_num_employees": 410,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Sevilla",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 3, sevilla, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.31
+  },
+  "delta-civil.example": {
+   "id": "SYNTH-ORG-0004",
+   "name": "SYNTH Delta Obras Civiles",
+   "primary_domain": "delta-civil.example",
+   "website_url": "http://www.delta-civil.example",
+   "estimated_num_employees": 260,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Valencia",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 4, valencia, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.03
+  },
+  "epsilon-rehab.example": {
+   "id": "SYNTH-ORG-0005",
+   "name": "SYNTH Epsilon Rehabilitación",
+   "primary_domain": "epsilon-rehab.example",
+   "website_url": "http://www.epsilon-rehab.example",
+   "estimated_num_employees": 60,
+   "industry": "information technology & services",
+   "industries": [
+    "information technology & services",
+    "construction"
+   ],
+   "city": "Bilbao",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 5, bilbao, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.18
+  },
+  "zeta-estr.example": {
+   "id": "SYNTH-ORG-0006",
+   "name": "SYNTH Zeta Estructuras",
+   "primary_domain": "zeta-estr.example",
+   "website_url": "http://www.zeta-estr.example",
+   "estimated_num_employees": 70,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Zaragoza",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 6, zaragoza, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe."
+  },
+  "eta-contratas.example": {
+   "id": "SYNTH-ORG-0007",
+   "name": "SYNTH Eta Contratas",
+   "primary_domain": "eta-contratas.example",
+   "website_url": "http://www.eta-contratas.example",
+   "estimated_num_employees": 140,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Málaga",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 7, málaga, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.12
+  },
+  "theta-montajes.example": {
+   "id": "SYNTH-ORG-0008",
+   "name": "SYNTH Theta Montajes",
+   "primary_domain": "theta-montajes.example",
+   "website_url": "http://www.theta-montajes.example",
+   "estimated_num_employees": 85,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Murcia",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 8, murcia, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.2
+  },
+  "iota-instal.example": {
+   "id": "SYNTH-ORG-0009",
+   "name": "SYNTH Iota Instalaciones",
+   "primary_domain": "iota-instal.example",
+   "website_url": "http://www.iota-instal.example",
+   "estimated_num_employees": 120,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Valladolid",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 9, valladolid, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.11
+  },
+  "kappa-soft.example": {
+   "id": "SYNTH-ORG-0010",
+   "name": "SYNTH Kappa Software",
+   "primary_domain": "kappa-soft.example",
+   "website_url": "http://www.kappa-soft.example",
+   "estimated_num_employees": 50,
+   "industry": "information technology & services",
+   "industries": [
+    "information technology & services"
+   ],
+   "city": "Madrid",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 10, madrid, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.4
+  },
+  "lambda-log.example": {
+   "id": "SYNTH-ORG-0011",
+   "name": "SYNTH Lambda Logística",
+   "primary_domain": "lambda-log.example",
+   "website_url": "http://www.lambda-log.example",
+   "estimated_num_employees": 500,
+   "industry": "logistics & supply chain",
+   "industries": [
+    "logistics & supply chain"
+   ],
+   "city": "Madrid",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 11, madrid, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.1
+  },
+  "mu-construcoes.example": {
+   "id": "SYNTH-ORG-0012",
+   "name": "SYNTH Mu Construções",
+   "primary_domain": "mu-construcoes.example",
+   "website_url": "http://www.mu-construcoes.example",
+   "estimated_num_employees": 150,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Lisboa",
+   "state": null,
+   "country": "Portugal",
+   "raw_address": "calle sintética 12, lisboa, pt",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.2
+  },
+  "nu-grupo.example": {
+   "id": "SYNTH-ORG-0013",
+   "name": "SYNTH Nu Grupo Constructor",
+   "primary_domain": "nu-grupo.example",
+   "website_url": "http://www.nu-grupo.example",
+   "estimated_num_employees": 900,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Madrid",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 13, madrid, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.16
+  },
+  "xi-obras-a.example": {
+   "id": "SYNTH-ORG-0015",
+   "name": "SYNTH Xi Obras",
+   "primary_domain": "xi-obras-a.example",
+   "website_url": "http://www.xi-obras-a.example",
+   "estimated_num_employees": 75,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Toledo",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 15, toledo, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.14
+  },
+  "xi-obras-b.example": {
+   "id": "SYNTH-ORG-0016",
+   "name": "SYNTH Xi Obras",
+   "primary_domain": "xi-obras-b.example",
+   "website_url": "http://www.xi-obras-b.example",
+   "estimated_num_employees": 40,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Granada",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 16, granada, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.05
+  },
+  "rho-obras.example": {
+   "id": "SYNTH-ORG-0018",
+   "name": "SYNTH Rho Servicios de Obra",
+   "primary_domain": "rho-obras.example",
+   "website_url": "http://www.rho-obras.example",
+   "estimated_num_employees": 110,
+   "industry": "construction",
+   "industries": [
+    "construction"
+   ],
+   "city": "Alicante",
+   "state": null,
+   "country": "Spain",
+   "raw_address": "calle sintética 18, alicante, es",
+   "short_description": "Empresa INVENTADA para pruebas (SYNTHETIC). No existe.",
+   "organization_headcount_twelve_month_growth": 0.13
+  }
+ },
+ "evidence": [
+  {
+   "evidence_id": "alfa-obras:e01",
+   "subject": {
+    "entity": "alfa-obras.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://alfa-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "alfa-obras:e02",
+   "subject": {
+    "entity": "alfa-obras.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://alfa-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "alfa-obras:e03",
+   "subject": {
+    "entity": "alfa-obras.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://alfa-obras.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "alfa-obras:e04",
+   "subject": {
+    "entity": "alfa-obras.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://alfa-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "alfa-obras:e05",
+   "subject": {
+    "entity": "alfa-obras.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 22,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://alfa-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "alfa-obras:e06",
+   "subject": {
+    "entity": "alfa-obras.example",
+    "person_ref": "p1"
+   },
+   "field": "person:title",
+   "value": "Directora de Sistemas de Información",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): equipo directivo simulado",
+   "source_url": "https://alfa-obras.example/sintetico",
+   "dated_on": "2026-08-20",
+   "attributes": {
+    "person_name": "Ana Sintética",
+    "employment_verified_at": "2026-08-20"
+   }
+  },
+  {
+   "evidence_id": "alfa-obras:e07",
+   "subject": {
+    "entity": "alfa-obras.example",
+    "person_ref": "p1"
+   },
+   "field": "channel:email",
+   "value": "ana.sintetica@alfa-obras.example",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://alfa-obras.example/sintetico",
+   "attributes": {
+    "scope": "PERSON",
+    "purpose": "UNKNOWN"
+   }
+  },
+  {
+   "evidence_id": "beta-edif:e01",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://beta-edif.example/sintetico"
+  },
+  {
+   "evidence_id": "beta-edif:e02",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://beta-edif.example/sintetico"
+  },
+  {
+   "evidence_id": "beta-edif:e03",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://beta-edif.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "beta-edif:e04",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://beta-edif.example/sintetico"
+  },
+  {
+   "evidence_id": "beta-edif:e05",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 15,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://beta-edif.example/sintetico"
+  },
+  {
+   "evidence_id": "beta-edif:e06",
+   "subject": {
+    "entity": "beta-edif.example",
+    "person_ref": "p1"
+   },
+   "field": "person:title",
+   "value": "Director Financiero",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): equipo directivo simulado",
+   "source_url": "https://beta-edif.example/sintetico",
+   "dated_on": "2026-08-20",
+   "attributes": {
+    "person_name": "Bruno Sintético",
+    "employment_verified_at": "2026-08-20"
+   }
+  },
+  {
+   "evidence_id": "beta-edif:e07",
+   "subject": {
+    "entity": "beta-edif.example"
+   },
+   "field": "channel:email",
+   "value": "info@beta-edif.example",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://beta-edif.example/sintetico",
+   "attributes": {
+    "scope": "COMPANY",
+    "purpose": "GENERAL"
+   }
+  },
+  {
+   "evidence_id": "gamma-infra:e01",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://gamma-infra.example/sintetico"
+  },
+  {
+   "evidence_id": "gamma-infra:e02",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://gamma-infra.example/sintetico"
+  },
+  {
+   "evidence_id": "gamma-infra:e03",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://gamma-infra.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "gamma-infra:e04",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://gamma-infra.example/sintetico"
+  },
+  {
+   "evidence_id": "gamma-infra:e05",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 31,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://gamma-infra.example/sintetico"
+  },
+  {
+   "evidence_id": "gamma-infra:e06",
+   "subject": {
+    "entity": "gamma-infra.example"
+   },
+   "field": "channel:email",
+   "value": "contacto@gamma-infra.example",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://gamma-infra.example/sintetico",
+   "attributes": {
+    "scope": "COMPANY",
+    "purpose": "GENERAL"
+   }
+  },
+  {
+   "evidence_id": "delta-civil:e01",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://delta-civil.example/sintetico"
+  },
+  {
+   "evidence_id": "delta-civil:e02",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://delta-civil.example/sintetico"
+  },
+  {
+   "evidence_id": "delta-civil:e03",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://delta-civil.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "delta-civil:e04",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://delta-civil.example/sintetico"
+  },
+  {
+   "evidence_id": "delta-civil:e05",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 3,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://delta-civil.example/sintetico"
+  },
+  {
+   "evidence_id": "delta-civil:e06",
+   "subject": {
+    "entity": "delta-civil.example"
+   },
+   "field": "contact:any",
+   "value": null,
+   "source_class": "NOT_FOUND",
+   "claim_status": "UNKNOWN",
+   "confidence": "UNKNOWN",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "note": "Búsqueda simulada sin ningún contacto localizado."
+  },
+  {
+   "evidence_id": "epsilon-rehab:e01",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://epsilon-rehab.example/sintetico"
+  },
+  {
+   "evidence_id": "epsilon-rehab:e02",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "company:sector",
+   "value": "SOFTWARE",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://epsilon-rehab.example/sintetico",
+   "dated_on": "2026-05-01"
+  },
+  {
+   "evidence_id": "epsilon-rehab:e03",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://epsilon-rehab.example/sintetico"
+  },
+  {
+   "evidence_id": "epsilon-rehab:e04",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "company:business_model",
+   "value": null,
+   "source_class": "OTHER_VERIFIABLE",
+   "claim_status": "CONFLICTING",
+   "confidence": "LOW",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_url": "https://epsilon-rehab.example/sintetico",
+   "note": "Fuentes simuladas discrepan (contratista vs. proveedor de servicios)."
+  },
+  {
+   "evidence_id": "epsilon-rehab:e05",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://epsilon-rehab.example/sintetico"
+  },
+  {
+   "evidence_id": "epsilon-rehab:e06",
+   "subject": {
+    "entity": "epsilon-rehab.example"
+   },
+   "field": "channel:email",
+   "value": "contacto@epsilon-rehab.example",
+   "source_class": "OTHER_VERIFIABLE",
+   "claim_status": "INFERRED",
+   "confidence": "LOW",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://epsilon-rehab.example/sintetico",
+   "attributes": {
+    "scope": "COMPANY",
+    "purpose": "GENERAL"
+   },
+   "note": "Patrón deducido del dominio; NO observado en ninguna fuente."
+  },
+  {
+   "evidence_id": "zeta-estr:e01",
+   "subject": {
+    "entity": "zeta-estr.example"
+   },
+   "field": "company:sector",
+   "value": null,
+   "source_class": "NOT_FOUND",
+   "claim_status": "UNKNOWN",
+   "confidence": "UNKNOWN",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "note": "Lectura simulada sin resultado."
+  },
+  {
+   "evidence_id": "zeta-estr:e02",
+   "subject": {
+    "entity": "zeta-estr.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://zeta-estr.example/sintetico"
+  },
+  {
+   "evidence_id": "zeta-estr:e03",
+   "subject": {
+    "entity": "zeta-estr.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "OTHER_VERIFIABLE",
+   "claim_status": "INFERRED",
+   "confidence": "LOW",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_url": "https://zeta-estr.example/sintetico",
+   "note": "Deducido del nombre comercial; no observado."
+  },
+  {
+   "evidence_id": "zeta-estr:e04",
+   "subject": {
+    "entity": "zeta-estr.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://zeta-estr.example/sintetico"
+  },
+  {
+   "evidence_id": "zeta-estr:e05",
+   "subject": {
+    "entity": "zeta-estr.example",
+    "person_ref": "p1"
+   },
+   "field": "person:title",
+   "value": "Directora General",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): equipo directivo simulado",
+   "source_url": "https://zeta-estr.example/sintetico",
+   "dated_on": "2026-08-20",
+   "attributes": {
+    "person_name": "Carla Sintética",
+    "employment_verified_at": "2026-08-20"
+   }
+  },
+  {
+   "evidence_id": "zeta-estr:e06",
+   "subject": {
+    "entity": "zeta-estr.example",
+    "person_ref": "p1"
+   },
+   "field": "channel:email",
+   "value": "carla.sintetica@zeta-estr.example",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://zeta-estr.example/sintetico",
+   "attributes": {
+    "scope": "PERSON",
+    "purpose": "UNKNOWN"
+   }
+  },
+  {
+   "evidence_id": "eta-contratas:e01",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://eta-contratas.example/sintetico"
+  },
+  {
+   "evidence_id": "eta-contratas:e02",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://eta-contratas.example/sintetico"
+  },
+  {
+   "evidence_id": "eta-contratas:e03",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://eta-contratas.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "eta-contratas:e04",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://eta-contratas.example/sintetico"
+  },
+  {
+   "evidence_id": "eta-contratas:e05",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 12,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://eta-contratas.example/sintetico"
+  },
+  {
+   "evidence_id": "eta-contratas:e06",
+   "subject": {
+    "entity": "eta-contratas.example"
+   },
+   "field": "channel:email",
+   "value": "comercial@eta-contratas.example",
+   "source_class": "UNVERIFIED",
+   "claim_status": "UNKNOWN",
+   "confidence": "LOW",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://eta-contratas.example/sintetico",
+   "attributes": {
+    "scope": "COMPANY",
+    "purpose": "COMMERCIAL"
+   },
+   "note": "Aparece en un listado simulado sin contrastar."
+  },
+  {
+   "evidence_id": "theta-montajes:e01",
+   "subject": {
+    "entity": "theta-montajes.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://theta-montajes.example/sintetico"
+  },
+  {
+   "evidence_id": "theta-montajes:e02",
+   "subject": {
+    "entity": "theta-montajes.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://theta-montajes.example/sintetico"
+  },
+  {
+   "evidence_id": "theta-montajes:e03",
+   "subject": {
+    "entity": "theta-montajes.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://theta-montajes.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "theta-montajes:e04",
+   "subject": {
+    "entity": "theta-montajes.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://theta-montajes.example/sintetico"
+  },
+  {
+   "evidence_id": "theta-montajes:e05",
+   "subject": {
+    "entity": "theta-montajes.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 20,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://theta-montajes.example/sintetico"
+  },
+  {
+   "evidence_id": "theta-montajes:e06",
+   "subject": {
+    "entity": "theta-montajes.example",
+    "person_ref": "p1"
+   },
+   "field": "person:title",
+   "value": "Responsable de Operaciones",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): equipo directivo simulado",
+   "source_url": "https://theta-montajes.example/sintetico",
+   "dated_on": "2026-08-20",
+   "attributes": {
+    "person_name": "Diego Sintético",
+    "employment_verified_at": "2026-08-20"
+   }
+  },
+  {
+   "evidence_id": "iota-instal:e01",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://iota-instal.example/sintetico"
+  },
+  {
+   "evidence_id": "iota-instal:e02",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://iota-instal.example/sintetico"
+  },
+  {
+   "evidence_id": "iota-instal:e03",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://iota-instal.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "iota-instal:e04",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://iota-instal.example/sintetico"
+  },
+  {
+   "evidence_id": "iota-instal:e05",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 11,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://iota-instal.example/sintetico"
+  },
+  {
+   "evidence_id": "iota-instal:e06",
+   "subject": {
+    "entity": "iota-instal.example"
+   },
+   "field": "channel:email",
+   "value": "administracion@iota-instal.example",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://iota-instal.example/sintetico",
+   "dated_on": "2026-06-15",
+   "attributes": {
+    "scope": "DEPARTMENT",
+    "purpose": "GENERAL",
+    "role_family": "FINANCE"
+   }
+  },
+  {
+   "evidence_id": "nu-grupo:e01",
+   "subject": {
+    "entity": "nu-grupo.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://nu-grupo.example/sintetico"
+  },
+  {
+   "evidence_id": "nu-grupo:e02",
+   "subject": {
+    "entity": "nu-grupo.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://nu-grupo.example/sintetico"
+  },
+  {
+   "evidence_id": "nu-grupo:e03",
+   "subject": {
+    "entity": "nu-grupo.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://nu-grupo.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "nu-grupo:e04",
+   "subject": {
+    "entity": "nu-grupo.example"
+   },
+   "field": "company:entity_level",
+   "value": "GROUP",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://nu-grupo.example/sintetico"
+  },
+  {
+   "evidence_id": "nu-grupo:e05",
+   "subject": {
+    "entity": "nu-grupo.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 16,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://nu-grupo.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-a:e01",
+   "subject": {
+    "entity": "xi-obras-a.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://xi-obras-a.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-a:e02",
+   "subject": {
+    "entity": "xi-obras-a.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://xi-obras-a.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-a:e03",
+   "subject": {
+    "entity": "xi-obras-a.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://xi-obras-a.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "xi-obras-a:e04",
+   "subject": {
+    "entity": "xi-obras-a.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://xi-obras-a.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-a:e05",
+   "subject": {
+    "entity": "xi-obras-a.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 14,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://xi-obras-a.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-b:e01",
+   "subject": {
+    "entity": "xi-obras-b.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://xi-obras-b.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-b:e02",
+   "subject": {
+    "entity": "xi-obras-b.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://xi-obras-b.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-b:e03",
+   "subject": {
+    "entity": "xi-obras-b.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://xi-obras-b.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "xi-obras-b:e04",
+   "subject": {
+    "entity": "xi-obras-b.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://xi-obras-b.example/sintetico"
+  },
+  {
+   "evidence_id": "xi-obras-b:e05",
+   "subject": {
+    "entity": "xi-obras-b.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 5,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://xi-obras-b.example/sintetico"
+  },
+  {
+   "evidence_id": "rho-obras:e01",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "company:sector",
+   "value": "CONSTRUCTION",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): web corporativa simulada",
+   "source_url": "https://rho-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "rho-obras:e02",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "company:country",
+   "value": "ES",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): domicilio social simulado",
+   "source_url": "https://rho-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "rho-obras:e03",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "company:business_model",
+   "value": "contractor",
+   "source_class": "SECTOR_SOURCE",
+   "claim_status": "KNOWN",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): directorio sectorial simulado",
+   "source_url": "https://rho-obras.example/sintetico",
+   "dated_on": "2026-07-01"
+  },
+  {
+   "evidence_id": "rho-obras:e04",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "company:entity_level",
+   "value": "COMPANY",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): registro simulado",
+   "source_url": "https://rho-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "rho-obras:e05",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "company:growth_12m_pct",
+   "value": 13,
+   "source_class": "PROFESSIONAL_DIRECTORY",
+   "claim_status": "ESTIMATED",
+   "confidence": "MEDIUM",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): estimación de plantilla simulada",
+   "source_url": "https://rho-obras.example/sintetico"
+  },
+  {
+   "evidence_id": "rho-obras:e06",
+   "subject": {
+    "entity": "rho-obras.example",
+    "person_ref": "p1"
+   },
+   "field": "person:title",
+   "value": "Director de Sistemas",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): equipo directivo simulado",
+   "source_url": "https://rho-obras.example/sintetico",
+   "dated_on": "2024-03-01",
+   "attributes": {
+    "person_name": "Raúl Sintético",
+    "employment_verified_at": "2024-03-01"
+   }
+  },
+  {
+   "evidence_id": "rho-obras:e07",
+   "subject": {
+    "entity": "rho-obras.example"
+   },
+   "field": "channel:email",
+   "value": "contacto@rho-obras.example",
+   "source_class": "OFFICIAL",
+   "claim_status": "KNOWN",
+   "confidence": "HIGH",
+   "retrieved_at": "2026-10-08",
+   "data_mode": "SYNTHETIC",
+   "source_label": "Fixture SINTÉTICO (SYNTHETIC): contacto simulado",
+   "source_url": "https://rho-obras.example/sintetico",
+   "attributes": {
+    "scope": "COMPANY",
+    "purpose": "GENERAL"
+   }
+  }
+ ],
+ "scenarios": {
+  "SYNTH-ORG-0001": "A: persona exacta + canal propio directo",
+  "SYNTH-ORG-0002": "B: destino exacto + vía indirecta (email general)",
+  "SYNTH-ORG-0003": "C: solo contacto general con evidencia fuerte",
+  "SYNTH-ORG-0004": "D: empresa sin contacto (y crecimiento por debajo del umbral)",
+  "SYNTH-ORG-0005": "E: sector CONFLICTING y email INFERRED (no recomendado)",
+  "SYNTH-ORG-0006": "Cualificación PENDING (sector NOT_FOUND, modelo de negocio INFERRED) pero con contacto fuerte",
+  "SYNTH-ORG-0007": "Contacto NO verificable (UNVERIFIED)",
+  "SYNTH-ORG-0008": "Persona identificada SIN canal accionable",
+  "SYNTH-ORG-0009": "Departamento + canal propio del departamento",
+  "SYNTH-ORG-0010": "Fuera de sector (IT)",
+  "SYNTH-ORG-0011": "Fuera de sector (logística)",
+  "SYNTH-ORG-0012": "Fuera de geografía (Portugal)",
+  "SYNTH-ORG-0013": "Grupo: nivel de entidad GROUP (se pidió COMPANY)",
+  "SYNTH-ORG-0014": "Filial con el mismo dominio que el grupo (no se fusionan)",
+  "SYNTH-ORG-0015": "Ambigua: mismo nombre que otra entidad con dominio distinto",
+  "SYNTH-ORG-0016": "Ambigua (par)",
+  "SYNTH-ORG-0017": "Sin dominio: no enriquecible",
+  "SYNTH-ORG-0018": "Persona con cargo desactualizado (STALE) + canal general vigente"
+ }
+}

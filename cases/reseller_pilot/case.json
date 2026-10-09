@@ -1,0 +1,96 @@
+{
+ "case_id": "reseller_pilot",
+ "schema": "oi_case.v1",
+ "label": "Piloto de reventa",
+ "kind": "HISTORICAL_REPRODUCIBLE",
+ "immutable": true,
+ "status": "EXPERIMENT_CLOSED",
+ "description": "Caso histórico: empresas españolas potencialmente interesantes como clientes/canales para productos alimentarios. Experimento cerrado e inmutable. Este directorio solo CONFIGURA y reproduce la vista; no modifica ningún artefacto histórico. En la edición pública, los registros de records/ son SINTÉTICOS y el histórico no se incluye.",
+ "locale": "es",
+ "opportunity_type": "customer_prospect",
+ "offering": {
+  "kind": "PRODUCT_FOR_RESALE",
+  "target_function": "PROCUREMENT",
+  "origin": "RETROACTIVE_CLASSIFICATION",
+  "note": "El Search Spec v1 del piloto de reventa no tenía offering.kind. La clasificación PRODUCT_FOR_RESALE se asignó retroactivamente al aprobar la auditoría de fase 1 (perfil SELL_PRODUCT_TO_RESELLER); no cambia ningún artefacto del experimento."
+ },
+ "contact_profile": "SELL_PRODUCT_TO_RESELLER",
+ "paid_enrichment_authorized": false,
+ "reference_date": "2026-10-08",
+ "historical_sources": {
+  "root": "/mnt/user-data/outputs/reseller_pilot_history/",
+  "files": [
+   {
+    "id": "commercial_data",
+    "path": "contact_enrichment/RESELLER_PILOT_COMMERCIAL_DATA.json",
+    "sha256": "f2fb9f64112c7f03cd7c8fe39b4b172175d6a01e25fb7296b72e79f6cc2ae4f0",
+    "role": "30 candidatos + feedback oficial + enriquecimiento de contacto v0.1 (entrada principal del adaptador)"
+   },
+   {
+    "id": "official_feedback",
+    "path": "t3_preview/T3_PREVIEW_OFFICIAL_FEEDBACK.json",
+    "sha256": "7fe090e42bd61b3e894d2fe59c7f0618e2cf2226adfdd456444d02fcb7952148",
+    "role": "Feedback oficial canónico (12 SÍ / 3 DUDOSA / 15 NO) — se usa solo para comprobar integridad"
+   },
+   {
+    "id": "contact_enrichment_v01",
+    "path": "contact_enrichment/CONTACT_ENRICHMENT_V01.json",
+    "sha256": "5cabdfff425da6343c79a1bfc46b6518964d5174b60a653b8fb58ddd3c9abe5e",
+    "role": "Enriquecimiento de contacto v0.1 (histórico)"
+   }
+  ]
+ },
+ "decision_vocabulary": {
+  "ACCEPT": "SÍ",
+  "MAYBE": "DUDOSA",
+  "REJECT": "NO",
+  "source_field": "feedback.answer",
+  "mapping": {
+   "SÍ": "ACCEPT",
+   "DUDOSA": "MAYBE",
+   "NO": "REJECT"
+  }
+ },
+ "frozen_facts": {
+  "candidates": 30,
+  "feedback": {
+   "SÍ": 12,
+   "DUDOSA": 3,
+   "NO": 15
+  },
+  "by_group": {
+   "G1": {
+    "SÍ": 4,
+    "DUDOSA": 0,
+    "NO": 1
+   },
+   "G2": {
+    "SÍ": 6,
+    "DUDOSA": 3,
+    "NO": 3
+   },
+   "G3": {
+    "SÍ": 0,
+    "DUDOSA": 0,
+    "NO": 4
+   },
+   "G4": {
+    "SÍ": 2,
+    "DUDOSA": 0,
+    "NO": 7
+   }
+  },
+  "note": "Cifras CONGELADAS del experimento. Solo existen aquí y en los tests de integridad histórica; ningún motor ni renderer las conoce."
+ },
+ "groups": {
+  "G1": "Candidato con enrichment existente (T1/T2 o 3C)",
+  "G2": "Revisado previamente por el revisor humano con encaje claro",
+  "G3": "Caso fronterizo (revisor humano: relevante, segmento NO)",
+  "G4": "Propuesto por el sistema, sin revisión humana previa"
+ },
+ "queries": {
+  "RP-MAY": "mayoristas",
+  "RP-DIS": "distribuidores",
+  "RP-CAD": "cadenas/supermercados"
+ }
+}

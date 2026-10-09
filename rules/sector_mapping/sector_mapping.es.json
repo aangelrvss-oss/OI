@@ -1,0 +1,45 @@
+{
+ "mapping_version": "0.1.0",
+ "country": "ES",
+ "language": "es",
+ "policy": {"unmapped_term": "MAPPING_REQUIRED", "llm_may_create_codes": false, "provider_query_must_be_probed_before_reliance": true,
+            "note": "Mapeo curado y PEQUEÑO a propósito. Solo hay entradas con evidencia citada. Un término no listado devuelve MAPPING_REQUIRED. Las consultas a proveedor 'PROPOSED_NOT_PROBED' no se han probado contra el proveedor: no se debe confiar en ellas hasta una sondeo (gratuito) autorizado."},
+ "entries": [
+  {
+   "entry_id": "ES-CONSTRUCTION-001",
+   "user_terms": ["constructoras", "constructora", "empresas constructoras", "empresas de construccion", "empresas de construcción", "sector construccion", "sector construcción", "construccion", "construcción"],
+   "canonical_sector": "CONSTRUCTION",
+   "classification": {
+    "cnae_2009": [
+     {"code": "41", "title": "Construcción de edificios", "verification": "NOT_VERIFIED_THIS_SESSION"},
+     {"code": "42", "title": "Ingeniería civil", "verification": "NOT_VERIFIED_THIS_SESSION"},
+     {"code": "43", "title": "Actividades de construcción especializada", "verification": "VERIFIED_THIRD_PARTY_REPRODUCTION"}
+    ],
+    "naics_2022": null,
+    "note": "Sección F de CNAE-2009. Solo la división 43 se contrastó en esta sesión (reproducción de tercero que cita al INE); 41 y 42 provienen del conocimiento general de la clasificación y están marcadas como no verificadas hasta revisión humana. NAICS: sin mapeo (no se inventa)."
+   },
+   "business_model_hint": ["contractor"],
+   "provider_taxonomy": {"apollo": {"status": "PROPOSED_NOT_PROBED", "organization_keyword_tags": ["construction", "construcción"], "industry_labels": ["construction"], "industry_labels_verification": "UNVERIFIED", "naics_prefixes": [], "note": "La etiqueta de industria 'construction' se usa para el gate F1/G1 como pista INFERRED; no se ha verificado contra el proveedor para empresas españolas."}},
+   "provider_query": {"apollo.organizations_lookup": {"status": "PROPOSED_NOT_PROBED", "params": {"q_organization_keyword_tags": ["construction", "construcción"], "organization_locations": ["Spain"]},
+                                                       "note": "Forma de la consulta copiada de las consultas históricas del piloto de reventa (mismo operador); los valores de las etiquetas NO se han probado para construcción."}},
+   "confidence": "MEDIUM",
+   "evidence": [
+    {"source_label": "CNAE-2009 división 43 'Actividades de construcción especializada' (conversoriaecnae.es, cita al INE)", "source_url": "https://www.conversoriaecnae.es/cnae-2009/43/actividades-de-construccion-especializada", "retrieved_at": "2026-10-08", "supports": "classification.cnae_2009[43]"},
+    {"source_label": "Consultas históricas de descubrimiento del piloto de reventa (misma operación de proveedor)", "source_url": null, "retrieved_at": "2026-10-08", "supports": "provider_query shape"}
+   ],
+   "review": {"status": "PENDING_HUMAN_REVIEW", "reviewed_by": null}
+  },
+  {
+   "entry_id": "ES-FOOD-DISTRIBUTION-001",
+   "user_terms": ["distribuidores de alimentacion", "distribuidores de alimentación", "distribucion alimentaria", "distribución alimentaria"],
+   "canonical_sector": "FOOD_DISTRIBUTION",
+   "classification": {"cnae_2009": null, "naics_2022": null, "note": "Sin clasificación oficial curada: MAPPING_REQUIRED para CNAE/NAICS."},
+   "business_model_hint": ["distributor"],
+   "provider_taxonomy": {"apollo": {"status": "USED_IN_HISTORICAL_RUN", "organization_keyword_tags": ["food distribution", "distribución alimentaria"]}},
+   "provider_query": {"apollo.organizations_lookup": {"status": "USED_IN_HISTORICAL_RUN", "params": {"q_organization_keyword_tags": ["food distribution", "distribución alimentaria"], "organization_locations": ["Spain"]}}},
+   "confidence": "MEDIUM",
+   "evidence": [{"source_label": "RESELLER_PILOT_FREE_DISCOVERY_GATE.md (operaciones 3, 6 y 9 del descubrimiento gratuito)", "source_url": null, "retrieved_at": "2026-10-08", "supports": "provider_query + provider_taxonomy"}],
+   "review": {"status": "PENDING_HUMAN_REVIEW", "reviewed_by": null}
+  }
+ ]
+}

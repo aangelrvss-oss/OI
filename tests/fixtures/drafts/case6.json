@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 100 empresas españolas potencialmente interesadas en automatización con IA.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas españolas potencialmente interesadas en automatización con IA",
+    "offering": {
+      "description": "automatización con IA",
+      "problem_solved": null,
+      "source_text": "automatización con IA"
+    }
+  },
+  "criteria": [],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 100,
+      "source_text": "100 empresas"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": null
+  }
+}

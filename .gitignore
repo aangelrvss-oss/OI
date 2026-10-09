@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+oi_runs/
+
+# Entorno local y secretos (nunca versionar)
+.env
+.env.*
+*.pem
+*.key
+.venv/
+venv/
+
+# Material privado que se conserva fuera de Git (transcripciones, órdenes originales, exportaciones)
+private/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

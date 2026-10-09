@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 empresas españolas que estén creciendo rápidamente.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas españolas con crecimiento rápido",
+    "offering": null
+  },
+  "criteria": [],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 empresas"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [
+      "Crecimiento de plantilla",
+      "Volumen de contratación",
+      "Expansión geográfica",
+      "Nuevas sedes",
+      "Financiación",
+      "Adquisiciones"
+    ],
+    "llm_notes": "«Rápidamente» es relativo; no propongo umbral. Falta la oferta."
+  }
+}

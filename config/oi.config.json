@@ -1,0 +1,10 @@
+{
+ "_doc": "Configuración del producto (no de un caso). La lógica no cambia con esto; los casos viven en cases/. paid_enrichment_authorized solo lo cambia el usuario y ningún código del producto gasta aunque esté en true: la ejecución real no está implementada en este bloque.",
+ "paid_enrichment_authorized": false,
+ "future_hard_cap_credits_NOT_AN_AUTHORIZATION": 10,
+ "default_locale": "es",
+ "supported_locales": ["es", "en"],
+ "reference_date": "2026-10-08",
+ "run_defaults": {"mode": "OFFLINE", "output_dir": "oi_runs"},
+ "paths": {"contracts": "oi/contracts", "rules": "rules", "cases": "cases", "archive": "archive"}
+}

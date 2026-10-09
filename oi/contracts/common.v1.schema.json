@@ -1,0 +1,299 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "common.v1.schema.json",
+ "title": "Definiciones comunes de los contratos de Opportunity Intelligence",
+ "description": "Vocabulario compartido por opportunity_record.v1 y opportunity_contact.v1. Una sola taxonomía de evidencia: source_class (de dónde viene el dato) y claim_status (qué podemos afirmar) son ejes distintos. La CONFIANZA/EVIDENCIA de un dato no es la UTILIDAD COMERCIAL de un contacto (esa vive en opportunity_contact.contact_quality).",
+ "$defs": {
+  "date": {
+   "type": "string",
+   "format": "date"
+  },
+  "date_time": {
+   "type": "string",
+   "format": "date-time"
+  },
+  "non_empty_string": {
+   "type": "string",
+   "minLength": 1
+  },
+  "opportunity_type": {
+   "enum": [
+    "customer_prospect",
+    "talent",
+    "supplier",
+    "partner",
+    "market_research",
+    "opportunity_discovery"
+   ],
+   "description": "Mismo vocabulario que Search Spec intent.opportunity_type."
+  },
+  "offering_kind": {
+   "enum": [
+    "PRODUCT_FOR_RESALE",
+    "SOFTWARE",
+    "SERVICE",
+    "CONSULTING",
+    "EQUIPMENT",
+    "OTHER",
+    "UNKNOWN"
+   ]
+  },
+  "target_function": {
+   "enum": [
+    "OPERATIONS",
+    "FINANCE",
+    "IT",
+    "PROCUREMENT",
+    "SALES",
+    "MARKETING",
+    "HR",
+    "MANAGEMENT",
+    "LEGAL_COMPLIANCE",
+    "OTHER",
+    "UNKNOWN"
+   ]
+  },
+  "business_model": {
+   "enum": [
+    "manufacturer",
+    "distributor",
+    "retailer",
+    "service_provider",
+    "contractor",
+    "operator",
+    "unknown"
+   ]
+  },
+  "entity_level": {
+   "enum": [
+    "ESTABLISHMENT",
+    "OPERATOR",
+    "GROUP",
+    "COMPANY",
+    "UNKNOWN"
+   ]
+  },
+  "source_class": {
+   "enum": [
+    "OFFICIAL",
+    "PROFESSIONAL_DIRECTORY",
+    "SECTOR_SOURCE",
+    "OTHER_VERIFIABLE",
+    "UNVERIFIED",
+    "NOT_FOUND"
+   ],
+   "description": "OFFICIAL: publicado por la propia empresa y leído en origen. PROFESSIONAL_DIRECTORY: proveedor estructurado/directorio profesional. SECTOR_SOURCE: prensa/asociación del sector. OTHER_VERIFIABLE: otra fuente comprobable. UNVERIFIED: existe pero no se pudo contrastar. NOT_FOUND: búsqueda legible sin resultado (distinto de 'no pude leer')."
+  },
+  "claim_status": {
+   "enum": [
+    "KNOWN",
+    "INFERRED",
+    "ESTIMATED",
+    "UNKNOWN",
+    "CONFLICTING"
+   ],
+   "description": "Estado de la afirmación. Una inferencia NUNCA es evidencia: se queda INFERRED."
+  },
+  "evidence_strength": {
+   "enum": [
+    "HIGH",
+    "MEDIUM",
+    "LOW",
+    "UNKNOWN"
+   ],
+   "description": "Fiabilidad del DATO. No mide si el contacto es comercialmente útil."
+  },
+  "evidence": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "evidence_id",
+    "field",
+    "value",
+    "source_class",
+    "claim_status",
+    "evidence_strength",
+    "retrieved_at"
+   ],
+   "properties": {
+    "evidence_id": {
+     "$ref": "#/$defs/non_empty_string"
+    },
+    "field": {
+     "$ref": "#/$defs/non_empty_string",
+     "description": "Qué afirma (p. ej. 'channel:email', 'person:title', 'company:employees')."
+    },
+    "value": {
+     "type": [
+      "string",
+      "number",
+      "boolean",
+      "null"
+     ]
+    },
+    "source_class": {
+     "$ref": "#/$defs/source_class"
+    },
+    "source_url": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "source_label": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "retrieved_at": {
+     "$ref": "#/$defs/date"
+    },
+    "claim_status": {
+     "$ref": "#/$defs/claim_status"
+    },
+    "evidence_strength": {
+     "$ref": "#/$defs/evidence_strength"
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "producer_confidence": {
+     "enum": [
+      "HIGH",
+      "MEDIUM",
+      "LOW",
+      "UNKNOWN"
+     ],
+     "description": "Confianza que DECLARA el productor del dato. Es informativa: NO determina evidence_strength (que se deriva por reglas de rules/evidence_strength.v1.json). Evita que 'confianza' se confunda con fiabilidad o con utilidad comercial."
+    },
+    "evidence_origin": {
+     "enum": [
+      "APOLLO_FREE_LOOKUP",
+      "APOLLO_ENRICHMENT",
+      "FIRST_PARTY_WEB",
+      "HUMAN_REVIEW",
+      "OTHER_VERIFIABLE"
+     ],
+     "description": "F13: de QUIÉN procede la evidencia, sin mezclar fuentes. APOLLO_FREE_LOOKUP = captura del lookup gratuito (solo id/nombre/dominio/web); FIRST_PARTY_WEB = página oficial de la propia empresa; HUMAN_REVIEW = revisión humana; OTHER_VERIFIABLE = otra fuente verificable y citada. Opcional en los datos sintéticos de F11; obligatorio en el replay de datos reales. F13.1: APOLLO_ENRICHMENT = dato del enrichment de pago (F14): solo puede ser INFERRED/ESTIMATED/UNKNOWN, nunca KNOWN."
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "claim_status": {
+        "enum": [
+         "INFERRED",
+         "ESTIMATED",
+         "UNKNOWN",
+         "CONFLICTING"
+        ]
+       }
+      },
+      "required": [
+       "claim_status"
+      ]
+     },
+     "then": {
+      "properties": {
+       "evidence_strength": {
+        "const": "UNKNOWN"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "claim_status": {
+        "const": "KNOWN"
+       }
+      },
+      "required": [
+       "claim_status"
+      ]
+     },
+     "then": {
+      "required": [
+       "source_label"
+      ],
+      "properties": {
+       "source_label": {
+        "type": "string",
+        "minLength": 1
+       },
+       "value": {
+        "not": {
+         "type": "null"
+        }
+       },
+       "source_class": {
+        "not": {
+         "enum": [
+          "NOT_FOUND"
+         ]
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "source_class": {
+        "const": "NOT_FOUND"
+       }
+      },
+      "required": [
+       "source_class"
+      ]
+     },
+     "then": {
+      "properties": {
+       "value": {
+        "type": "null"
+       },
+       "claim_status": {
+        "const": "UNKNOWN"
+       },
+       "evidence_strength": {
+        "const": "UNKNOWN"
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "source_class": {
+        "const": "UNVERIFIED"
+       }
+      },
+      "required": [
+       "source_class"
+      ]
+     },
+     "then": {
+      "properties": {
+       "claim_status": {
+        "not": {
+         "const": "KNOWN"
+        }
+       },
+       "evidence_strength": {
+        "enum": [
+         "LOW",
+         "UNKNOWN"
+        ]
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

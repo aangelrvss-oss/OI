@@ -1,0 +1,33 @@
+{
+ "schema": "oi_lexicon.v1",
+ "case_id": "construction_software",
+ "language": "es",
+ "policy": "Solo términos que el usuario escribió. Sinónimos y términos inferidos se añaden con review.status=PROPOSED y no activan criterios.",
+ "terms": [
+  {
+   "user_term": "constructoras",
+   "kind": "sector",
+   "maps_to": "sector_mapping:ES-CONSTRUCTION-001",
+   "origin": "user"
+  },
+  {
+   "user_term": "en crecimiento",
+   "kind": "opportunity_signal",
+   "maps_to": "pending_parameters:GROWTH_DEFINITION",
+   "origin": "user"
+  },
+  {
+   "user_term": "software de gestión",
+   "kind": "offering",
+   "maps_to": "offering.kind=SOFTWARE",
+   "origin": "user"
+  },
+  {
+   "user_term": "clientes potenciales",
+   "kind": "opportunity_type",
+   "maps_to": "customer_prospect",
+   "origin": "user"
+  }
+ ],
+ "proposed_not_active": []
+}

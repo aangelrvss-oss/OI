@@ -1,0 +1,23 @@
+{
+ "_WARNING": "SOLO PARA TESTS DE MECÁNICA. El valor 10 y period_days=365 son ARBITRARIOS y NO son una decisión del usuario; no usar en cases/ ni en ninguna ejecución real.",
+ "confirmations": [
+  {
+   "criterion_id": "C1",
+   "definition_text": "TEST_ONLY: crecimiento de plantilla >= valor arbitrario",
+   "value": 10,
+   "params": {
+    "period_days": 365
+   }
+  }
+ ],
+ "user_params": {
+  "budget": {
+   "source": "user_parameter",
+   "data_calls_max": 30,
+   "infra_calls_max": 10,
+   "tool_credits_max": {
+    "apollo": 0
+   }
+  }
+ }
+}

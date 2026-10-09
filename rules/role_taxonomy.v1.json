@@ -1,0 +1,19 @@
+{
+ "taxonomy_version": "1.0.0",
+ "language": "es",
+ "description": "Cómo se traduce el TEXTO de un cargo (evidencia 'person:title') a role_family y seniority del contrato opportunity_contact.v1. Datos, no código: el productor de evidencia aporta el texto del cargo; la clasificación la hace este fichero. Reglas ordenadas (gana la primera cuyo término aparece, comparación sin acentos ni mayúsculas, por palabra completa). Sin coincidencia: role_family GENERAL / seniority UNKNOWN (no se adivina).",
+ "role_family_rules": [
+  {"role_family": "MANAGEMENT", "terms": ["director general", "directora general", "consejero delegado", "consejera delegada", "ceo", "gerente", "presidente", "presidenta", "managing director"]},
+  {"role_family": "BUSINESS_DEV", "terms": ["desarrollo de negocio", "business development"]},
+  {"role_family": "PROCUREMENT", "terms": ["compras", "aprovisionamiento", "procurement"]},
+  {"role_family": "COMMERCIAL", "terms": ["comercial", "ventas", "sales"]},
+  {"role_family": "FINANCE", "terms": ["financiero", "financiera", "finanzas", "administracion", "contabilidad", "tesoreria", "cfo"]},
+  {"role_family": "IT_OPERATIONS", "terms": ["sistemas", "tecnologia", "informatica", "digital", "transformacion digital", "operaciones", "produccion", "cio", "cto", "coo", "it"]}
+ ],
+ "seniority_rules": [
+  {"seniority": "C_LEVEL", "terms": ["director general", "directora general", "consejero delegado", "consejera delegada", "ceo", "cfo", "cio", "cto", "coo", "presidente", "presidenta", "gerente", "managing director"]},
+  {"seniority": "DIRECTOR", "terms": ["director", "directora", "head of", "vp"]},
+  {"seniority": "MANAGER", "terms": ["responsable", "jefe", "jefa", "manager", "coordinador", "coordinadora"]}
+ ],
+ "fallback": {"role_family": "GENERAL", "seniority": "UNKNOWN"}
+}

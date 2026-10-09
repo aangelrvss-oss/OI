@@ -1,0 +1,17 @@
+{
+ "model": {"id": "known_evidence_gates", "version": "1.0.0"},
+ "description": "Modelo de cualificación como DATOS. Una oportunidad es ELIGIBLE solo si TODAS las puertas bloqueantes están en PASS con evidencia KNOWN. UNKNOWN != PASS · INFERRED != KNOWN · CONFLICTING != PASS. Las señales 'preferred' (p. ej. crecimiento) NO son puertas: se muestran como señales. Un SÍ humano no equivale a VERIFIED.",
+ "pass_requires_claim_status": ["KNOWN"],
+ "provider_verdict_map": {"PASS": "PASS", "FAIL": "FAIL", "UNKNOWN": "UNKNOWN", "CONFLICTING": "UNKNOWN"},
+ "identity_gate": {"id": "IDENTITY", "label": "Identidad de la empresa", "pass_when": ["KNOWN_MATCH"], "fail_when": ["KNOWN_MISMATCH"], "unknown_when": ["AMBIGUOUS", "UNKNOWN"]},
+ "entity_level_gate": {"id": "ENTITY_LEVEL", "label": "Nivel de entidad pedido", "evidence_field": "company:entity_level", "not_applicable_when_requested": ["UNKNOWN"]},
+ "business_model_gate": {"id": "BUSINESS_MODEL", "label": "Modelo de negocio pedido", "evidence_field": "company:business_model", "not_applicable_when_requested": ["unknown"]},
+ "status_rules": [
+  {"id": "NOT_ENRICHED", "when": {"enriched": [false]}, "status": "NOT_ASSESSED", "fit_verification": "NOT_ASSESSED", "reason": "La empresa no se pudo enriquecer (p. ej. sin dominio): no se ha evaluado."},
+  {"id": "BLOCKING_FAIL", "when": {"blocking_has_fail": [true]}, "status": "NOT_ELIGIBLE", "fit_verification": "UNVERIFIED", "reason": "No cumple las puertas: {failed}."},
+  {"id": "ALL_UNKNOWN", "when": {"blocking_all_unknown": [true]}, "status": "UNKNOWN", "fit_verification": "UNVERIFIED", "reason": "No hay información para evaluar ninguna puerta."},
+  {"id": "PENDING_EVIDENCE", "when": {"blocking_has_not_known_pass": [true]}, "status": "PENDING_EVIDENCE", "fit_verification": "UNVERIFIED", "reason": "Faltan evidencias KNOWN para: {pending}. UNKNOWN, INFERRED y CONFLICTING no equivalen a PASS."},
+  {"id": "ELIGIBLE", "when": {"blocking_all_known_pass": [true]}, "status": "ELIGIBLE", "fit_verification": "VERIFIED", "reason": "Todas las puertas bloqueantes ({passed}) están en PASS con evidencia KNOWN."}
+ ],
+ "default": {"status": "UNKNOWN", "fit_verification": "NOT_ASSESSED", "reason": "Ninguna regla de cualificación determina el estado."}
+}

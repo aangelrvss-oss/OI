@@ -1,0 +1,54 @@
+{
+ "meta": {
+  "prompt_version": "intent_interpreter@1.0.0",
+  "author": "llm:claude",
+  "fixture": true
+ },
+ "control": {
+  "raw_request": "Encuentra 15 distribuidores alimentarios españoles que puedan ser compradores de un nuevo producto.",
+  "language": "es"
+ },
+ "intent": {
+  "opportunity_type": "customer_prospect",
+  "target_entity_type": "company",
+  "objective": "Encontrar distribuidores alimentarios españoles que puedan comprar un nuevo producto",
+  "offering": {
+   "description": null,
+   "problem_solved": null,
+   "source_text": null
+  }
+ },
+ "criteria": [
+  {
+   "id": "G1",
+   "label": "Sector distribución alimentaria",
+   "dimension": "fit",
+   "field": "firmographic.industry",
+   "operator": "eq",
+   "value": "distribución alimentaria",
+   "strength": "gate",
+   "origin": "user",
+   "source_text": "distribuidores alimentarios"
+  }
+ ],
+ "restrictions": {
+  "geography": {
+   "include": [
+    {
+     "name": "ES",
+     "level": "country"
+    }
+   ],
+   "exclude": []
+  },
+  "excluded_entities": [],
+  "quantity": {
+   "target": 15,
+   "source_text": "15 distribuidores"
+  }
+ },
+ "traceability": {
+  "proposed_signals": [],
+  "llm_notes": "El producto no está especificado; tampoco el tipo de distribuidor (mayorista, retail, horeca)."
+ }
+}

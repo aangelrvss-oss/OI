@@ -1,0 +1,146 @@
+{
+  "lexicon_version": "1.0.0",
+  "relative_terms": [
+    {
+      "id": "rapid_growth",
+      "patterns": [
+        "rapidamente",
+        "rapido",
+        "rapida",
+        "rapidos",
+        "hipercrecimiento"
+      ],
+      "scope": "inclusion",
+      "question": "¿Qué significa «crecer rápidamente» para esta búsqueda? Elige las señales y define umbral y periodo (p. ej. «+X % de plantilla en N meses»).",
+      "menu": [
+        {
+          "label": "Crecimiento de plantilla",
+          "field": "growth.employee_growth_pct"
+        },
+        {
+          "label": "Volumen de contratación",
+          "field": "growth.hiring_velocity"
+        },
+        {
+          "label": "Expansión geográfica",
+          "field": "growth.geographic_expansion"
+        },
+        {
+          "label": "Nuevas sedes",
+          "field": "growth.new_locations"
+        },
+        {
+          "label": "Financiación",
+          "field": "growth.funding_event"
+        },
+        {
+          "label": "Adquisiciones",
+          "field": "growth.acquisitions"
+        }
+      ]
+    },
+    {
+      "id": "size_large",
+      "patterns": [
+        "grande",
+        "grandes",
+        "gran empresa",
+        "grandes empresas"
+      ],
+      "scope": "inclusion",
+      "question": "¿Qué consideras «grande»? Indica un rango de empleados.",
+      "menu": [
+        {
+          "label": "Rango de empleados",
+          "field": "firmographic.employee_count"
+        }
+      ]
+    },
+    {
+      "id": "size_small",
+      "patterns": [
+        "pequeno",
+        "pequena",
+        "pequenos",
+        "pequenas"
+      ],
+      "scope": "inclusion",
+      "question": "¿Qué consideras «pequeño»? Indica un rango de empleados.",
+      "menu": [
+        {
+          "label": "Rango de empleados",
+          "field": "firmographic.employee_count"
+        }
+      ]
+    },
+    {
+      "id": "innovative",
+      "patterns": [
+        "innovador",
+        "innovadora",
+        "innovadores",
+        "innovadoras"
+      ],
+      "scope": "inclusion",
+      "question": "¿Qué evidencia observable indicaría que una empresa es «innovadora» para ti?",
+      "menu": []
+    },
+    {
+      "id": "important",
+      "patterns": [
+        "importante",
+        "importantes",
+        "relevante",
+        "relevantes",
+        "lider",
+        "lideres"
+      ],
+      "scope": "inclusion",
+      "question": "¿Qué criterio objetivo define «importante/líder» aquí (tamaño, cuota, facturación...)?",
+      "menu": []
+    },
+    {
+      "id": "improvable",
+      "patterns": [
+        "mejorable",
+        "mejorables"
+      ],
+      "scope": "ranking_signal",
+      "question": "Para «presencia digital mejorable» propongo estas deficiencias observables. ¿Las confirmas o las ajustas?",
+      "menu": [
+        {
+          "label": "No tiene web",
+          "field": "digital.has_website"
+        },
+        {
+          "label": "Baja visibilidad en búsquedas locales",
+          "field": "digital.local_visibility_rank"
+        },
+        {
+          "label": "Problemas técnicos en la web",
+          "field": "digital.site_technical_issue_count"
+        }
+      ]
+    }
+  ],
+  "vague_quantifiers": {
+    "patterns": [
+      "muchas",
+      "muchos",
+      "varias",
+      "varios",
+      "algunas",
+      "algunos",
+      "unas cuantas",
+      "bastantes",
+      "un monton"
+    ],
+    "question": "¿Cuántas empresas necesitas aproximadamente? El volumen determina el coste de la investigación.",
+    "options": [
+      "10",
+      "20",
+      "50",
+      "100"
+    ]
+  }
+}

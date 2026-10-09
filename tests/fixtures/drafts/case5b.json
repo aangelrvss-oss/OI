@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 pymes españolas que puedan ser clientes potenciales de un software de facturación electrónica.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar pymes españolas que puedan ser clientes de un software de facturación electrónica",
+    "offering": {
+      "description": "software de facturación electrónica",
+      "problem_solved": null,
+      "source_text": "software de facturación electrónica"
+    }
+  },
+  "criteria": [
+    {
+      "id": "G2",
+      "label": "Pyme (<250 empleados)",
+      "dimension": "fit",
+      "field": "firmographic.employee_count",
+      "operator": "lte",
+      "value": 249,
+      "strength": "gate",
+      "origin": "assumed",
+      "source_text": "pymes"
+    },
+    {
+      "id": "O1",
+      "label": "Contratación de perfiles financieros/administrativos",
+      "dimension": "opportunity",
+      "field": "hiring.finance_admin_roles",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null
+    },
+    {
+      "id": "O2",
+      "label": "Herramientas de facturación visibles en la web",
+      "dimension": "opportunity",
+      "field": "web.invoicing_stack_visible",
+      "operator": "exists",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 pymes"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [
+      "Factor regulatorio de facturación electrónica: verificar por búsqueda web en ejecución; no es propiedad de cada empresa"
+    ],
+    "llm_notes": null
+  }
+}

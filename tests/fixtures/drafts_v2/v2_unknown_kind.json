@@ -1,0 +1,71 @@
+{
+ "meta": {
+  "prompt_version": "mock_interpreter@1.0.0",
+  "author": "mock:deterministic",
+  "fixture": true
+ },
+ "control": {
+  "raw_request": "Empresas constructoras españolas en crecimiento que puedan ser clientes potenciales de software de gestión.",
+  "language": "es"
+ },
+ "intent": {
+  "opportunity_type": "customer_prospect",
+  "target_entity_type": "company",
+  "objective": "Empresas constructoras españolas en crecimiento que puedan ser clientes potenciales de software de gestión",
+  "offering": {
+   "description": "software de gestión",
+   "problem_solved": null,
+   "source_text": "software de gestión",
+   "kind": "UNKNOWN",
+   "target_function": "UNKNOWN"
+  },
+  "business_model": [
+   "contractor"
+  ],
+  "entity_level": "COMPANY"
+ },
+ "criteria": [
+  {
+   "id": "G1",
+   "label": "Sector: empresas constructoras",
+   "dimension": "fit",
+   "field": "firmographic.industry",
+   "operator": "eq",
+   "value": "empresas constructoras",
+   "strength": "gate",
+   "origin": "user",
+   "source_text": "empresas constructoras"
+  },
+  {
+   "id": "C1",
+   "label": "En crecimiento",
+   "dimension": "opportunity",
+   "field": "growth.employee_growth_pct",
+   "operator": "gte",
+   "value": null,
+   "strength": "preferred",
+   "origin": "user",
+   "source_text": "en crecimiento"
+  }
+ ],
+ "restrictions": {
+  "geography": {
+   "include": [
+    {
+     "name": "ES",
+     "level": "country"
+    }
+   ],
+   "exclude": []
+  },
+  "excluded_entities": [],
+  "quantity": {
+   "target": null,
+   "source_text": null
+  }
+ },
+ "traceability": {
+  "proposed_signals": [],
+  "llm_notes": "Extracción literal sin LLM. "
+ }
+}
