@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research-plan.v2.json",
+  "title": "ResearchPlan v2",
+  "type": "object",
+  "required": [
+    "identity",
+    "spec_ref",
+    "versions",
+    "status",
+    "criteria_digest",
+    "phases",
+    "dependencies",
+    "stop_conditions",
+    "expansion_policy",
+    "coverage",
+    "outcome_policy",
+    "tool_policy",
+    "authorization",
+    "budget",
+    "capabilities"
+  ],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "required": [
+        "plan_id",
+        "plan_version",
+        "spec_id",
+        "spec_version",
+        "planner_version",
+        "created_at",
+        "fingerprint",
+        "content_hash"
+      ],
+      "properties": {
+        "plan_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plan_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "spec_id": {
+          "type": "string"
+        },
+        "spec_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "planner_version": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "minLength": 10
+        },
+        "fingerprint": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "spec_ref": {
+      "type": "object",
+      "required": [
+        "spec_id",
+        "spec_version",
+        "status",
+        "content_hash"
+      ],
+      "properties": {
+        "status": {
+          "const": "confirmed"
+        }
+      }
+    },
+    "versions": {
+      "type": "object",
+      "required": [
+        "planner_version",
+        "ruleset_version",
+        "planning_params_version",
+        "routing_version",
+        "tool_catalog_version",
+        "capability_matrix_version",
+        "field_registry_version",
+        "spec_schema_version"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "degraded",
+        "blocked"
+      ]
+    },
+    "blocked_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "degradations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "phase",
+          "parameter",
+          "from",
+          "to",
+          "reason"
+        ]
+      }
+    },
+    "criteria_digest": {
+      "type": "object",
+      "required": [
+        "active",
+        "ignored",
+        "classes"
+      ],
+      "properties": {
+        "active": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "field",
+              "class",
+              "stage"
+            ]
+          }
+        },
+        "ignored": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "field",
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "enum": [
+                  "proposed",
+                  "needs_definition",
+                  "unknown_field",
+                  "field_not_operational",
+                  "no_routing"
+                ]
+              }
+            }
+          }
+        },
+        "classes": {
+          "type": "object"
+        }
+      }
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/phase"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "to"
+        ]
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "budget_input",
+        "source",
+        "reserve",
+        "phase_allocations",
+        "estimated_usage",
+        "tool_call_budget",
+        "credit_budget",
+        "candidate_capacity",
+        "deep_research_capacity",
+        "infra_calls",
+        "thresholds",
+        "exhaustion_policy"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "user_parameter",
+            "planner_input",
+            "dry_run_example"
+          ]
+        }
+      }
+    },
+    "stop_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "parameters"
+        ]
+      }
+    },
+    "expansion_policy": {
+      "type": "object",
+      "required": [
+        "classes",
+        "levers",
+        "max_rounds",
+        "hard_relaxation"
+      ],
+      "properties": {
+        "hard_relaxation": {
+          "type": "object",
+          "required": [
+            "automatic",
+            "requires"
+          ],
+          "properties": {
+            "automatic": {
+              "const": false
+            }
+          }
+        },
+        "max_rounds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "requested_target",
+        "claims_policy",
+        "candidate_pool",
+        "enrichment_capacity",
+        "deep_research_capacity"
+      ]
+    },
+    "outcome_policy": {
+      "type": "object",
+      "required": [
+        "statuses"
+      ]
+    },
+    "tool_policy": {
+      "type": "object",
+      "required": [
+        "forbidden",
+        "allowed_by_phase"
+      ]
+    },
+    "authorization": {
+      "type": "object",
+      "required": [
+        "execution_mode",
+        "spend_authorized",
+        "reason"
+      ],
+      "properties": {
+        "execution_mode": {
+          "const": "dry_run_only"
+        },
+        "spend_authorized": {
+          "const": false
+        }
+      }
+    },
+    "approvals": {
+      "type": "array"
+    },
+    "warnings": {
+      "type": "array"
+    },
+    "llm_input": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "account_plan_observed",
+        "used",
+        "unverified_dependencies"
+      ]
+    }
+  },
+  "$defs": {
+    "phase": {
+      "type": "object",
+      "required": [
+        "phase_id",
+        "type",
+        "purpose",
+        "status",
+        "prerequisites",
+        "input",
+        "output",
+        "candidate_tools",
+        "selected_tool",
+        "tool_selections",
+        "applicable_rules",
+        "active_criteria",
+        "max_candidates",
+        "estimated_calls",
+        "estimated_credits",
+        "stop_conditions",
+        "expansion_conditions"
+      ],
+      "properties": {
+        "phase_id": {
+          "enum": [
+            "DISCOVERY",
+            "NORMALIZATION",
+            "ENTITY_RESOLUTION",
+            "PRE_ENRICHMENT_FILTERS",
+            "CANDIDATE_RELEVANCE",
+            "ENRICHMENT",
+            "VERIFIED_GATES",
+            "EVIDENCE",
+            "SCORING",
+            "PRIORITIZATION",
+            "DECISION_MAKER_ENRICHMENT",
+            "RESULTS"
+          ]
+        },
+        "type": {
+          "enum": [
+            "tool",
+            "deterministic",
+            "mixed"
+          ]
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "skipped"
+          ]
+        },
+        "skip_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "estimated_calls": {
+          "type": "object",
+          "required": [
+            "data_calls_max",
+            "infra_calls",
+            "basis"
+          ]
+        },
+        "estimated_credits": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unverified_not_estimated",
+                "estimated_from_observed_cost",
+                "observed_zero",
+                "no_credit_cost"
+              ]
+            }
+          }
+        },
+        "tool_selections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "rule_id",
+              "reason",
+              "triggering_criteria",
+              "selected_tool",
+              "rejected_tools"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

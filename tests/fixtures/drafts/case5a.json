@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra empresas que necesiten algo que mi producto pueda solucionar.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas con una necesidad que el producto del usuario resuelva",
+    "offering": null
+  },
+  "criteria": [],
+  "restrictions": {
+    "geography": {
+      "include": [],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": null
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": null
+  }
+}

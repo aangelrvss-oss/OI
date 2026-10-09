@@ -1,0 +1,197 @@
+{
+  "tools_version": "1.0.0",
+  "tools": {
+    "apollo.company_search": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_mixed_companies_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "DISCOVERY"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "apollo.org_enrich": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_organizations_enrich",
+        "apollo_organizations_bulk_enrich"
+      ],
+      "kind": "read",
+      "phases": [
+        "ENRICHMENT"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "apollo.job_postings": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_organizations_job_postings"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": "Colocado en EVIDENCE (solo top-N) mientras su coste no esté verificado."
+    },
+    "apollo.people_search": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_mixed_people_api_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "DECISION_MAKER_ENRICHMENT"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "firecrawl.scrape": {
+      "provider": "firecrawl",
+      "operations": [
+        "firecrawl_scrape"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "firecrawl.search": {
+      "provider": "firecrawl",
+      "operations": [
+        "firecrawl_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE",
+        "DISCOVERY"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": "En DISCOVERY solo como palanca de expansión (TS-F3), nunca como fuente inicial."
+    },
+    "openrush.inspect_serp": {
+      "provider": "openrush",
+      "operations": [
+        "inspect_serp"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "openrush.audit_site": {
+      "provider": "openrush",
+      "operations": [
+        "audit_site"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "openrush.inspect_domain": {
+      "provider": "openrush",
+      "operations": [
+        "inspect_domain"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": "Sin regla que lo seleccione en esta versión."
+    },
+    "bigquery.ledger": {
+      "provider": "bigquery",
+      "operations": [
+        "execute_sql"
+      ],
+      "kind": "infra",
+      "phases": [
+        "ALL"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "sheets.review_export": {
+      "provider": "google_sheets",
+      "operations": [
+        "append_values",
+        "update_values"
+      ],
+      "kind": "infra",
+      "phases": [
+        "RESULTS"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": ""
+    },
+    "gmail.create_draft": {
+      "provider": "gmail",
+      "operations": [
+        "create_draft"
+      ],
+      "kind": "draft",
+      "phases": [
+        "POST_PLAN"
+      ],
+      "credit_cost": "UNVERIFIED",
+      "capability_status": "described_not_verified",
+      "note": "Solo tras aprobación humana registrada; fuera de las fases del plan."
+    }
+  },
+  "forbidden": [
+    {
+      "id": "TP-02",
+      "match": [
+        "apollo_*_create",
+        "apollo_*_update",
+        "apollo_emailer_*",
+        "apollo_sequences_*",
+        "apollo_labels_*",
+        "apollo_tasks_*",
+        "apollo_phone_calls_*",
+        "apollo_deals_create",
+        "apollo_email_account_purchase_create",
+        "apollo_domain_purchase_*",
+        "apollo_feedback_log",
+        "apollo_survey_submit",
+        "apollo_csv_exports_*",
+        "apollo_data_source_imports_create",
+        "apollo_dynamic_field_enrichment_enrich",
+        "apollo_website_visitor_domain_tracker_*"
+      ],
+      "reason": "Escriben, envían, inscriben o gastan por efecto externo: prohibido en el MVP."
+    },
+    {
+      "id": "TP-03",
+      "match": [
+        "gmail_send_message",
+        "gmail_reply",
+        "gmail_forward"
+      ],
+      "reason": "Envío externo: solo borradores (create_draft) y con aprobación humana."
+    }
+  ]
+}

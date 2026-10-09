@@ -1,0 +1,46 @@
+{
+ "case_id": "construction_software",
+ "schema": "oi_case.v1",
+ "label": "Constructoras españolas · software de gestión",
+ "kind": "GENERALIZATION_CANDIDATE",
+ "immutable": false,
+ "status": "CONFIGURED_E2E_OFFLINE_SYNTHETIC",
+ "description": "Primer caso real de generalización. Ejecutable de extremo a extremo SOLO en modo offline con un dataset SINTÉTICO etiquetado (cases/construction_software/fixtures/e2e_dataset.json). La ejecución real sigue sin autorizar: paid_enrichment_authorized=false, 0 créditos.",
+ "locale": "es",
+ "request_literal": "Empresas constructoras españolas en crecimiento que puedan ser clientes potenciales de software de gestión.",
+ "opportunity_type": "customer_prospect",
+ "offering": {
+  "kind": "SOFTWARE",
+  "target_function": "UNKNOWN",
+  "origin": "USER_REQUEST",
+  "note": "El usuario dijo «software de gestión»; no indicó a qué función de la constructora va dirigido. Se deja UNKNOWN (no se inventa)."
+ },
+ "contact_profile": "SELL_SOFTWARE_OR_SERVICE",
+ "paid_enrichment_authorized": false,
+ "future_hard_cap_credits": 10,
+ "future_hard_cap_note": "Tope máximo previsto por el usuario. NO es una autorización de gasto.",
+ "spec": "spec.draft.json",
+ "sector_mapping": {
+  "country": "ES",
+  "entry_id": "ES-CONSTRUCTION-001",
+  "term": "constructoras"
+ },
+ "files": {
+  "pending_parameters": "pending_parameters.json",
+  "lexicons": "lexicons.json",
+  "exclusions": "exclusions.json",
+  "contact_profile": "contact_profile.json",
+  "evidence_requirements": "evidence_requirements.json",
+  "presentation": "presentation.json",
+  "offline_profile": "offline_profile.json",
+  "dataset_synthetic": "fixtures/e2e_dataset.json",
+  "replay_profile": "real_replay/replay_profile.json"
+ },
+ "reference_date": "2026-10-08",
+ "binding": {
+  "note": "Cómo se asocia una petición a este caso: por la FORMA del Search Spec interpretado, no por el texto literal.",
+  "opportunity_type": "customer_prospect",
+  "sector_entry_id": "ES-CONSTRUCTION-001",
+  "country": "ES"
+ }
+}

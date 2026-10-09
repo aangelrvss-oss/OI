@@ -1,0 +1,1047 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "opportunity_record.v1.schema.json",
+ "title": "opportunity_record.v1",
+ "description": "Una oportunidad comercial evaluada: qué empresa es, por qué es una oportunidad, qué señales y evidencia hay, cómo se cualifica y ordena, a quién contactar y qué hacer. Independiente de cualquier caso: un renderer que consuma opportunity_record[] debe poder mostrar Piloto de reventa y Construcción+software sin cambios. Los conceptos propios de un caso (grupos, segmentos, etiquetas de respuesta) viajan como DATOS en facets/labels y se traducen con la configuración del caso, nunca en el motor.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "schema_version",
+  "record_id",
+  "case_id",
+  "company",
+  "company_identity",
+  "opportunity_type",
+  "offering",
+  "why_opportunity",
+  "signals",
+  "qualification",
+  "evidence",
+  "ranking",
+  "contact",
+  "recommended_action",
+  "cost",
+  "provenance",
+  "timestamps"
+ ],
+ "properties": {
+  "schema_version": {
+   "const": "opportunity_record.v1"
+  },
+  "record_id": {
+   "type": "string",
+   "minLength": 1
+  },
+  "case_id": {
+   "type": "string",
+   "minLength": 1
+  },
+  "company": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "name"
+   ],
+   "properties": {
+    "name": {
+     "type": "string",
+     "minLength": 1
+    },
+    "domain": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "website": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "country": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[A-Z]{2}$"
+    },
+    "location": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "city": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "region": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "country": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "text": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "description": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "business_model": {
+     "type": "array",
+     "items": {
+      "$ref": "common.v1.schema.json#/$defs/business_model"
+     },
+     "uniqueItems": true
+    },
+    "industry_label": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Etiqueta de sector tal como la entrega la fuente; no es una taxonomía."
+    },
+    "size": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "employees": {
+       "type": [
+        "integer",
+        "null"
+       ],
+       "minimum": 0
+      },
+      "employees_range": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "claim_status": {
+       "$ref": "common.v1.schema.json#/$defs/claim_status"
+      },
+      "evidence_ids": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "text": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "company_identity": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "status",
+    "entity_level",
+    "keys"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "KNOWN_MATCH",
+      "KNOWN_MISMATCH",
+      "AMBIGUOUS",
+      "UNKNOWN"
+     ]
+    },
+    "entity_level": {
+     "$ref": "common.v1.schema.json#/$defs/entity_level"
+    },
+    "keys": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "string",
+      "minLength": 1
+     },
+     "description": "Claves de identidad (dominio, id de proveedor, nº registro…). El nombre solo no identifica."
+    },
+    "parent_name": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "evidence_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "opportunity_type": {
+   "$ref": "common.v1.schema.json#/$defs/opportunity_type"
+  },
+  "offering": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "kind"
+   ],
+   "properties": {
+    "kind": {
+     "$ref": "common.v1.schema.json#/$defs/offering_kind"
+    },
+    "target_function": {
+     "$ref": "common.v1.schema.json#/$defs/target_function"
+    },
+    "description": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "why_opportunity": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "summary",
+    "reasons"
+   ],
+   "properties": {
+    "summary": {
+     "type": "string",
+     "minLength": 1
+    },
+    "reasons": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "text",
+       "claim_status",
+       "evidence_ids"
+      ],
+      "properties": {
+       "text": {
+        "type": "string",
+        "minLength": 1
+       },
+       "signal_id": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "claim_status": {
+        "$ref": "common.v1.schema.json#/$defs/claim_status"
+       },
+       "evidence_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      }
+     }
+    },
+    "unknowns": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "minLength": 1
+     },
+     "description": "Qué NO sabemos y sería necesario para afirmar que es una oportunidad."
+    }
+   }
+  },
+  "signals": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "signal_id",
+     "label",
+     "state",
+     "claim_status",
+     "evidence_ids"
+    ],
+    "properties": {
+     "signal_id": {
+      "type": "string",
+      "minLength": 1
+     },
+     "label": {
+      "type": "string",
+      "minLength": 1
+     },
+     "kind": {
+      "enum": [
+       "FIT",
+       "NEED",
+       "GATE",
+       "CONTEXT"
+      ]
+     },
+     "state": {
+      "enum": [
+       "PRESENT",
+       "NOT_OBSERVED",
+       "UNKNOWN",
+       "CONFLICTING"
+      ]
+     },
+     "claim_status": {
+      "$ref": "common.v1.schema.json#/$defs/claim_status"
+     },
+     "value": {
+      "type": [
+       "string",
+       "number",
+       "boolean",
+       "null"
+      ]
+     },
+     "evidence_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "observed_at": {
+      "oneOf": [
+       {
+        "type": "null"
+       },
+       {
+        "$ref": "common.v1.schema.json#/$defs/date"
+       }
+      ]
+     }
+    },
+    "allOf": [
+     {
+      "if": {
+       "properties": {
+        "state": {
+         "const": "PRESENT"
+        }
+       },
+       "required": [
+        "state"
+       ]
+      },
+      "then": {
+       "properties": {
+        "evidence_ids": {
+         "minItems": 1
+        },
+        "claim_status": {
+         "enum": [
+          "KNOWN",
+          "ESTIMATED"
+         ]
+        }
+       }
+      }
+     }
+    ]
+   }
+  },
+  "qualification": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "status",
+    "fit_verification",
+    "gates",
+    "human_review"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "ELIGIBLE",
+      "PENDING_EVIDENCE",
+      "UNKNOWN",
+      "NOT_ELIGIBLE",
+      "NOT_ASSESSED"
+     ]
+    },
+    "reason": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "model": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "required": [
+      "id",
+      "version"
+     ],
+     "properties": {
+      "id": {
+       "type": "string"
+      },
+      "version": {
+       "type": "string"
+      },
+      "rules_hash": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    },
+    "fit_verification": {
+     "enum": [
+      "VERIFIED",
+      "UNVERIFIED",
+      "NOT_ASSESSED"
+     ],
+     "description": "Un SÍ humano NO equivale a VERIFIED: la verificación exige evidencia."
+    },
+    "gates": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "gate_id",
+       "status"
+      ],
+      "properties": {
+       "gate_id": {
+        "type": "string"
+       },
+       "status": {
+        "enum": [
+         "PASS",
+         "FAIL",
+         "UNKNOWN"
+        ]
+       },
+       "blocking": {
+        "type": "boolean",
+        "description": "true: un fallo/desconocido impide ELIGIBLE. false: comprobación informativa."
+       },
+       "evidence_status": {
+        "$ref": "common.v1.schema.json#/$defs/claim_status"
+       },
+       "reason": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      }
+     }
+    },
+    "human_review": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "decision"
+       ],
+       "properties": {
+        "decision": {
+         "enum": [
+          "ACCEPT",
+          "MAYBE",
+          "REJECT"
+         ]
+        },
+        "reviewed_by": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "reviewed_at": {
+         "oneOf": [
+          {
+           "type": "null"
+          },
+          {
+           "$ref": "common.v1.schema.json#/$defs/date"
+          }
+         ]
+        },
+        "comment": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       }
+      }
+     ]
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "fit_verification": {
+        "const": "VERIFIED"
+       }
+      },
+      "required": [
+       "fit_verification"
+      ]
+     },
+     "then": {
+      "properties": {
+       "status": {
+        "const": "ELIGIBLE"
+       }
+      }
+     }
+    }
+   ]
+  },
+  "evidence": {
+   "type": "array",
+   "items": {
+    "$ref": "common.v1.schema.json#/$defs/evidence"
+   }
+  },
+  "ranking": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "status",
+    "not_probability",
+    "calibrated"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "DEFINED_INTERVAL",
+      "NOT_APPLICABLE",
+      "BLOCKED",
+      "NOT_SCORED"
+     ]
+    },
+    "model": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "id": {
+       "type": "string"
+      },
+      "version": {
+       "type": "string"
+      }
+     }
+    },
+    "intervals": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "floor",
+       "ceiling"
+      ],
+      "properties": {
+       "floor": {
+        "type": "number"
+       },
+       "ceiling": {
+        "type": "number"
+       }
+      }
+     }
+    },
+    "position": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1
+    },
+    "tied_with": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "layer": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1
+    },
+    "strength_band": {
+     "enum": [
+      "STRONG",
+      "MODERATE",
+      "LOW_ONLY",
+      "NONE",
+      null
+     ]
+    },
+    "coverage": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0,
+     "maximum": 1
+    },
+    "not_probability": {
+     "const": true
+    },
+    "calibrated": {
+     "const": false
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "status": {
+        "const": "DEFINED_INTERVAL"
+       }
+      },
+      "required": [
+       "status"
+      ]
+     },
+     "then": {
+      "required": [
+       "intervals",
+       "model"
+      ],
+      "properties": {
+       "intervals": {
+        "minProperties": 1
+       }
+      }
+     }
+    }
+   ]
+  },
+  "contact": {
+   "$ref": "opportunity_contact.v1.schema.json"
+  },
+  "recommended_action": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "action",
+    "summary",
+    "blocking_reasons",
+    "requires_authorization"
+   ],
+   "properties": {
+    "action": {
+     "enum": [
+      "CONTACT",
+      "HUMAN_REVIEW",
+      "ENRICH_FIRST",
+      "VERIFY_EVIDENCE",
+      "DEFER",
+      "NO_ACTION"
+     ]
+    },
+    "summary": {
+     "type": "string",
+     "minLength": 1
+    },
+    "next_step": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "blocking_reasons": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "requires_authorization": {
+     "type": "boolean",
+     "description": "true si el siguiente paso útil exigiría gasto o permiso del usuario. El motor se detiene ahí."
+    },
+    "rule_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "Regla de rules/next_action.v1.json que decidió la acción (trazabilidad)."
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "action": {
+        "const": "CONTACT"
+       }
+      },
+      "required": [
+       "action"
+      ]
+     },
+     "then": {
+      "properties": {
+       "blocking_reasons": {
+        "maxItems": 0
+       },
+       "requires_authorization": {
+        "const": false
+       }
+      }
+     }
+    }
+   ]
+  },
+  "cost": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "paid_calls",
+    "credits",
+    "paid_enrichment_authorized",
+    "cost_status"
+   ],
+   "properties": {
+    "paid_calls": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "credits": {
+     "type": "number",
+     "minimum": 0
+    },
+    "data_calls": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "paid_enrichment_authorized": {
+     "type": "boolean"
+    },
+    "cost_status": {
+     "enum": [
+      "MEASURED",
+      "ESTIMATED",
+      "UNKNOWN",
+      "NOT_APPLICABLE"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "paid_enrichment_authorized": {
+        "const": false
+       }
+      },
+      "required": [
+       "paid_enrichment_authorized"
+      ]
+     },
+     "then": {
+      "properties": {
+       "paid_calls": {
+        "const": 0
+       },
+       "credits": {
+        "const": 0
+       }
+      }
+     }
+    }
+   ]
+  },
+  "facets": {
+   "type": "object",
+   "additionalProperties": {
+    "oneOf": [
+     {
+      "type": "string"
+     },
+     {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    ]
+   },
+   "description": "Atributos filtrables/agrupables propios del caso (claves y valores son DATOS; sus etiquetas viven en cases/<id>/presentation.json)."
+  },
+  "provenance": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "data_origin",
+    "sources",
+    "notes"
+   ],
+   "properties": {
+    "data_origin": {
+     "enum": [
+      "REAL_PROVIDER",
+      "HISTORICAL_IMPORT",
+      "MANUAL_RESEARCH",
+      "SYNTHETIC_FIXTURE"
+     ],
+     "description": "SYNTHETIC_FIXTURE = datos inventados para demostrar el flujo: nunca son oportunidades reales."
+    },
+    "sources": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "ref",
+       "role"
+      ],
+      "properties": {
+       "ref": {
+        "type": "string",
+        "minLength": 1
+       },
+       "role": {
+        "type": "string",
+        "minLength": 1
+       },
+       "sha256": {
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      }
+     }
+    },
+    "spec": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "spec_id": {
+       "type": "string"
+      },
+      "spec_version": {
+       "type": "integer"
+      },
+      "content_hash": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "schema_version": {
+       "type": "string"
+      }
+     }
+    },
+    "pipeline": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": [
+       "string",
+       "number",
+       "boolean",
+       "null"
+      ]
+     }
+    },
+    "notes": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "timestamps": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "created_at"
+   ],
+   "properties": {
+    "created_at": {
+     "$ref": "common.v1.schema.json#/$defs/date_time"
+    },
+    "observed_at": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "$ref": "common.v1.schema.json#/$defs/date"
+      }
+     ]
+    },
+    "last_verified": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "$ref": "common.v1.schema.json#/$defs/date"
+      }
+     ]
+    },
+    "updated_at": {
+     "oneOf": [
+      {
+       "type": "null"
+      },
+      {
+       "$ref": "common.v1.schema.json#/$defs/date_time"
+      }
+     ]
+    }
+   }
+  },
+  "contradictions": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "field",
+     "description",
+     "state"
+    ],
+    "properties": {
+     "field": {
+      "type": "string",
+      "minLength": 1
+     },
+     "description": {
+      "type": "string",
+      "minLength": 1
+     },
+     "values": {
+      "type": "array",
+      "items": {
+       "type": [
+        "string",
+        "number",
+        "boolean"
+       ]
+      }
+     },
+     "state": {
+      "const": "AMBIGUOUS"
+     },
+     "evidence_ids": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   },
+   "description": "Contradicciones de datos de la EMPRESA sin resolver (las de contacto viven en contact.contradictions). Se muestran, no se resuelven."
+  },
+  "search_context": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "requested_entity_level",
+    "requested_business_model"
+   ],
+   "properties": {
+    "requested_entity_level": {
+     "$ref": "common.v1.schema.json#/$defs/entity_level"
+    },
+    "requested_business_model": {
+     "type": "array",
+     "items": {
+      "$ref": "common.v1.schema.json#/$defs/business_model"
+     }
+    },
+    "requested_offering_kind": {
+     "$ref": "common.v1.schema.json#/$defs/offering_kind"
+    },
+    "spec_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "spec_version": {
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "note": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "description": "Lo que el Search Spec PIDIÓ (nivel de entidad, modelo de negocio, tipo de oferta). Se conserva de extremo a extremo para poder comparar lo pedido con lo hallado (company_identity.entity_level, company.business_model)."
+  }
+ }
+}

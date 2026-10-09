@@ -1,0 +1,72 @@
+{
+  "params_version": "1.0.0",
+  "status": "unverified_planning_policy",
+  "note": "Valores de POLÍTICA de planificación. Ninguno está medido ni verificado contra Apollo/Firecrawl/OpenRush. La Fase 2 los sustituye por valores verificados. Los créditos NO se estiman en ningún caso.",
+  "discovery": {
+    "results_per_call": 25,
+    "pool_multiplier": {
+      "low": 3.0,
+      "high": 6.0
+    },
+    "max_query_variants": 3,
+    "max_pages_per_query": 10
+  },
+  "enrichment": {
+    "batch_size": 10,
+    "cap_multiplier": 1.5,
+    "cap_multiplier_noncheap_gate": 3.0,
+    "tranche_size": 10,
+    "tranche_max_pct_of_phase": 0.25
+  },
+  "evidence": {
+    "calls_per_company": {
+      "firecrawl.scrape": 2,
+      "firecrawl.search": 1,
+      "openrush.inspect_serp": 1,
+      "openrush.audit_site": 1,
+      "apollo.job_postings": 1
+    }
+  },
+  "decision_makers": {
+    "calls_per_company": 1,
+    "allowed_personal_fields": [
+      "name",
+      "job_title",
+      "company"
+    ]
+  },
+  "allocation": {
+    "DISCOVERY": 0.15,
+    "ENRICHMENT": 0.35,
+    "EVIDENCE": 0.3,
+    "DECISION_MAKER_ENRICHMENT": 0.1
+  },
+  "reserve_pct_default": 10,
+  "reserve_release": {
+    "purpose": "close_top_n",
+    "phases": [
+      "EVIDENCE",
+      "DECISION_MAKER_ENRICHMENT"
+    ],
+    "phase_alloc_used_min": 0.9
+  },
+  "thresholds": {
+    "soft": 0.8,
+    "hard": 0.9
+  },
+  "stop": {
+    "max_expansion_rounds": 2,
+    "max_iterations_total": 8,
+    "duplicate_rate_stop": 0.6,
+    "min_new_candidate_pct": 0.1,
+    "consecutive_low_yield_rounds": 2,
+    "expansion_trigger_multiplier": 1.5,
+    "min_data_confidence_for_completion": null
+  },
+  "infra": {
+    "calls_per_phase": 1,
+    "calls_per_tranche": 1,
+    "calls_results_write": 2,
+    "settle_every_n_calls": 5
+  }
+}

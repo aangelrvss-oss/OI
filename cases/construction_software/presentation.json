@@ -1,0 +1,18 @@
+{
+ "schema": "oi_presentation.v1",
+ "case_id": "construction_software",
+ "locale": "es",
+ "title": "Constructoras españolas · software de gestión",
+ "subtitle": "Oportunidades de venta de software a constructoras en crecimiento",
+ "labels": {
+  "entity_singular": "empresa constructora",
+  "entity_plural": "empresas constructoras",
+  "offering": "software de gestión"
+ },
+ "facets": [],
+ "groups": null,
+ "human_decision_vocabulary": null,
+ "notes": [
+  "Caso configurado; la ejecución real no está autorizada."
+ ]
+}

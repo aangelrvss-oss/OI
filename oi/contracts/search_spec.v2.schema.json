@@ -1,0 +1,904 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "search-spec.v2.json",
+ "title": "Search Spec v2",
+ "type": "object",
+ "required": [
+  "control",
+  "intent",
+  "traceability",
+  "versions"
+ ],
+ "properties": {
+  "control": {
+   "type": "object",
+   "required": [
+    "spec_id",
+    "spec_version",
+    "status",
+    "created_at",
+    "raw_request"
+   ],
+   "properties": {
+    "spec_id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "spec_version": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "parent_spec_version": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1
+    },
+    "status": {
+     "enum": [
+      "draft",
+      "needs_clarification",
+      "confirmed",
+      "unsupported_yet"
+     ]
+    },
+    "created_at": {
+     "type": "string",
+     "minLength": 10
+    },
+    "raw_request": {
+     "type": "string",
+     "minLength": 1
+    },
+    "language": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "content_hash": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "intent": {
+   "type": "object",
+   "required": [
+    "opportunity_type",
+    "target_entity_type"
+   ],
+   "properties": {
+    "opportunity_type": {
+     "enum": [
+      "customer_prospect",
+      "talent",
+      "supplier",
+      "partner",
+      "market_research",
+      "opportunity_discovery"
+     ]
+    },
+    "target_entity_type": {
+     "enum": [
+      "company",
+      "person"
+     ]
+    },
+    "objective": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "offering": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "description": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "problem_solved": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "kind": {
+       "enum": [
+        "PRODUCT_FOR_RESALE",
+        "SOFTWARE",
+        "SERVICE",
+        "CONSULTING",
+        "EQUIPMENT",
+        "OTHER",
+        "UNKNOWN",
+        null
+       ],
+       "description": "Qué se ofrece. Determina el perfil de contacto (rules/contact_profiles.v1.json). null = aún no indicado -> pregunta bloqueante."
+      },
+      "target_function": {
+       "enum": [
+        "OPERATIONS",
+        "FINANCE",
+        "IT",
+        "PROCUREMENT",
+        "SALES",
+        "MARKETING",
+        "HR",
+        "MANAGEMENT",
+        "LEGAL_COMPLIANCE",
+        "OTHER",
+        "UNKNOWN"
+       ],
+       "description": "A qué función de la empresa cliente va dirigida la oferta. UNKNOWN si el usuario no lo ha dicho (no se inventa)."
+      }
+     }
+    },
+    "business_model": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "manufacturer",
+       "distributor",
+       "retailer",
+       "service_provider",
+       "contractor",
+       "operator",
+       "unknown"
+      ]
+     },
+     "uniqueItems": true,
+     "description": "Modelo de negocio de las entidades objetivo. Vocabulario mínimo y extensible. ['unknown'] si no se indicó."
+    },
+    "entity_level": {
+     "enum": [
+      "ESTABLISHMENT",
+      "OPERATOR",
+      "GROUP",
+      "COMPANY",
+      "UNKNOWN"
+     ],
+     "description": "Nivel de entidad que se busca (establecimiento, operador, grupo, empresa)."
+    }
+   }
+  },
+  "criteria": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/criterion"
+   }
+  },
+  "restrictions": {
+   "type": "object",
+   "properties": {
+    "geography": {
+     "type": "object",
+     "properties": {
+      "include": {
+       "type": "array",
+       "items": {
+        "$ref": "#/$defs/geo_ref"
+       }
+      },
+      "exclude": {
+       "type": "array",
+       "items": {
+        "$ref": "#/$defs/geo_ref"
+       }
+      }
+     }
+    },
+    "excluded_entities": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "quantity": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "target": {
+       "type": [
+        "integer",
+        "null"
+       ],
+       "minimum": 1
+      },
+      "max": {
+       "type": [
+        "integer",
+        "null"
+       ],
+       "minimum": 1
+      },
+      "fill_policy": {
+       "enum": [
+        "TARGET_NOT_OBLIGATION"
+       ]
+      }
+     }
+    },
+    "employee_count_requirement": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "value": {
+       "enum": [
+        "NOT_APPLICABLE"
+       ]
+      },
+      "source_text": {
+       "type": "string"
+      },
+      "effect": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "budget": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "source": {
+     "enum": [
+      "user_parameter",
+      "unset"
+     ]
+    },
+    "data_calls_max": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "infra_calls_max": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "tool_credits_max": {
+     "type": "object",
+     "additionalProperties": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "minimum": 0
+     }
+    },
+    "max_time_minutes": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 1
+    },
+    "deep_research_top_n": {
+     "type": [
+      "integer",
+      "null"
+     ],
+     "minimum": 0
+    },
+    "reserve_pct": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0,
+     "maximum": 50
+    }
+   }
+  },
+  "governance": {
+   "type": "object",
+   "required": [
+    "approval_required"
+   ],
+   "properties": {
+    "approval_required": {
+     "const": true
+    },
+    "desired_action": {
+     "enum": [
+      "shortlist",
+      "draft_outreach",
+      "export"
+     ]
+    },
+    "data_policy": {
+     "type": "object",
+     "properties": {
+      "purpose": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "personal_data_fields": {
+       "type": "array",
+       "items": {
+        "enum": [
+         "name",
+         "job_title",
+         "company",
+         "work_email",
+         "location_city"
+        ]
+       }
+      },
+      "raw_retention_days": {
+       "type": [
+        "integer",
+        "null"
+       ],
+       "minimum": 0
+      }
+     }
+    },
+    "candidate_relevance": {
+     "enum": [
+      "off",
+      "conservative"
+     ]
+    }
+   }
+  },
+  "traceability": {
+   "type": "object",
+   "required": [
+    "assumptions",
+    "open_questions"
+   ],
+   "properties": {
+    "assumptions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "field",
+       "value",
+       "reason",
+       "basis"
+      ],
+      "properties": {
+       "field": {
+        "type": "string"
+       },
+       "value": {},
+       "reason": {
+        "type": "string"
+       },
+       "basis": {
+        "enum": [
+         "engine_default",
+         "term_catalog",
+         "user_decision",
+         "geo_default",
+         "llm_interpretation"
+        ]
+       }
+      }
+     }
+    },
+    "open_questions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "id",
+       "kind",
+       "question",
+       "why_it_matters",
+       "blocking",
+       "trigger_rule"
+      ],
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "kind": {
+        "enum": [
+         "blocking",
+         "confirmation"
+        ]
+       },
+       "question": {
+        "type": "string"
+       },
+       "why_it_matters": {
+        "type": "string"
+       },
+       "options": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "blocking": {
+        "type": "boolean"
+       },
+       "trigger_rule": {
+        "type": "string"
+       },
+       "origin": {
+        "enum": [
+         "deterministic",
+         "llm"
+        ]
+       }
+      }
+     }
+    },
+    "deferred_questions": {
+     "type": "array"
+    },
+    "proposed_signals": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "llm_notes": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "confidence": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "score": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "rationale": {
+       "type": "string"
+      }
+     }
+    },
+    "migrated_from": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "schema_version": {
+       "type": "string"
+      },
+      "spec_id": {
+       "type": "string"
+      },
+      "spec_version": {
+       "type": "integer"
+      },
+      "content_hash": {
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     }
+    }
+   }
+  },
+  "versions": {
+   "type": "object",
+   "required": [
+    "schema_version",
+    "field_registry_version",
+    "lexicon_version",
+    "engine_version"
+   ],
+   "properties": {
+    "schema_version": {
+     "const": "2.0"
+    },
+    "field_registry_version": {
+     "type": "string"
+    },
+    "lexicon_version": {
+     "type": "string"
+    },
+    "geo_catalog_version": {
+     "type": "string"
+    },
+    "engine_version": {
+     "type": "string"
+    },
+    "prompt_version": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  },
+  "rejection": {
+   "type": "object",
+   "required": [
+    "reason",
+    "requested_opportunity_type",
+    "supported_types"
+   ],
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "requested_opportunity_type": {
+     "type": "string"
+    },
+    "supported_types": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "suggestion": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "captured": {
+     "type": "object"
+    }
+   }
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "control": {
+      "properties": {
+       "status": {
+        "const": "confirmed"
+       }
+      }
+     }
+    },
+    "required": [
+     "control"
+    ]
+   },
+   "then": {
+    "required": [
+     "criteria",
+     "restrictions",
+     "governance"
+    ],
+    "properties": {
+     "intent": {
+      "required": [
+       "objective",
+       "offering",
+       "business_model",
+       "entity_level"
+      ],
+      "properties": {
+       "opportunity_type": {
+        "const": "customer_prospect"
+       },
+       "offering": {
+        "type": "object",
+        "required": [
+         "description",
+         "kind",
+         "target_function"
+        ],
+        "properties": {
+         "description": {
+          "type": "string",
+          "minLength": 1
+         },
+         "kind": {
+          "enum": [
+           "PRODUCT_FOR_RESALE",
+           "SOFTWARE",
+           "SERVICE",
+           "CONSULTING",
+           "EQUIPMENT",
+           "OTHER",
+           "UNKNOWN"
+          ]
+         }
+        }
+       }
+      }
+     },
+     "restrictions": {
+      "required": [
+       "quantity"
+      ],
+      "properties": {
+       "quantity": {
+        "type": "object",
+        "required": [
+         "target"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "control": {
+      "properties": {
+       "status": {
+        "const": "needs_clarification"
+       }
+      }
+     }
+    },
+    "required": [
+     "control"
+    ]
+   },
+   "then": {
+    "properties": {
+     "traceability": {
+      "properties": {
+       "open_questions": {
+        "minItems": 1
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "control": {
+      "properties": {
+       "status": {
+        "const": "unsupported_yet"
+       }
+      }
+     }
+    },
+    "required": [
+     "control"
+    ]
+   },
+   "then": {
+    "required": [
+     "rejection"
+    ]
+   }
+  }
+ ],
+ "$defs": {
+  "geo_ref": {
+   "type": "object",
+   "required": [
+    "name",
+    "level"
+   ],
+   "properties": {
+    "name": {
+     "type": "string",
+     "minLength": 1
+    },
+    "level": {
+     "enum": [
+      "country",
+      "region",
+      "province",
+      "municipality"
+     ]
+    }
+   }
+  },
+  "criterion": {
+   "type": "object",
+   "required": [
+    "id",
+    "dimension",
+    "field",
+    "operator",
+    "strength",
+    "origin"
+   ],
+   "properties": {
+    "id": {
+     "type": "string",
+     "minLength": 1
+    },
+    "label": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "dimension": {
+     "enum": [
+      "fit",
+      "opportunity"
+     ]
+    },
+    "field": {
+     "type": "string",
+     "pattern": "^[a-z_]+\\.[a-z_0-9]+$"
+    },
+    "operator": {
+     "enum": [
+      "eq",
+      "neq",
+      "in",
+      "not_in",
+      "gte",
+      "lte",
+      "between",
+      "contains",
+      "exists",
+      "not_exists"
+     ]
+    },
+    "value": {},
+    "params": {
+     "type": "object"
+    },
+    "strength": {
+     "enum": [
+      "gate",
+      "preferred"
+     ]
+    },
+    "weight": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0,
+     "maximum": 1
+    },
+    "origin": {
+     "enum": [
+      "user",
+      "assumed",
+      "inferred"
+     ]
+    },
+    "source_text": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "defines_terms": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "rationale": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "definition_status": {
+     "enum": [
+      "defined",
+      "needs_definition"
+     ]
+    },
+    "activation": {
+     "enum": [
+      "active",
+      "proposed"
+     ]
+    },
+    "definition": {
+     "type": [
+      "object",
+      "null"
+     ]
+    },
+    "evidence": {
+     "$ref": "#/$defs/evidence_strategy"
+    }
+   },
+   "if": {
+    "properties": {
+     "dimension": {
+      "const": "opportunity"
+     }
+    },
+    "required": [
+     "dimension"
+    ]
+   },
+   "then": {
+    "properties": {
+     "strength": {
+      "const": "preferred"
+     }
+    }
+   }
+  },
+  "evidence_strategy": {
+   "type": "object",
+   "properties": {
+    "evidence_required": {
+     "type": "boolean"
+    },
+    "preferred_sources": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "minimum_evidence": {
+     "type": "object",
+     "properties": {
+      "count": {
+       "type": "integer",
+       "minimum": 1
+      },
+      "independent_sources": {
+       "type": "boolean"
+      }
+     }
+    },
+    "freshness_days": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "allowed_evidence_types": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "structured_company_data",
+       "official_webpage",
+       "public_registry",
+       "job_posting",
+       "news_article",
+       "search_result",
+       "seo_metric",
+       "user_provided"
+      ]
+     }
+    },
+    "origin": {
+     "enum": [
+      "registry_default",
+      "user",
+      "llm"
+     ]
+    }
+   }
+  }
+ },
+ "description": "v2 = v1 + intent.offering.kind, intent.offering.target_function, intent.business_model, intent.entity_level. Autocontenido (el validador del motor solo resuelve $ref locales): los enums repiten los de common.v1.schema.json y un test comprueba que no divergen."
+}

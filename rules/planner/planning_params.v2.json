@@ -1,0 +1,137 @@
+{
+  "params_version": "2.0.0",
+  "status": "provisional_observed_calibration_required",
+  "note": "Valores OBSERVADOS en Apollo Free (Fase 2) o de POLÍTICA PROVISIONAL. Ninguno es permanente. Los marcados calibration_required deben sustituirse por histórico de runs.",
+  "discovery": {
+    "results_per_call": {
+      "value": 100,
+      "status": "observed"
+    },
+    "verified_depth_per_query": {
+      "value": 100,
+      "status": "observed_not_extended_beyond"
+    },
+    "max_candidates_cap": {
+      "value": null,
+      "status": "configurable_unset"
+    },
+    "discovery_is_bottleneck": false,
+    "max_query_variants": 3,
+    "max_query_variants_status": "structural_policy_bound",
+    "max_discovery_queries": {
+      "value": 14,
+      "status": "structural_policy_bound"
+    },
+    "allowed_query_filters": {
+      "organization_naics_codes": "PARTIALLY_VERIFIED",
+      "q_organization_keyword_tags": "PARTIALLY_VERIFIED",
+      "organization_locations": "PARTIALLY_VERIFIED",
+      "organization_num_employees_ranges": "PARTIALLY_VERIFIED"
+    }
+  },
+  "pool_policy": {
+    "enrichment_multiplier_without_history": {
+      "value": 3.0,
+      "status": "calibration_required",
+      "meaning": "candidatos a enriquecer por resultado objetivo si no hay histórico de tasa de paso de gates"
+    },
+    "pre_filter_survival_without_history": {
+      "value": 0.5,
+      "status": "calibration_required",
+      "meaning": "fracción de lo descubierto que se supone enriquecible tras normalizar/deduplicar/descartar ruido determinista"
+    },
+    "history_min_sample_size": {
+      "value": null,
+      "status": "configurable_unset"
+    }
+  },
+  "enrichment": {
+    "batch_size": {
+      "configured_batch_size": 10,
+      "status": "provisional",
+      "max_verified": "unknown",
+      "max_tested": 4,
+      "configurable": true,
+      "audit_required_before_bulk_optimization": true
+    },
+    "tranche_size": 10,
+    "tranche_max_pct_of_phase": 0.25
+  },
+  "evidence": {
+    "calls_per_company": {
+      "firecrawl.scrape": 2,
+      "firecrawl.search": 1,
+      "openrush.inspect_serp": 1,
+      "openrush.audit_site": 1,
+      "apollo.job_postings": 1
+    },
+    "status": "provisional_unaudited_except_apollo"
+  },
+  "decision_makers": {
+    "calls_per_company": 1,
+    "allowed_personal_fields": [
+      "name",
+      "job_title",
+      "company"
+    ]
+  },
+  "allocation": {
+    "DISCOVERY": 0.15,
+    "ENRICHMENT": 0.35,
+    "EVIDENCE": 0.3,
+    "DECISION_MAKER_ENRICHMENT": 0.1,
+    "status": "provisional"
+  },
+  "reserve_pct_default": 10,
+  "reserve_release": {
+    "purpose": "close_top_n",
+    "phases": [
+      "EVIDENCE",
+      "DECISION_MAKER_ENRICHMENT"
+    ],
+    "phase_alloc_used_min": 0.9
+  },
+  "thresholds": {
+    "soft": 0.8,
+    "hard": 0.9
+  },
+  "stop": {
+    "max_expansion_rounds": 2,
+    "max_iterations_total": 8,
+    "structural_bounds": true,
+    "diminishing_returns": {
+      "min_new_entity_pct": null,
+      "consecutive_rounds": null,
+      "status": "configurable_unset"
+    },
+    "min_data_confidence_for_completion": null
+  },
+  "infra": {
+    "calls_per_phase": 1,
+    "calls_per_tranche": 1,
+    "calls_results_write": 2,
+    "settle_every_n_calls": 5
+  },
+  "relevance": {
+    "default_decision": "KEEP",
+    "discard_requires": [
+      "confidence=clear",
+      "reason",
+      "evidence_verbatim_from_name_or_domain"
+    ],
+    "allowed_evidence_fields": [
+      "name",
+      "domain",
+      "website_url"
+    ],
+    "reason_categories": [
+      "non_commercial_organization",
+      "media_publisher",
+      "job_board",
+      "education_institution",
+      "incompatible_activity",
+      "other_clear"
+    ],
+    "status": "conservative_policy"
+  }
+}

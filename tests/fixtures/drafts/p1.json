@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 empresas de construcción en España que podrían necesitar software de gestión.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar empresas de construcción en España que podrían necesitar software de gestión",
+    "offering": {
+      "description": "software de gestión",
+      "problem_solved": null,
+      "source_text": "software de gestión"
+    }
+  },
+  "criteria": [
+    {
+      "id": "G1",
+      "label": "Sector construcción",
+      "dimension": "fit",
+      "field": "firmographic.industry",
+      "operator": "eq",
+      "value": "construcción",
+      "strength": "gate",
+      "origin": "user",
+      "source_text": "de construcción"
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "ES",
+          "level": "country"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 empresas"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": "El usuario no indicó tamaño: no se propone ningún rango."
+  }
+}

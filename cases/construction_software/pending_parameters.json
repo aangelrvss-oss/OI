@@ -1,0 +1,69 @@
+{
+ "schema": "oi_pending_parameters.v1",
+ "case_id": "construction_software",
+ "policy": "Un parámetro PENDING_USER_DECISION no se rellena por defecto. El criterio queda como 'needs_definition' y el motor pregunta antes de ejecutar.",
+ "parameters": [
+  {
+   "id": "GROWTH_DEFINITION",
+   "criterion_id": "C1",
+   "status": "PENDING_USER_DECISION",
+   "question": "¿Qué significa «en crecimiento»?",
+   "dimension_options": [
+    {
+     "field": "growth.employee_growth_pct",
+     "note": "variación de plantilla (%)"
+    },
+    {
+     "field": "growth.hiring_velocity",
+     "note": "ritmo de contratación"
+    },
+    {
+     "field": "growth.geographic_expansion",
+     "note": "expansión geográfica"
+    },
+    {
+     "field": "growth.new_locations",
+     "note": "nuevas sedes/delegaciones"
+    },
+    {
+     "field": "growth.funding_event",
+     "note": "evento de financiación"
+    },
+    {
+     "field": "growth.acquisitions",
+     "note": "adquisiciones"
+    }
+   ],
+   "threshold": {
+    "status": "PENDING_USER_DECISION",
+    "value": null,
+    "maps_to": "criteria[C1].value"
+   },
+   "window": {
+    "status": "PENDING_USER_DECISION",
+    "value": null,
+    "maps_to": "criteria[C1].params.period_days"
+   },
+   "note": "El borrador usa growth.employee_growth_pct como campo PROPUESTO con valor null; ni umbral ni ventana están decididos. No se inventa ningún % ni periodo."
+  },
+  {
+   "id": "TARGET_FUNCTION",
+   "status": "PENDING_USER_DECISION",
+   "question": "¿A qué función de la constructora va dirigido el software (p. ej. operaciones/obra, finanzas, dirección)?",
+   "current_value": "UNKNOWN",
+   "effect": "Con UNKNOWN el perfil SELL_SOFTWARE_OR_SERVICE usa los peldaños genéricos de dirección/operaciones definidos en la regla."
+  },
+  {
+   "id": "QUANTITY",
+   "status": "PENDING_USER_DECISION",
+   "question": "¿Cuántas empresas se quieren? (la petición no lo dice)",
+   "current_value": null
+  },
+  {
+   "id": "SIZE_BAND",
+   "status": "PENDING_USER_DECISION",
+   "question": "¿Algún tamaño mínimo/máximo?",
+   "current_value": null
+  }
+ ]
+}

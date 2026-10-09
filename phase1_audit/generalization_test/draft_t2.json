@@ -1,0 +1,76 @@
+{
+ "meta": {
+  "prompt_version": "intent_interpreter@1.0.0",
+  "author": "llm:claude",
+  "fixture": true
+ },
+ "control": {
+  "raw_request": "Encuentra 15 hoteles de Madrid con señales recientes de expansión o transformación digital.",
+  "language": "es"
+ },
+ "intent": {
+  "opportunity_type": "customer_prospect",
+  "target_entity_type": "company",
+  "objective": "Encontrar hoteles de Madrid con señales recientes de expansión o transformación digital",
+  "offering": {
+   "description": null,
+   "problem_solved": null,
+   "source_text": null
+  }
+ },
+ "criteria": [
+  {
+   "id": "G1",
+   "label": "Sector hoteles",
+   "dimension": "fit",
+   "field": "firmographic.industry",
+   "operator": "eq",
+   "value": "hoteles",
+   "strength": "gate",
+   "origin": "user",
+   "source_text": "hoteles"
+  },
+  {
+   "id": "O1",
+   "label": "Expansión (nuevas sedes) reciente",
+   "dimension": "opportunity",
+   "field": "growth.new_locations",
+   "operator": "gte",
+   "value": null,
+   "strength": "preferred",
+   "origin": "user",
+   "source_text": "expansión"
+  },
+  {
+   "id": "O2",
+   "label": "Menciones de transformación digital en la web",
+   "dimension": "opportunity",
+   "field": "web.digital_transformation_mentions",
+   "operator": "exists",
+   "value": null,
+   "strength": "preferred",
+   "origin": "user",
+   "source_text": "transformación digital"
+  }
+ ],
+ "restrictions": {
+  "geography": {
+   "include": [
+    {
+     "name": "Madrid",
+     "level": "municipality"
+    }
+   ],
+   "exclude": []
+  },
+  "excluded_entities": [],
+  "quantity": {
+   "target": 15,
+   "source_text": "15 hoteles"
+  }
+ },
+ "traceability": {
+  "proposed_signals": [],
+  "llm_notes": "No se indica qué se ofrece a los hoteles; 'recientes' sin ventana."
+ }
+}

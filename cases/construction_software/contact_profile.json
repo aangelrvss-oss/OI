@@ -1,0 +1,8 @@
+{
+ "schema": "oi_case_contact_profile.v1",
+ "case_id": "construction_software",
+ "profile_id": "SELL_SOFTWARE_OR_SERVICE",
+ "profile_file": "rules/contact_profiles.v1.json",
+ "target_function": "UNKNOWN",
+ "note": "El perfil vive en rules/ (reutilizable). Este fichero solo lo referencia y fija la función objetivo del caso."
+}

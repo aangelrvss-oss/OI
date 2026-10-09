@@ -1,0 +1,133 @@
+{
+ "lang": "en",
+ "ui": {
+  "records": "opportunities",
+  "filter_action": "Next step",
+  "filter_decision": "Human decision",
+  "all": "All",
+  "search": "Search company…",
+  "shown": "shown",
+  "metrics": "Summary",
+  "with_contact": "with recommended contact",
+  "without_contact": "without recommended contact",
+  "credits_spent": "credits spent",
+  "paid_calls": "paid calls",
+  "why": "Why it is an opportunity",
+  "known": "What is known",
+  "unknown": "What is NOT known",
+  "signals": "Signals",
+  "qualification": "Qualification",
+  "contact": "Recommended contact",
+  "alternatives": "Alternatives",
+  "not_recommended": "Ruled out as contact",
+  "no_contact": "No recommended contact",
+  "why_no_contact": "Reason",
+  "evidence": "Evidence",
+  "source": "Source",
+  "retrieved": "Retrieved",
+  "provenance": "Provenance",
+  "cost": "Cost",
+  "contradictions": "Contradictions",
+  "not_found": "Not found",
+  "next": "Next step",
+  "grade": "Contact quality",
+  "strength": "Evidence strength",
+  "reach": "Reachability",
+  "target_fit": "Target fit",
+  "fresh": "Freshness",
+  "rung": "Selection rule",
+  "via": "Via",
+  "gates": "Required filters",
+  "fit": "Fit verification",
+  "human": "Human review",
+  "ranking": "Ranking",
+  "not_scored": "Not scored",
+  "claims": "Claim status",
+  "size": "Size",
+  "location": "Location",
+  "business_model": "Business model",
+  "identity": "Identity",
+  "generated": "Generated from",
+  "records_count": "records",
+  "principle": "Evidence is not commercial usefulness: a datum can be reliable (high evidence) and still be a generic contact.",
+  "none": "—"
+ },
+ "banners": {
+  "SYNTHETIC_FIXTURE": "SYNTHETIC DEMO DATA. The companies, contacts and evidence on this page are invented to show the flow. They are not real opportunities and no source was queried.",
+  "HISTORICAL_IMPORT": "Read-only import from a closed experiment. Data was not re-queried.",
+  "MANUAL_RESEARCH": "Manual research.",
+  "REAL_PROVIDER": "Data obtained from a real provider."
+ },
+ "enums": {
+  "action": {
+   "CONTACT": "Contact",
+   "HUMAN_REVIEW": "Human review",
+   "ENRICH_FIRST": "Enrich first",
+   "VERIFY_EVIDENCE": "Verify evidence",
+   "DEFER": "Defer",
+   "NO_ACTION": "No action"
+  },
+  "decision": {
+   "ACCEPT": "Accepted",
+   "MAYBE": "Maybe",
+   "REJECT": "Rejected"
+  },
+  "grade": {
+   "A": "A · right-role person with direct route",
+   "B": "B · right role or direct route",
+   "C": "C · generic contact",
+   "D": "D · of little use"
+  },
+  "strength": {
+   "HIGH": "High",
+   "MEDIUM": "Medium",
+   "LOW": "Low",
+   "UNKNOWN": "Unknown"
+  },
+  "reach": {
+   "DIRECT": "Direct",
+   "INDIRECT": "Indirect",
+   "NONE": "None"
+  },
+  "target_fit": {
+   "EXACT": "Exact",
+   "ADJACENT": "Adjacent",
+   "GENERIC": "Generic",
+   "UNKNOWN": "Unknown"
+  },
+  "fresh": {
+   "CURRENT": "Current",
+   "STALE": "Stale",
+   "UNKNOWN": "Unknown"
+  },
+  "claim": {
+   "KNOWN": "Known",
+   "ESTIMATED": "Estimated",
+   "INFERRED": "Inferred",
+   "UNKNOWN": "Unknown"
+  },
+  "gate": {
+   "PASS": "Pass",
+   "FAIL": "Fail",
+   "UNKNOWN": "Unknown"
+  },
+  "fit": {
+   "VERIFIED": "Verified",
+   "UNVERIFIED": "Unverified",
+   "NOT_ASSESSED": "Not assessed"
+  },
+  "qual": {
+   "ELIGIBLE": "Eligible",
+   "PENDING_EVIDENCE": "Needs evidence",
+   "UNKNOWN": "Unknown",
+   "NOT_ELIGIBLE": "Not eligible",
+   "NOT_ASSESSED": "Not assessed"
+  },
+  "signal_state": {
+   "PRESENT": "Present",
+   "NOT_OBSERVED": "Not observed",
+   "UNKNOWN": "Unknown",
+   "CONFLICTING": "Conflicting"
+  }
+ }
+}

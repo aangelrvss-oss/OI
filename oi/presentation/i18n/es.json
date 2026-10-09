@@ -1,0 +1,133 @@
+{
+ "lang": "es",
+ "ui": {
+  "records": "oportunidades",
+  "filter_action": "Siguiente paso",
+  "filter_decision": "Decisión humana",
+  "all": "Todas",
+  "search": "Buscar empresa…",
+  "shown": "mostradas",
+  "metrics": "Resumen",
+  "with_contact": "con contacto recomendado",
+  "without_contact": "sin contacto recomendado",
+  "credits_spent": "créditos gastados",
+  "paid_calls": "llamadas de pago",
+  "why": "Por qué es una oportunidad",
+  "known": "Lo que se sabe",
+  "unknown": "Lo que NO se sabe",
+  "signals": "Señales",
+  "qualification": "Cualificación",
+  "contact": "Contacto recomendado",
+  "alternatives": "Alternativas",
+  "not_recommended": "Descartados como contacto",
+  "no_contact": "No hay contacto recomendado",
+  "why_no_contact": "Motivo",
+  "evidence": "Evidencia",
+  "source": "Fuente",
+  "retrieved": "Obtenida",
+  "provenance": "Procedencia",
+  "cost": "Coste",
+  "contradictions": "Contradicciones",
+  "not_found": "No encontrado",
+  "next": "Siguiente paso",
+  "grade": "Calidad del contacto",
+  "strength": "Fuerza de evidencia",
+  "reach": "Alcanzabilidad",
+  "target_fit": "Adecuación al objetivo",
+  "fresh": "Frescura",
+  "rung": "Criterio de selección",
+  "via": "Vía",
+  "gates": "Filtros obligatorios",
+  "fit": "Verificación de encaje",
+  "human": "Revisión humana",
+  "ranking": "Ranking",
+  "not_scored": "Sin puntuar",
+  "claims": "Estado de la afirmación",
+  "size": "Tamaño",
+  "location": "Ubicación",
+  "business_model": "Modelo de negocio",
+  "identity": "Identidad",
+  "generated": "Generado a partir de",
+  "records_count": "registros",
+  "principle": "La evidencia no equivale a utilidad comercial: un dato puede ser fiable (evidencia alta) y aun así ser un contacto genérico.",
+  "none": "—"
+ },
+ "banners": {
+  "SYNTHETIC_FIXTURE": "DATOS SINTÉTICOS DE DEMOSTRACIÓN. Las empresas, contactos y evidencias de esta página están inventados para mostrar el flujo. No son oportunidades reales ni se han consultado fuentes.",
+  "HISTORICAL_IMPORT": "Importación histórica de solo lectura de un experimento cerrado. Los datos no se han vuelto a consultar.",
+  "MANUAL_RESEARCH": "Investigación manual.",
+  "REAL_PROVIDER": "Datos obtenidos de proveedor real."
+ },
+ "enums": {
+  "action": {
+   "CONTACT": "Contactar",
+   "HUMAN_REVIEW": "Revisión humana",
+   "ENRICH_FIRST": "Enriquecer antes",
+   "VERIFY_EVIDENCE": "Verificar evidencia",
+   "DEFER": "Aplazar",
+   "NO_ACTION": "Sin acción"
+  },
+  "decision": {
+   "ACCEPT": "Aceptada",
+   "MAYBE": "Dudosa",
+   "REJECT": "Descartada"
+  },
+  "grade": {
+   "A": "A · persona con rol adecuado y vía directa",
+   "B": "B · persona/rol adecuado o vía directa",
+   "C": "C · contacto genérico",
+   "D": "D · poco útil"
+  },
+  "strength": {
+   "HIGH": "Alta",
+   "MEDIUM": "Media",
+   "LOW": "Baja",
+   "UNKNOWN": "Desconocida"
+  },
+  "reach": {
+   "DIRECT": "Directa",
+   "INDIRECT": "Indirecta",
+   "NONE": "Ninguna"
+  },
+  "target_fit": {
+   "EXACT": "Exacta",
+   "ADJACENT": "Cercana",
+   "GENERIC": "Genérica",
+   "UNKNOWN": "Desconocida"
+  },
+  "fresh": {
+   "CURRENT": "Vigente",
+   "STALE": "Caducada",
+   "UNKNOWN": "Desconocida"
+  },
+  "claim": {
+   "KNOWN": "Conocido",
+   "ESTIMATED": "Estimado",
+   "INFERRED": "Inferido",
+   "UNKNOWN": "Desconocido"
+  },
+  "gate": {
+   "PASS": "Cumple",
+   "FAIL": "No cumple",
+   "UNKNOWN": "Desconocido"
+  },
+  "fit": {
+   "VERIFIED": "Verificado",
+   "UNVERIFIED": "No verificado",
+   "NOT_ASSESSED": "No evaluado"
+  },
+  "qual": {
+   "ELIGIBLE": "Elegible",
+   "PENDING_EVIDENCE": "Falta evidencia",
+   "UNKNOWN": "Desconocido",
+   "NOT_ELIGIBLE": "No elegible",
+   "NOT_ASSESSED": "No evaluada"
+  },
+  "signal_state": {
+   "PRESENT": "Presente",
+   "NOT_OBSERVED": "No observada",
+   "UNKNOWN": "Desconocida",
+   "CONFLICTING": "Contradictoria"
+  }
+ }
+}

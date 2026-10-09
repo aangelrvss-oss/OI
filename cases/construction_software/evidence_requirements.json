@@ -1,0 +1,46 @@
+{
+ "schema": "oi_evidence_requirements.v1",
+ "case_id": "construction_software",
+ "requirements": [
+  {
+   "criterion_id": "G1",
+   "label": "Sector construcción",
+   "required_for": "gate",
+   "acceptable_source_classes": [
+    "OFFICIAL",
+    "SECTOR_SOURCE",
+    "PROFESSIONAL_DIRECTORY"
+   ],
+   "unknown_policy": "UNKNOWN nunca se convierte en PASS",
+   "evidence_field": "company:sector",
+   "expected_from": "sector_mapping.canonical_sector"
+  },
+  {
+   "criterion_id": "GEO",
+   "label": "Empresa española",
+   "required_for": "gate",
+   "acceptable_source_classes": [
+    "OFFICIAL",
+    "SECTOR_SOURCE",
+    "PROFESSIONAL_DIRECTORY"
+   ],
+   "unknown_policy": "UNKNOWN nunca se convierte en PASS",
+   "evidence_field": "company:country",
+   "expected_from": "spec.restrictions.geography.include[country]"
+  },
+  {
+   "criterion_id": "C1",
+   "label": "En crecimiento",
+   "required_for": "preferred",
+   "acceptable_source_classes": [],
+   "status": "PENDING_USER_DECISION",
+   "note": "No se pueden fijar requisitos de evidencia hasta decidir la dimensión de crecimiento.",
+   "evidence_field": "company:growth_12m_pct",
+   "expected_from": "spec.criteria[C1]"
+  }
+ ],
+ "global": {
+  "sell_decision": "Un contacto recomendado exige evidencia KNOWN y no UNVERIFIED",
+  "human_yes_is_not_fit_verified": true
+ }
+}

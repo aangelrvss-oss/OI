@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 candidatos de trabajo en Madrid que sepan automatización con IA.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "talent",
+    "target_entity_type": "person",
+    "objective": "Encontrar candidatos en Madrid con conocimientos de automatización con IA",
+    "offering": null
+  },
+  "criteria": [
+    {
+      "id": "S1",
+      "label": "Sabe automatización con IA",
+      "dimension": "fit",
+      "field": "candidate.skill",
+      "operator": "contains",
+      "value": "automatización con IA",
+      "strength": "gate",
+      "origin": "user",
+      "source_text": "automatización con IA"
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "Madrid",
+          "level": "municipality"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 candidatos"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": null
+  }
+}

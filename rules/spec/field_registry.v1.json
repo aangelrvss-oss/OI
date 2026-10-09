@@ -1,0 +1,894 @@
+{
+  "registry_version": "1.3.0",
+  "policy": {
+    "auto_activate_inferred_signals": false,
+    "type_operator_catalog": {
+      "string": [
+        "eq",
+        "neq",
+        "in",
+        "not_in",
+        "contains"
+      ],
+      "integer": [
+        "eq",
+        "gte",
+        "lte",
+        "between"
+      ],
+      "number": [
+        "eq",
+        "gte",
+        "lte",
+        "between"
+      ],
+      "boolean": [
+        "eq"
+      ],
+      "presence": [
+        "exists",
+        "not_exists"
+      ]
+    }
+  },
+  "term_defaults": {
+    "pyme": {
+      "aliases": [
+        "pyme",
+        "pymes"
+      ],
+      "criterion": {
+        "field": "firmographic.employee_count",
+        "operator": "lte",
+        "value": 249
+      },
+      "basis": "Umbral de plantilla de la definición de pyme de la UE (<250 empleados); no se aplican los umbrales de facturación/balance."
+    }
+  },
+  "fields": [
+    {
+      "field": "firmographic.industry",
+      "type": "string",
+      "allowed_operators": [
+        "eq",
+        "neq",
+        "in",
+        "not_in",
+        "contains"
+      ],
+      "allowed_dimensions": [
+        "fit"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "structured_company_data",
+        "official_webpage"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": true,
+      "description": "Sector de la empresa",
+      "default_evidence": {
+        "preferred_sources": [
+          "company_profile",
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "structured_company_data",
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "firmographic.employee_count",
+      "type": "integer",
+      "allowed_operators": [
+        "eq",
+        "gte",
+        "lte",
+        "between"
+      ],
+      "allowed_dimensions": [
+        "fit"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "structured_company_data",
+        "official_webpage",
+        "public_registry"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": true,
+      "description": "Plantilla",
+      "default_evidence": {
+        "preferred_sources": [
+          "company_profile"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "structured_company_data",
+          "public_registry"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "hiring.ops_admin_roles",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "job_posting"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Ofertas de empleo en roles operativos/administrativos",
+      "default_evidence": {
+        "preferred_sources": [
+          "job_postings",
+          "careers_page"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "job_posting"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "hiring.finance_admin_roles",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "job_posting"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Ofertas en perfiles financieros/administrativos",
+      "default_evidence": {
+        "preferred_sources": [
+          "job_postings",
+          "careers_page"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "job_posting"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "hiring.site_management_roles",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "job_posting"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Ofertas de jefe de obra/administración de obra",
+      "default_evidence": {
+        "preferred_sources": [
+          "job_postings",
+          "careers_page"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "job_posting"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.employee_growth_pct",
+      "type": "number",
+      "allowed_operators": [
+        "gte"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "structured_company_data",
+        "public_registry"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Crecimiento de plantilla (%) en un periodo",
+      "default_evidence": {
+        "preferred_sources": [
+          "company_profile"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 180,
+        "allowed_evidence_types": [
+          "structured_company_data"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.hiring_velocity",
+      "type": "integer",
+      "allowed_operators": [
+        "gte"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "job_posting"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Nº de ofertas nuevas en un periodo",
+      "default_evidence": {
+        "preferred_sources": [
+          "job_postings"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "job_posting"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.geographic_expansion",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "official_webpage",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Expansión a nuevas zonas",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search",
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "news_article",
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.new_locations",
+      "type": "integer",
+      "allowed_operators": [
+        "gte"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "official_webpage",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Nº de sedes nuevas en un periodo",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search",
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "news_article",
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.funding_event",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "public_registry",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Ronda de financiación",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "news_article",
+          "public_registry"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.acquisitions",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "public_registry",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "period_days"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Adquisiciones realizadas",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "news_article",
+          "public_registry"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "web.digital_transformation_mentions",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "official_webpage"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Menciones de transformación digital en la web",
+      "default_evidence": {
+        "preferred_sources": [
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "web.management_stack_visible",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "official_webpage"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Herramientas de gestión visibles en la web",
+      "default_evidence": {
+        "preferred_sources": [
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "web.invoicing_stack_visible",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "official_webpage"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Herramientas de facturación visibles en la web",
+      "default_evidence": {
+        "preferred_sources": [
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "official_webpage"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "digital.has_website",
+      "type": "boolean",
+      "allowed_operators": [
+        "eq"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "structured_company_data",
+        "official_webpage",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Existencia de sitio web",
+      "default_evidence": {
+        "preferred_sources": [
+          "company_profile",
+          "web_search"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 180,
+        "allowed_evidence_types": [
+          "structured_company_data",
+          "search_result"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "digital.local_visibility_rank",
+      "type": "integer",
+      "allowed_operators": [
+        "lte",
+        "gte",
+        "between"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "seo_metric",
+        "search_result"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Posición en búsquedas locales",
+      "default_evidence": {
+        "preferred_sources": [
+          "search_visibility"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "seo_metric"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "digital.site_technical_issue_count",
+      "type": "integer",
+      "allowed_operators": [
+        "gte"
+      ],
+      "allowed_dimensions": [
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "seo_metric"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Nº de problemas técnicos del sitio",
+      "default_evidence": {
+        "preferred_sources": [
+          "site_audit"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "seo_metric"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "candidate.skill",
+      "type": "string",
+      "allowed_operators": [
+        "eq",
+        "contains",
+        "in"
+      ],
+      "allowed_dimensions": [
+        "fit"
+      ],
+      "allowed_entity_types": [
+        "person"
+      ],
+      "evidence_compatible": [
+        "user_provided"
+      ],
+      "status": "reserved",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "RESERVADO talent"
+    },
+    {
+      "field": "candidate.location_city",
+      "type": "string",
+      "allowed_operators": [
+        "eq",
+        "in"
+      ],
+      "allowed_dimensions": [
+        "fit"
+      ],
+      "allowed_entity_types": [
+        "person"
+      ],
+      "evidence_compatible": [
+        "user_provided"
+      ],
+      "status": "reserved",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "RESERVADO talent"
+    },
+    {
+      "field": "hiring.technical_roles",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "job_posting"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "title_term_families"
+      ],
+      "cheap_gate_eligible": false,
+      "description": "Ofertas de empleo cuyo TÍTULO coincide con familias de términos técnicos definidas por el usuario (genérico: BMS, electricidad, telecomunicaciones, instalaciones, mantenimiento, ingeniería, construcción, automatización, facility management…). Señal de oportunidad, no prueba de necesidad.",
+      "default_evidence": {
+        "preferred_sources": [
+          "job_postings",
+          "careers_page"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 90,
+        "allowed_evidence_types": [
+          "job_posting"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "project.facility_activity",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "official_webpage",
+        "search_result",
+        "public_registry"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [],
+      "cheap_gate_eligible": false,
+      "description": "Proyectos, obras, ampliaciones, reformas, nuevas instalaciones/sedes o licitaciones de la entidad (señal de oportunidad; requiere fuente web/noticias/licitaciones)",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search",
+          "official_website",
+          "tender_notices"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 365,
+        "allowed_evidence_types": [
+          "news_article",
+          "official_webpage",
+          "public_registry"
+        ],
+        "origin": "registry_default"
+      }
+    },
+    {
+      "field": "growth.signal",
+      "type": "presence",
+      "allowed_operators": [
+        "exists",
+        "not_exists"
+      ],
+      "allowed_dimensions": [
+        "fit",
+        "opportunity"
+      ],
+      "allowed_entity_types": [
+        "company"
+      ],
+      "evidence_compatible": [
+        "news_article",
+        "official_webpage",
+        "search_result",
+        "job_posting",
+        "structured_company_data",
+        "public_registry"
+      ],
+      "status": "active",
+      "registry_version": "1.3.0",
+      "requires_parameters": [
+        "signal_id",
+        "window_months"
+      ],
+      "parameter_types": {
+        "signal_id": "code"
+      },
+      "cheap_gate_eligible": false,
+      "description": "Señal de crecimiento cualitativa e independiente (definida en un catálogo de señales del caso, referenciada por signal_id) observada dentro de una ventana en meses. Presencia, sin umbral numérico.",
+      "default_evidence": {
+        "preferred_sources": [
+          "web_search",
+          "official_website"
+        ],
+        "minimum_evidence": {
+          "count": 1,
+          "independent_sources": false
+        },
+        "freshness_days": 730,
+        "allowed_evidence_types": [
+          "news_article",
+          "official_webpage",
+          "job_posting",
+          "public_registry"
+        ],
+        "origin": "registry_default"
+      }
+    }
+  ]
+}

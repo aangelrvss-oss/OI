@@ -1,0 +1,62 @@
+{
+ "profiles_version": "1.0.0",
+ "contract": "opportunity_contact.v1",
+ "description": "Perfiles de contacto como DATOS: a quién dirigirse según (opportunity_type, offering.kind). El código (oi/enrichment/contact/selector.py) solo aplica estas reglas; no hay roles hardcodeados. Orden lexicográfico: filtros duros -> target_fit (peldaño del perfil) -> reachability -> evidence_strength -> freshness -> orden de hallazgo. Sin puntuación numérica.",
+ "hard_filters": {
+  "excluded_channel_purposes": ["SUPPORT", "PRESS", "LEGAL", "DPO"],
+  "allowed_claim_status": ["KNOWN"],
+  "disallowed_source_classes": ["UNVERIFIED", "NOT_FOUND"],
+  "note": "INFERRED/ESTIMATED/UNKNOWN/CONFLICTING y fuentes UNVERIFIED nunca son contacto recomendado ni alternativa: van a not_recommended."
+ },
+ "freshness_policy": {"person_max_age_days": 365, "channel_max_age_days": 730, "reference": "retrieved_at / employment_verified_at de la evidencia más reciente; sin fecha = UNKNOWN"},
+ "evidence_strength_order": ["HIGH", "MEDIUM", "LOW", "UNKNOWN"],
+ "small_company": {"max_employees": 50, "applies_only_with_evidence": true, "note": "Si la plantilla es UNKNOWN no se asume tamaño y no se reordena."},
+ "grading": {
+  "description": "Etiqueta derivada (no puntuación). Se evalúa en orden; gana la primera regla que cumple; si ninguna, D.",
+  "rules": [
+   {"grade": "A", "when": {"target_fit": ["EXACT"], "reachability": ["DIRECT"], "evidence_strength": ["HIGH"], "freshness": ["CURRENT"]}},
+   {"grade": "B", "when": {"target_fit": ["EXACT", "ADJACENT"], "reachability": ["DIRECT", "INDIRECT"], "evidence_strength": ["HIGH", "MEDIUM"]}},
+   {"grade": "C", "when": {"reachability": ["DIRECT", "INDIRECT"], "evidence_strength": ["HIGH", "MEDIUM", "LOW"]}}
+  ],
+  "default": "D"
+ },
+ "reachability_rules": {
+  "DIRECT": "El canal llega al rol objetivo sin intermediario: canal propio de la persona o del departamento objetivo, o formulario/portal específico de ese rol.",
+  "INDIRECT": "Requiere derivación: centralita, atención al cliente, formulario general, o persona sin canal propio (se usa un canal de empresa).",
+  "NONE": "Nada accionable."
+ },
+ "profiles": {
+  "SELL_PRODUCT_TO_RESELLER": {
+   "description": "Vender un producto que la empresa candidata revenderá/distribuirá (distribuidores, retail). Caso histórico: piloto de reventa.",
+   "applies_to": {"opportunity_type": ["customer_prospect"], "offering_kind": ["PRODUCT_FOR_RESALE"]},
+   "ladder": [
+    {"id": "supplier_portal", "fit": "EXACT", "match": {"channel_kind": ["PORTAL", "FORM"], "channel_purpose": ["PROCUREMENT"]}, "label": "Portal/formulario de alta de proveedores"},
+    {"id": "buyer_person", "fit": "EXACT", "match": {"target": ["PERSON"], "role_family": ["PROCUREMENT"]}, "label": "Comprador / Category Manager"},
+    {"id": "procurement_department", "fit": "EXACT", "match": {"target": ["DEPARTMENT"], "role_family": ["PROCUREMENT"]}, "label": "Departamento de compras"},
+    {"id": "commercial_person", "fit": "ADJACENT", "match": {"target": ["PERSON"], "role_family": ["COMMERCIAL", "BUSINESS_DEV"]}, "label": "Dirección comercial / desarrollo de negocio"},
+    {"id": "commercial_department", "fit": "ADJACENT", "match": {"target": ["DEPARTMENT"], "role_family": ["COMMERCIAL", "BUSINESS_DEV"]}, "label": "Departamento comercial"},
+    {"id": "management_if_small", "fit": "ADJACENT", "match": {"target": ["PERSON"], "role_family": ["MANAGEMENT", "DECISION_MAKER"]}, "requires_small_company": true, "label": "Dirección (solo si la empresa es pequeña, con evidencia de plantilla)"},
+    {"id": "general_contact", "fit": "GENERIC", "match": {"channel_purpose": ["GENERAL", "COMMERCIAL"]}, "label": "Contacto general / comercial"}
+   ]
+  },
+  "SELL_SOFTWARE_OR_SERVICE": {
+   "description": "Vender software o un servicio a la empresa candidata como usuaria final (IA, software de gestión, transformación digital). Primer caso de generalización: Construcción + software de gestión.",
+   "applies_to": {"opportunity_type": ["customer_prospect"], "offering_kind": ["SOFTWARE", "SERVICE", "CONSULTING"]},
+   "function_to_role_family": {
+    "OPERATIONS": ["IT_OPERATIONS"], "IT": ["IT_OPERATIONS"], "FINANCE": ["FINANCE"], "PROCUREMENT": ["PROCUREMENT"], "SALES": ["COMMERCIAL"], "MARKETING": ["COMMERCIAL"],
+    "MANAGEMENT": ["MANAGEMENT", "DECISION_MAKER"], "HR": ["MANAGEMENT"], "LEGAL_COMPLIANCE": ["MANAGEMENT"], "OTHER": ["MANAGEMENT", "DECISION_MAKER"]
+   },
+   "unknown_function_role_families": ["IT_OPERATIONS", "FINANCE", "MANAGEMENT", "DECISION_MAKER"],
+   "unknown_function_note": "Cuando offering.target_function es UNKNOWN el perfil NO inventa la función: acepta cualquiera de estas familias como destino y deja constancia en why_this_contact.",
+   "ladder": [
+    {"id": "function_leader", "fit": "EXACT", "match": {"target": ["PERSON"], "role_family": ["$FUNCTION"], "seniority": ["C_LEVEL", "DIRECTOR"]}, "label": "Decisor de la función afectada"},
+    {"id": "function_person", "fit": "EXACT", "match": {"target": ["PERSON"], "role_family": ["$FUNCTION"]}, "label": "Responsable de área de la función afectada"},
+    {"id": "function_department", "fit": "EXACT", "match": {"target": ["DEPARTMENT"], "role_family": ["$FUNCTION"]}, "label": "Departamento de la función afectada"},
+    {"id": "management_if_small", "fit": "ADJACENT", "match": {"target": ["PERSON"], "role_family": ["MANAGEMENT", "DECISION_MAKER"]}, "requires_small_company": true, "label": "Dirección (solo si la empresa es pequeña, con evidencia de plantilla)"},
+    {"id": "business_development", "fit": "ADJACENT", "match": {"role_family": ["BUSINESS_DEV"]}, "label": "Desarrollo de negocio"},
+    {"id": "commercial_channel", "fit": "GENERIC", "match": {"channel_purpose": ["COMMERCIAL"]}, "label": "Email/teléfono comercial general"},
+    {"id": "general_contact", "fit": "GENERIC", "match": {"channel_purpose": ["GENERAL"]}, "label": "Contacto general"}
+   ]
+  }
+ }
+}

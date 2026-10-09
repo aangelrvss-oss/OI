@@ -1,0 +1,362 @@
+{
+  "tools_version": "2.0.0",
+  "meta": {
+    "account_plan_observed": "Apollo Free",
+    "audit_source": "Fase 2",
+    "status_values": [
+      "available",
+      "unavailable_on_current_plan",
+      "deferred",
+      "unaudited"
+    ]
+  },
+  "tools": {
+    "apollo.company_search": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_mixed_companies_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "DISCOVERY"
+      ],
+      "status": "unavailable_on_current_plan",
+      "role": "company_discovery",
+      "observed_cost": {
+        "credits_per_unit": 0,
+        "unit": "request",
+        "cost_status": "observed_unavailable",
+        "note": "0 observado porque la llamada fue denegada; coste DECLARADO 1 crédito/petición con resultados"
+      },
+      "reason": "API_INACCESSIBLE / ENDPOINT_ACCESS_DENIED (limitación del plan Free)",
+      "fallback": "apollo.org_lookup",
+      "keep_in_architecture": true,
+      "declared_cost": "1 crédito por petición con al menos un resultado",
+      "relies_on": [
+        "CAP-SEARCH-AVAILABLE"
+      ]
+    },
+    "apollo.org_lookup": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_organizations_lookup"
+      ],
+      "kind": "read",
+      "phases": [
+        "DISCOVERY"
+      ],
+      "status": "available",
+      "role": "discovery",
+      "observed_cost": {
+        "credits_per_unit": 0,
+        "unit": "request",
+        "cost_status": "observed"
+      },
+      "pagination": {
+        "type": "page",
+        "observed_max_per_page": 100,
+        "total_count": "not_observed",
+        "cursor": "not_assumed",
+        "verified_depth_results": 100
+      },
+      "recall": "unknown",
+      "result_noise": "high_observed",
+      "employee_count": "not_reliable_for_verified_gating",
+      "industry": "not_definitive",
+      "returned_fields": [
+        "id",
+        "name",
+        "domain",
+        "website_url",
+        "logo_url"
+      ],
+      "fallback_for": "apollo.company_search",
+      "equivalent_to_company_search": false,
+      "relies_on": [
+        "CAP-LOOKUP-AVAILABLE",
+        "CAP-LOOKUP-COST",
+        "CAP-LOOKUP-PER-PAGE",
+        "CAP-LOOKUP-PAGINATION",
+        "CAP-LOOKUP-DEPTH",
+        "CAP-LOOKUP-RECALL",
+        "CAP-LOOKUP-DOMAIN-FIELD"
+      ]
+    },
+    "apollo.org_enrich": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_organizations_bulk_enrich",
+        "apollo_organizations_enrich"
+      ],
+      "kind": "read",
+      "phases": [
+        "ENRICHMENT"
+      ],
+      "status": "available",
+      "role": "enrichment",
+      "observed_cost": {
+        "credits_per_unit": 1,
+        "unit": "returned_company",
+        "cost_status": "observed"
+      },
+      "economic_role": "primary_bottleneck",
+      "batch_size": {
+        "configured_batch_size": 10,
+        "status": "provisional",
+        "max_verified": "unknown",
+        "max_tested": 4,
+        "configurable": true,
+        "audit_required_before_bulk_optimization": true
+      },
+      "identifiers_verified": [
+        "domain"
+      ],
+      "identifiers_unverified": [
+        "id"
+      ],
+      "billing": "por fila devuelta no nula (duplicados incluidos); inexistente=0; re-enrich se cobra; sin caché",
+      "relies_on": [
+        "CAP-ENRICH-DOMAIN",
+        "CAP-ENRICH-COST",
+        "CAP-ENRICH-BILLING",
+        "CAP-BULK-BATCH-10"
+      ],
+      "role_alternatives_note": "roles intercambiables: otro proveedor puede cubrir 'enrichment' registrándose en el catálogo"
+    },
+    "apollo.job_postings": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_organizations_job_postings"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "status": "available",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": 1,
+        "unit": "request",
+        "cost_status": "observed"
+      },
+      "recommended_usage": "top_n",
+      "not_universal": true,
+      "note": "D-027: evidencia solo para candidatos prioritarios",
+      "relies_on": [
+        "CAP-JOBS-AVAILABLE",
+        "CAP-JOBS-COST",
+        "CAP-JOBS-FIELDS"
+      ]
+    },
+    "apollo.people_search": {
+      "provider": "apollo",
+      "operations": [
+        "apollo_mixed_people_api_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "DECISION_MAKER_ENRICHMENT"
+      ],
+      "status": "deferred",
+      "role": "decision_makers",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": "request",
+        "cost_status": "undeclared"
+      },
+      "note": "No ejecutada; solo sobre shortlist final / top-N",
+      "relies_on": [
+        "CAP-PEOPLE"
+      ]
+    },
+    "firecrawl.scrape": {
+      "provider": "firecrawl",
+      "operations": [
+        "firecrawl_scrape"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "status": "unaudited",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "relies_on": [
+        "CAP-FIRECRAWL"
+      ]
+    },
+    "firecrawl.search": {
+      "provider": "firecrawl",
+      "operations": [
+        "firecrawl_search"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE",
+        "DISCOVERY"
+      ],
+      "status": "unaudited",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "note": "En DISCOVERY solo como palanca de expansión (TS-F3) cuando esté auditada",
+      "relies_on": [
+        "CAP-FIRECRAWL"
+      ]
+    },
+    "openrush.inspect_serp": {
+      "provider": "openrush",
+      "operations": [
+        "inspect_serp"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "status": "unaudited",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "relies_on": [
+        "CAP-OPENRUSH"
+      ]
+    },
+    "openrush.audit_site": {
+      "provider": "openrush",
+      "operations": [
+        "audit_site"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "status": "unaudited",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "relies_on": [
+        "CAP-OPENRUSH"
+      ]
+    },
+    "openrush.inspect_domain": {
+      "provider": "openrush",
+      "operations": [
+        "inspect_domain"
+      ],
+      "kind": "read",
+      "phases": [
+        "EVIDENCE"
+      ],
+      "status": "unaudited",
+      "role": "evidence",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "note": "Sin regla que lo seleccione",
+      "relies_on": [
+        "CAP-OPENRUSH"
+      ]
+    },
+    "bigquery.ledger": {
+      "provider": "bigquery",
+      "operations": [
+        "execute_sql"
+      ],
+      "kind": "infra",
+      "phases": [
+        "ALL"
+      ],
+      "status": "unaudited",
+      "role": "infra",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      }
+    },
+    "sheets.review_export": {
+      "provider": "google_sheets",
+      "operations": [
+        "append_values",
+        "update_values"
+      ],
+      "kind": "infra",
+      "phases": [
+        "RESULTS"
+      ],
+      "status": "unaudited",
+      "role": "infra",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      }
+    },
+    "gmail.create_draft": {
+      "provider": "gmail",
+      "operations": [
+        "create_draft"
+      ],
+      "kind": "draft",
+      "phases": [
+        "POST_PLAN"
+      ],
+      "status": "unaudited",
+      "role": "draft",
+      "observed_cost": {
+        "credits_per_unit": null,
+        "unit": null,
+        "cost_status": "unverified"
+      },
+      "note": "Solo tras aprobación humana; fuera de las fases"
+    }
+  },
+  "forbidden": [
+    {
+      "id": "TP-02",
+      "match": [
+        "apollo_*_create",
+        "apollo_*_update",
+        "apollo_emailer_*",
+        "apollo_sequences_*",
+        "apollo_labels_*",
+        "apollo_tasks_*",
+        "apollo_phone_calls_*",
+        "apollo_deals_create",
+        "apollo_email_account_purchase_create",
+        "apollo_domain_purchase_*",
+        "apollo_feedback_log",
+        "apollo_survey_submit",
+        "apollo_csv_exports_*",
+        "apollo_data_source_imports_create",
+        "apollo_dynamic_field_enrichment_enrich",
+        "apollo_website_visitor_domain_tracker_*"
+      ],
+      "reason": "Escriben, envían, inscriben o gastan por efecto externo: prohibido en el MVP."
+    },
+    {
+      "id": "TP-03",
+      "match": [
+        "gmail_send_message",
+        "gmail_reply",
+        "gmail_forward"
+      ],
+      "reason": "Envío externo: solo borradores (create_draft) y con aprobación humana."
+    }
+  ]
+}

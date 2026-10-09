@@ -1,0 +1,33 @@
+{
+ "schema": "oi_offline_profile.v1",
+ "case_id": "construction_software",
+ "label": "OFFLINE_SYNTHETIC_ASSUMPTION",
+ "warning": "Estos valores SOLO se aplican con --offline (y no con --strict). NO son una decisión del usuario: la definición real de «en crecimiento» sigue siendo un parámetro pendiente (pending_parameters.json). Existen para que el pipeline pueda recorrerse de extremo a extremo con datos sintéticos.",
+ "applies_to": [
+  "--offline"
+ ],
+ "confirmations": [
+  {
+   "criterion_id": "C1",
+   "definition_text": "OFFLINE_SYNTHETIC_ASSUMPTION: crecimiento de plantilla >= 10 % en 365 días (supuesto de prueba, NO decisión del usuario)",
+   "value": 10,
+   "params": {
+    "period_days": 365
+   }
+  }
+ ],
+ "planning": {
+  "source": "offline_simulation",
+  "max_tool_calls": 30,
+  "max_apollo_credits": 25,
+  "note": "Solo capacidad aritmética para el executor. El transporte sintético tiene saldo 0 y coste 0: el gasto real es siempre 0."
+ },
+ "real_projection": {
+  "source": "user_parameter",
+  "max_tool_calls": 30,
+  "max_apollo_credits": 10,
+  "note": "10 es el tope máximo previsto por el usuario. NO es una autorización de gasto."
+ },
+ "dataset": "fixtures/e2e_dataset.json",
+ "reference_date": "2026-10-08"
+}

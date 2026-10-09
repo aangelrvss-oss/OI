@@ -1,0 +1,277 @@
+{
+  "matrix_version": "1.0.0",
+  "source": "Fase 2 (22 llamadas, 8 créditos, Apollo Free)",
+  "status_values": [
+    "VERIFIED",
+    "PARTIALLY_VERIFIED",
+    "UNVERIFIED",
+    "UNAVAILABLE",
+    "CONTRADICTED"
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-SEARCH-AVAILABLE",
+      "tool": "apollo.company_search",
+      "capability": "mixed_companies_search accesible",
+      "status": "UNAVAILABLE",
+      "evidence": "API_INACCESSIBLE / ENDPOINT_ACCESS_DENIED en plan Free (0 créditos)",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-AVAILABLE",
+      "tool": "apollo.org_lookup",
+      "capability": "organizations_lookup accesible",
+      "status": "VERIFIED",
+      "evidence": "6 llamadas OK, 0 créditos",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-COST",
+      "tool": "apollo.org_lookup",
+      "capability": "coste por llamada",
+      "status": "VERIFIED",
+      "evidence": "saldo 180→180 tras 6 llamadas",
+      "observed_value": "0 créditos"
+    },
+    {
+      "id": "CAP-LOOKUP-PER-PAGE",
+      "tool": "apollo.org_lookup",
+      "capability": "per_page=100",
+      "status": "VERIFIED",
+      "evidence": "per_page=100 devolvió 100 registros",
+      "observed_value": "100"
+    },
+    {
+      "id": "CAP-LOOKUP-PAGINATION",
+      "tool": "apollo.org_lookup",
+      "capability": "paginación por página estable",
+      "status": "VERIFIED",
+      "evidence": "páginas 1 y 2 (per_page=10) coinciden con posiciones 1-20 de la llamada de 100",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-TOTAL-COUNT",
+      "tool": "apollo.org_lookup",
+      "capability": "total_count fiable",
+      "status": "UNAVAILABLE",
+      "evidence": "la respuesta solo trae la clave organizations",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-DEPTH",
+      "tool": "apollo.org_lookup",
+      "capability": "profundidad > 100 resultados por consulta",
+      "status": "UNVERIFIED",
+      "evidence": "no observada; no asumir",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-RECALL",
+      "tool": "apollo.org_lookup",
+      "capability": "recall",
+      "status": "UNVERIFIED",
+      "evidence": "no medido",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-FILTER-LOCATION",
+      "tool": "apollo.org_lookup",
+      "capability": "filtro organization_locations",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "funciona, pero un registro con raw_address en Angola pasó el filtro 'Spain' (estructura errónea)",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-FILTER-EMPLOYEES",
+      "tool": "apollo.org_lookup",
+      "capability": "filtro organization_num_employees_ranges",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "5/5 enriquecidos dentro de 51-500 (n=5, sin recall)",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-FILTER-NAICS",
+      "tool": "apollo.org_lookup",
+      "capability": "filtro organization_naics_codes",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "236 devolvió constructoras; AEDAS trae 236117",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-FILTER-KEYWORDS",
+      "tool": "apollo.org_lookup",
+      "capability": "filtro q_organization_keyword_tags",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "'dental clinic' mezcló clínicas, consultoras, proveedores y revistas",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-LOOKUP-DOMAIN-FIELD",
+      "tool": "apollo.org_lookup",
+      "capability": "domain presente",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "8 de 100 sin domain",
+      "observed_value": "92 %"
+    },
+    {
+      "id": "CAP-LOOKUP-EMPLOYEE-FIELD",
+      "tool": "apollo.org_lookup",
+      "capability": "employee count en discovery",
+      "status": "CONTRADICTED",
+      "evidence": "el lookup no devuelve tamaño",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-DOMAIN",
+      "tool": "apollo.org_enrich",
+      "capability": "entrada por domain / domains",
+      "status": "VERIFIED",
+      "evidence": "enrich y bulk por dominio funcionaron",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-ID-INPUT",
+      "tool": "apollo.org_enrich",
+      "capability": "entrada por id",
+      "status": "UNVERIFIED",
+      "evidence": "el schema observado exige domain/domains; id no figura",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-COST",
+      "tool": "apollo.org_enrich",
+      "capability": "1 crédito por compañía devuelta",
+      "status": "VERIFIED",
+      "evidence": "180→179 (individual), 178→175 (3 filas), 175→172 (3 filas)",
+      "observed_value": "1 crédito/empresa"
+    },
+    {
+      "id": "CAP-ENRICH-BILLING",
+      "tool": "apollo.org_enrich",
+      "capability": "facturación bulk",
+      "status": "VERIFIED",
+      "evidence": "por fila devuelta no nula, duplicados incluidos; inexistente=0; re-enrich se cobra de nuevo",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-BULK-BATCH-10",
+      "tool": "apollo.org_enrich",
+      "capability": "lote de 10 dominios",
+      "status": "UNVERIFIED",
+      "evidence": "declarado por el conector; máximo probado: 4",
+      "observed_value": "provisional 10"
+    },
+    {
+      "id": "CAP-ENRICH-EMPLOYEES",
+      "tool": "apollo.org_enrich",
+      "capability": "estimated_num_employees",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "es una ESTIMACIÓN; inconsistente con descripción y con departmental_head_count",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-INDUSTRY",
+      "tool": "apollo.org_enrich",
+      "capability": "industry / industries",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "multi-etiqueta; la etiqueta principal puede ser engañosa (org. de prueba B)",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-LOCATION",
+      "tool": "apollo.org_enrich",
+      "capability": "ubicación estructurada y raw_address",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "org. de prueba A: raw=ciudad de otro país, estructurado=región española (CONFLICTING)",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-GROWTH",
+      "tool": "apollo.org_enrich",
+      "capability": "crecimiento 6/12/24 meses",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "fracciones; no existe campo de 365 días",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-FUNDING",
+      "tool": "apollo.org_enrich",
+      "capability": "funding_events / latest_funding_*",
+      "status": "PARTIALLY_VERIFIED",
+      "evidence": "presente en org. de prueba B; cobertura desconocida",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ENRICH-PARENT",
+      "tool": "apollo.org_enrich",
+      "capability": "owned_by / ultimate_parent",
+      "status": "VERIFIED",
+      "evidence": "org. C→matriz; medio de prensa→grupo editorial→grupo extranjero",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-ID-CONSISTENCY",
+      "tool": "apollo.org_lookup",
+      "capability": "id consistente entre lookup, enrich y job postings",
+      "status": "VERIFIED",
+      "evidence": "mismo id en las orgs. de prueba B y C",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-JOBS-AVAILABLE",
+      "tool": "apollo.job_postings",
+      "capability": "organizations_job_postings accesible",
+      "status": "VERIFIED",
+      "evidence": "8 ofertas devueltas",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-JOBS-COST",
+      "tool": "apollo.job_postings",
+      "capability": "1 crédito por petición",
+      "status": "VERIFIED",
+      "evidence": "179→178",
+      "observed_value": "1 crédito/petición"
+    },
+    {
+      "id": "CAP-JOBS-FIELDS",
+      "tool": "apollo.job_postings",
+      "capability": "id,title,url,city,state,country,posted_at,last_seen_at + paginación",
+      "status": "VERIFIED",
+      "evidence": "observado",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-JOBS-GROWTH",
+      "tool": "apollo.job_postings",
+      "capability": "señal de crecimiento / departamento / descripción",
+      "status": "UNAVAILABLE",
+      "evidence": "no devuelve departamento, descripción ni crecimiento",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-PEOPLE",
+      "tool": "apollo.people_search",
+      "capability": "people search",
+      "status": "UNVERIFIED",
+      "evidence": "no ejecutado; coste no declarado; acceso en plan Free sin comprobar",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-FIRECRAWL",
+      "tool": "firecrawl.scrape",
+      "capability": "firecrawl scrape/search",
+      "status": "UNVERIFIED",
+      "evidence": "no auditado todavía",
+      "observed_value": null
+    },
+    {
+      "id": "CAP-OPENRUSH",
+      "tool": "openrush.audit_site",
+      "capability": "openrush audit/serp",
+      "status": "UNVERIFIED",
+      "evidence": "no auditado todavía",
+      "observed_value": null
+    }
+  ]
+}

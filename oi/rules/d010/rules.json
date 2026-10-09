@@ -1,0 +1,181 @@
+{
+ "_doc": {
+  "origin": "Extraído literalmente de D010_v0.2_RULES.json (D010-v0.2 OFFICIAL). Contenido semántico idéntico; ver tests/rules/test_d010.py::test_rules_equal_official.",
+  "purpose": "Configuración versionada del modelo de decisión D010. La lógica vive en engine.py; aquí solo hay datos. Las claves que empiezan por '_' son documentación y el motor las ignora.",
+  "unit_ids_note": "Los IDs de unidad son claves estables de los resultados históricos; viven SOLO en este fichero. El motor es agnóstico a ellos.",
+  "unit_names": {
+   "F1": "Afinidad sectorial: la industria del candidato es compatible con la requerida (claim fit.industry_naics_compatible)",
+   "FIT_KW": "Afinidad léxica: el candidato menciona términos del léxico del caso (claim fit.keyword_lexicon_hits)",
+   "O2": "Necesidad: velocidad de contratación",
+   "O4": "Necesidad (débil): evento de financiación en 730 días",
+   "O5": "Necesidad (débil): crecimiento de plantilla a 12 meses",
+   "P1": "Necesidad: proyectos / obras en curso",
+   "T1": "Necesidad: contratación técnica"
+  }
+ },
+ "calibrated": false,
+ "confidence_band": [
+  "STRONG",
+  "MODERATE",
+  "LOW_ONLY",
+  "NONE"
+ ],
+ "coverage": {
+  "definition": "observed_evidence_units / potential_evidence_units",
+  "observed": "unidades con estado resuelto (PRESENT, NOT_OBSERVED, DUPLICATE)",
+  "points": false,
+  "potential_units": 7,
+  "unknown": "unidades UNKNOWN o CONFLICTING"
+ },
+ "eligibility_order": [
+  "ELIGIBLE",
+  "PENDING_EVIDENCE",
+  "UNKNOWN",
+  "NOT_ELIGIBLE"
+ ],
+ "hard_gates": [
+  "GEO",
+  "EXCL"
+ ],
+ "identity_required": "KNOWN_MATCH",
+ "label": "D010-v0.2 OFFICIAL",
+ "not_economic_value": true,
+ "not_inputs": [
+  "company_type",
+  "discovery_hint",
+  "gates (no generan puntos)",
+  "datos externos"
+ ],
+ "not_probability": true,
+ "ranking": {
+  "forbidden_tiebreaks": [
+   "tamaño",
+   "ingresos",
+   "fama",
+   "nombre",
+   "posición de discovery",
+   "Apollo ID",
+   "orden alfabético"
+  ],
+  "official": {
+   "levels": [
+    "1 elegibilidad (ELIGIBLE > PENDING_EVIDENCE > UNKNOWN > NOT_ELIGIBLE)",
+    "2 capa de Pareto del FLOOR demostrado de (fit_affinity, need), calculada dentro de cada estado de elegibilidad",
+    "3 banda de fuerza (STRONG > MODERATE > LOW_ONLY > NONE)",
+    "4 cobertura de evidencia (mayor primero)"
+   ],
+   "tie": "clave idéntica => mismo puesto (ranking de competición)",
+   "type": "orden por capas (preorden): empates reales permanecen como empate"
+  },
+  "secondary_diagnostics": {
+   "dominance_partial_order": "relación de dominancia de suelos (A domina a B si >= en todo y > en algo): INCOMPARABLE cuando ninguno domina y los suelos difieren",
+   "robust_interval_dominance": "A supera a B con certeza si el FLOOR de A >= el CEILING de B en todas las dimensiones y > en alguna; diagnóstico de robustez, NO ranking principal"
+  }
+ },
+ "score_range": {
+  "fit_affinity": [
+   0,
+   4
+  ],
+  "need": [
+   0,
+   8
+  ],
+  "total": [
+   0,
+   12
+  ]
+ },
+ "score_version": "D010-v0.2",
+ "state_semantics": {
+  "CONFLICTING": "floor += 0; ceiling += peso; visible como calificador; NO cuenta como evidencia positiva para suficiencia",
+  "DUPLICATE": "evidence_id ya contado: no contribuye",
+  "NOT_OBSERVED": "no contribuye",
+  "PRESENT": "floor += peso; ceiling += peso",
+  "UNKNOWN": "floor += 0; ceiling += peso (UNKNOWN no es cero: es evidencia no demostrada)"
+ },
+ "states": [
+  "PRESENT",
+  "NOT_OBSERVED",
+  "UNKNOWN",
+  "CONFLICTING"
+ ],
+ "status": "OFFICIAL",
+ "sufficiency": {
+  "allow_single_high_core": true,
+  "high_confidence": "high",
+  "min_core_units": 1,
+  "min_units": 2,
+  "weak_alone_never_sufficient": true
+ },
+ "supersedes": [
+  "D010-proposed-v0.1 (3H, histórico inmutable)",
+  "D010-v1.0 (etiqueta del motor 3I, histórico)"
+ ],
+ "total_semantics": {
+  "informational_only": true,
+  "prohibited_uses": [
+   "criterio comercial absoluto",
+   "probabilidad de conversión",
+   "valor económico",
+   "elegibilidad",
+   "ranking"
+  ]
+ },
+ "unit_order": [
+  "F1",
+  "FIT_KW",
+  "T1",
+  "P1",
+  "O2",
+  "O4",
+  "O5"
+ ],
+ "units": {
+  "F1": {
+   "class": "CORE",
+   "dimension": "FIT_AFFINITY",
+   "evidence_claim": "fit.industry_naics_compatible"
+  },
+  "FIT_KW": {
+   "class": "CORE",
+   "dimension": "FIT_AFFINITY",
+   "evidence_claim": "fit.keyword_lexicon_hits"
+  },
+  "O2": {
+   "class": "CORE",
+   "dimension": "NEED",
+   "evidence_claim": null,
+   "name": "hiring velocity"
+  },
+  "O4": {
+   "class": "WEAK",
+   "dimension": "NEED",
+   "evidence_claim": "opportunity.funding_event_730d",
+   "name": "funding 730d"
+  },
+  "O5": {
+   "class": "WEAK",
+   "dimension": "NEED",
+   "evidence_claim": "opportunity.headcount_growth_12m_ge_10pct",
+   "name": "employee growth 365d"
+  },
+  "P1": {
+   "class": "CORE",
+   "dimension": "NEED",
+   "evidence_claim": null,
+   "name": "projects / works"
+  },
+  "T1": {
+   "class": "CORE",
+   "dimension": "NEED",
+   "evidence_claim": null,
+   "name": "technical hiring"
+  }
+ },
+ "weights": {
+  "CORE": 2,
+  "WEAK": 1
+ },
+ "weights_semantics": "pesos ORDINALES para priorización: NO son probabilidades, NO representan impacto económico y NO son una escala cuantitativa calibrada"
+}

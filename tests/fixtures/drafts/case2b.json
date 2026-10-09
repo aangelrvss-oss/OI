@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "prompt_version": "intent_interpreter@1.0.0",
+    "author": "llm:claude",
+    "fixture": true
+  },
+  "control": {
+    "raw_request": "Encuentra 20 clínicas dentales de Madrid con una presencia digital mejorable.",
+    "language": "es"
+  },
+  "intent": {
+    "opportunity_type": "customer_prospect",
+    "target_entity_type": "company",
+    "objective": "Encontrar clínicas dentales de Madrid con presencia digital mejorable",
+    "offering": {
+      "description": "servicios de marketing digital y SEO local",
+      "problem_solved": null,
+      "source_text": "servicios de marketing digital y SEO local"
+    }
+  },
+  "criteria": [
+    {
+      "id": "G1",
+      "label": "Clínicas dentales",
+      "dimension": "fit",
+      "field": "firmographic.industry",
+      "operator": "eq",
+      "value": "clínicas dentales",
+      "strength": "gate",
+      "origin": "user",
+      "source_text": "clínicas dentales"
+    },
+    {
+      "id": "D1",
+      "label": "No tiene web",
+      "dimension": "opportunity",
+      "field": "digital.has_website",
+      "operator": "eq",
+      "value": false,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null,
+      "defines_terms": [
+        "improvable"
+      ]
+    },
+    {
+      "id": "D2",
+      "label": "Baja visibilidad en búsquedas locales",
+      "dimension": "opportunity",
+      "field": "digital.local_visibility_rank",
+      "operator": "gte",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null,
+      "defines_terms": [
+        "improvable"
+      ]
+    },
+    {
+      "id": "D3",
+      "label": "Problemas técnicos en la web",
+      "dimension": "opportunity",
+      "field": "digital.site_technical_issue_count",
+      "operator": "gte",
+      "value": null,
+      "strength": "preferred",
+      "origin": "inferred",
+      "source_text": null,
+      "defines_terms": [
+        "improvable"
+      ]
+    }
+  ],
+  "restrictions": {
+    "geography": {
+      "include": [
+        {
+          "name": "Madrid",
+          "level": "municipality"
+        }
+      ],
+      "exclude": []
+    },
+    "excluded_entities": [],
+    "quantity": {
+      "target": 20,
+      "source_text": "20 clínicas dentales"
+    }
+  },
+  "traceability": {
+    "proposed_signals": [],
+    "llm_notes": "«Mejorable» es relativo: propongo deficiencias observables sin umbral. El usuario no ha dicho qué ofrece."
+  }
+}

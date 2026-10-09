@@ -1,0 +1,36 @@
+== t1 confirmed | errors [] | warnings ['OFFERING_PROBLEM_UNSPECIFIED', 'BUDGET_UNSET', 'SECTOR_UNSPECIFIED']
+  layers {'L1': 'OK', 'L2': 'OK', 'L3': 'OK'}
+  Q conf INFERRED_SIGNALS_NEED_CONFIRMATION | He propuesto estas señales de oportunidad (inferidas, no pedidas por ti). ¿Cuáles activo?
+  C G2 firmographic.employee_count between [50, 500] active defined
+  C O1 hiring.ops_admin_roles exists None proposed defined
+  C O2 web.digital_transformation_mentions exists None proposed defined
+  geo [{'name': 'ES', 'level': 'country'}] qty {'target': 20, 'max': None, 'source_text': '20 empresas'}
+  assumptions [('engine_default', 'governance.desired_action', 'shortlist'), ('engine_default', 'governance.data_policy.purpose', 'prospección B2B (customer_prospect)')]
+  unsupported []
+== t2 needs_clarification | errors [] | warnings ['BUDGET_UNSET', 'SIZE_UNSPECIFIED']
+  layers {'L1': 'OK', 'L2': 'OK', 'L3': 'OK'}
+  Q BLOQ OFFERING_MISSING | ¿Qué producto o servicio ofreces y qué problema resuelve a tus clientes?
+  Q BLOQ CRITERION_INCOMPLETE | El criterio «Expansión (nuevas sedes) reciente» está incompleto: indica el umbral/valor y, si aplica, el periodo.
+  C G1 firmographic.industry eq hoteles active defined
+  C O1 growth.new_locations gte None proposed needs_definition
+  C O2 web.digital_transformation_mentions exists None active defined
+  geo [{'name': 'Madrid', 'level': 'municipality'}] qty {'target': 15, 'max': None, 'source_text': '15 hoteles'}
+  assumptions [('geo_default', 'restrictions.geography', {'name': 'Madrid', 'level': 'municipality'}), ('engine_default', 'governance.desired_action', 'shortlist'), ('engine_default', 'governance.data_policy.purpose', 'prospección B2B (customer_prospect)')]
+  unsupported []
+== t3 needs_clarification | errors [] | warnings ['OFFERING_PROBLEM_UNSPECIFIED', 'BUDGET_UNSET', 'SIZE_UNSPECIFIED']
+  layers {'L1': 'OK', 'L2': 'OK', 'L3': 'OK'}
+  Q BLOQ CRITERION_INCOMPLETE | El criterio «En crecimiento» está incompleto: indica el umbral/valor y, si aplica, el periodo.
+  Q conf INFERRED_SIGNALS_NEED_CONFIRMATION | He propuesto estas señales de oportunidad (inferidas, no pedidas por ti). ¿Cuáles activo?
+  C G1 firmographic.industry eq construcción active defined
+  C C1 growth.employee_growth_pct gte None proposed needs_definition
+  C O1 hiring.site_management_roles exists None proposed defined
+  geo [{'name': 'ES', 'level': 'country'}] qty {'target': 20, 'max': None, 'source_text': '20 empresas'}
+  assumptions [('engine_default', 'governance.desired_action', 'shortlist'), ('engine_default', 'governance.data_policy.purpose', 'prospección B2B (customer_prospect)')]
+  unsupported []
+== t4 needs_clarification | errors [] | warnings ['BUDGET_UNSET', 'SIZE_UNSPECIFIED']
+  layers {'L1': 'OK', 'L2': 'OK', 'L3': 'OK'}
+  Q BLOQ OFFERING_MISSING | ¿Qué producto o servicio ofreces y qué problema resuelve a tus clientes?
+  C G1 firmographic.industry eq distribución alimentaria active defined
+  geo [{'name': 'ES', 'level': 'country'}] qty {'target': 15, 'max': None, 'source_text': '15 distribuidores'}
+  assumptions [('engine_default', 'governance.desired_action', 'shortlist'), ('engine_default', 'governance.data_policy.purpose', 'prospección B2B (customer_prospect)')]
+  unsupported []

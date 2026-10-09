@@ -1,0 +1,440 @@
+{
+  "ruleset_version": "1.0.0",
+  "phase_rules": [
+    {
+      "rule_id": "PH-01",
+      "phase": "DISCOVERY",
+      "include_when": {
+        "always": true
+      },
+      "description": "Toda búsqueda customer_prospect confirmada empieza por discovery.",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-02",
+      "phase": "NORMALIZATION",
+      "include_when": {
+        "always": true
+      },
+      "description": "Normalización determinista de lo descubierto.",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-03",
+      "phase": "ENTITY_RESOLUTION",
+      "include_when": {
+        "always": true
+      },
+      "description": "Dedupe/entity resolution antes de gastar.",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-04",
+      "phase": "CHEAP_GATES",
+      "include_when": {
+        "any": [
+          {
+            "geo": true
+          },
+          {
+            "crit": {
+              "cheap_gate": true,
+              "strength": "gate"
+            }
+          }
+        ]
+      },
+      "description": "Hay al menos un gate HARD evaluable con datos de discovery.",
+      "skip_reason": "no_active_hard_gate_evaluable_at_discovery"
+    },
+    {
+      "rule_id": "PH-05",
+      "phase": "ENRICHMENT",
+      "include_when": {
+        "any": [
+          {
+            "crit": {
+              "stage": "enrichment"
+            }
+          },
+          {
+            "needs_verification": true
+          }
+        ]
+      },
+      "description": "Hay criterios activos que solo se evalúan tras enrichment, o gates de discovery que requieren verificación.",
+      "skip_reason": "no_active_criterion_requires_enrichment"
+    },
+    {
+      "rule_id": "PH-06",
+      "phase": "QUALIFICATION",
+      "include_when": {
+        "always": true
+      },
+      "description": "Veredicto por criterio (determinista).",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-07",
+      "phase": "EVIDENCE",
+      "include_when": {
+        "crit": {
+          "stage": "evidence"
+        }
+      },
+      "description": "Hay criterios activos que solo se evidencian con investigación profunda (top-N).",
+      "skip_reason": "no_active_criterion_requires_deep_research"
+    },
+    {
+      "rule_id": "PH-08",
+      "phase": "SCORING",
+      "include_when": {
+        "always": true
+      },
+      "description": "Cálculo determinista de puntuaciones (reglas de scoring pendientes: D-010 fuera de esta fase).",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-09",
+      "phase": "PRIORITIZATION",
+      "include_when": {
+        "always": true
+      },
+      "description": "Ordenación y selección de finalistas.",
+      "skip_reason": null
+    },
+    {
+      "rule_id": "PH-10",
+      "phase": "DECISION_MAKER_ENRICHMENT",
+      "include_when": {
+        "all": [
+          {
+            "spec": {
+              "path": "governance.desired_action",
+              "in": [
+                "draft_outreach"
+              ]
+            }
+          },
+          {
+            "flag": "dm_personal_data_allowed"
+          }
+        ]
+      },
+      "description": "Se pidió outreach y la política de datos permite campos personales: decision makers solo de los finalistas.",
+      "skip_reason": "no_outreach_action_requested_or_data_policy_forbids_personal_data"
+    },
+    {
+      "rule_id": "PH-11",
+      "phase": "RESULTS",
+      "include_when": {
+        "always": true
+      },
+      "description": "Resultados estructurados con evidencia y cobertura.",
+      "skip_reason": null
+    }
+  ],
+  "tool_rules": [
+    {
+      "rule_id": "TS-A1",
+      "phase": "DISCOVERY",
+      "tool": "apollo.company_search",
+      "operations": [
+        "apollo_mixed_companies_search"
+      ],
+      "when": {
+        "any": [
+          {
+            "geo": true
+          },
+          {
+            "crit": {
+              "stage": "discovery"
+            }
+          }
+        ]
+      },
+      "reason": "Hay criterios evaluables contra una base de datos de empresas (geografía / filtros de discovery).",
+      "not_triggered_reason": "Sin criterios activos evaluables en discovery.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-A2",
+      "phase": "ENRICHMENT",
+      "tool": "apollo.org_enrich",
+      "operations": [
+        "apollo_organizations_bulk_enrich",
+        "apollo_organizations_enrich"
+      ],
+      "when": {
+        "any": [
+          {
+            "crit": {
+              "stage": "enrichment"
+            }
+          },
+          {
+            "needs_verification": true
+          }
+        ]
+      },
+      "reason": "Criterios activos de enrichment o gates de discovery pendientes de verificación.",
+      "not_triggered_reason": "Ningún criterio activo requiere datos de organización completos.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-A3",
+      "phase": "EVIDENCE",
+      "tool": "apollo.job_postings",
+      "operations": [
+        "apollo_organizations_job_postings"
+      ],
+      "when": {
+        "any": [
+          {
+            "crit": {
+              "field_prefix": "hiring."
+            }
+          },
+          {
+            "crit": {
+              "field": "growth.hiring_velocity"
+            }
+          }
+        ]
+      },
+      "reason": "Criterio activo de contratación/crecimiento por contratación.",
+      "not_triggered_reason": "Sin criterio activo de contratación.",
+      "placement_note": "Coste sin verificar: solo top-N en EVIDENCE."
+    },
+    {
+      "rule_id": "TS-F1",
+      "phase": "EVIDENCE",
+      "tool": "firecrawl.scrape",
+      "operations": [
+        "firecrawl_scrape"
+      ],
+      "when": {
+        "crit": {
+          "field_prefix": "web."
+        }
+      },
+      "reason": "Criterio activo cuya evidencia está en páginas web de la empresa.",
+      "not_triggered_reason": "Sin criterio activo web.*.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-F2",
+      "phase": "EVIDENCE",
+      "tool": "firecrawl.search",
+      "operations": [
+        "firecrawl_search"
+      ],
+      "when": {
+        "crit": {
+          "fields": [
+            "growth.geographic_expansion",
+            "growth.new_locations",
+            "growth.funding_event",
+            "growth.acquisitions"
+          ]
+        }
+      },
+      "reason": "Criterio activo de eventos (expansión, sedes, financiación, adquisiciones): se evidencian en noticias/web.",
+      "not_triggered_reason": "Sin criterio activo de eventos.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-O1",
+      "phase": "EVIDENCE",
+      "tool": "openrush.inspect_serp",
+      "operations": [
+        "inspect_serp"
+      ],
+      "when": {
+        "crit": {
+          "field": "digital.local_visibility_rank"
+        }
+      },
+      "reason": "Criterio activo digital.* de visibilidad: requiere intelligence SERP.",
+      "not_triggered_reason": "TP-01: OpenRush prohibido sin criterio activo digital.*.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-O2",
+      "phase": "EVIDENCE",
+      "tool": "openrush.audit_site",
+      "operations": [
+        "audit_site"
+      ],
+      "when": {
+        "crit": {
+          "field": "digital.site_technical_issue_count"
+        }
+      },
+      "reason": "Criterio activo digital.* de problemas técnicos del sitio.",
+      "not_triggered_reason": "TP-01: OpenRush prohibido sin criterio activo digital.*.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-P1",
+      "phase": "DECISION_MAKER_ENRICHMENT",
+      "tool": "apollo.people_search",
+      "operations": [
+        "apollo_mixed_people_api_search"
+      ],
+      "when": {
+        "all": [
+          {
+            "spec": {
+              "path": "governance.desired_action",
+              "in": [
+                "draft_outreach"
+              ]
+            }
+          },
+          {
+            "flag": "dm_personal_data_allowed"
+          }
+        ]
+      },
+      "reason": "Outreach solicitado + política de datos lo permite; solo finalistas.",
+      "not_triggered_reason": "No hay outreach solicitado o la política de datos no permite campos personales.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-R1",
+      "phase": "RESULTS",
+      "tool": "sheets.review_export",
+      "operations": [
+        "append_values",
+        "update_values"
+      ],
+      "when": {
+        "spec": {
+          "path": "governance.desired_action",
+          "in": [
+            "shortlist",
+            "export"
+          ]
+        }
+      },
+      "reason": "La acción deseada es una lista/exportación para revisión humana.",
+      "not_triggered_reason": "La acción deseada no es shortlist/export.",
+      "placement_note": null
+    },
+    {
+      "rule_id": "TS-I1",
+      "phase": "ALL",
+      "tool": "bigquery.ledger",
+      "operations": [
+        "execute_sql"
+      ],
+      "when": {
+        "always": true
+      },
+      "reason": "Persistencia de estado, ledger y evidencia (infra).",
+      "not_triggered_reason": "—",
+      "placement_note": null
+    }
+  ],
+  "post_plan_rules": [
+    {
+      "rule_id": "TS-G1",
+      "tool": "gmail.create_draft",
+      "when": {
+        "spec": {
+          "path": "governance.desired_action",
+          "in": [
+            "draft_outreach"
+          ]
+        }
+      },
+      "reason": "Borradores de outreach SOLO tras aprobación humana por entidad; nunca envío.",
+      "requires": "human_approval_record"
+    }
+  ],
+  "tool_prohibitions": [
+    {
+      "rule_id": "TP-01",
+      "tools": [
+        "openrush.inspect_serp",
+        "openrush.audit_site",
+        "openrush.inspect_domain"
+      ],
+      "unless": {
+        "crit": {
+          "field_prefix": "digital."
+        }
+      },
+      "reason": "OpenRush solo si existe un criterio ACTIVO con prefijo digital.*."
+    },
+    {
+      "rule_id": "TP-04",
+      "tools": [
+        "apollo.people_search"
+      ],
+      "outside_phases": [
+        "DECISION_MAKER_ENRICHMENT"
+      ],
+      "reason": "Personas solo en DECISION_MAKER_ENRICHMENT y solo para finalistas."
+    },
+    {
+      "rule_id": "TP-05",
+      "tools": [
+        "firecrawl.search",
+        "firecrawl.scrape",
+        "openrush.inspect_serp",
+        "openrush.audit_site",
+        "openrush.inspect_domain"
+      ],
+      "phases": [
+        "DISCOVERY"
+      ],
+      "reason": "Discovery inicial solo con base de datos de empresas; firecrawl.search entra solo como palanca de expansión (TS-F3)."
+    },
+    {
+      "rule_id": "TP-06",
+      "applies_to": "criteria",
+      "reason": "Un criterio no activo (proposed / needs_definition / desconocido) no puede generar trabajo ni llamadas."
+    }
+  ],
+  "expansion_rules": [
+    {
+      "rule_id": "EX-1",
+      "lever": "next_page",
+      "class": "discovery",
+      "description": "Siguientes páginas de la misma consulta."
+    },
+    {
+      "rule_id": "EX-2",
+      "lever": "query_variants",
+      "class": "discovery",
+      "description": "Variantes de consulta propuestas por el LLM y validadas por código."
+    },
+    {
+      "rule_id": "TS-F3",
+      "lever": "additional_source",
+      "class": "discovery",
+      "tool": "firecrawl.search",
+      "description": "Fuente alternativa de discovery si la cobertura es baja."
+    },
+    {
+      "rule_id": "EX-4",
+      "lever": "enlarge_pool",
+      "class": "discovery",
+      "description": "Subir el pool al multiplicador alto si hay holgura de presupuesto."
+    },
+    {
+      "rule_id": "EX-5",
+      "lever": "relax_preferred_discovery_filters",
+      "class": "discovery",
+      "description": "Relajar filtros de discovery que sean PREFERRED (nunca HARD).",
+      "only_if": "active_preferred_fit_criteria_exist"
+    }
+  ],
+  "hard_relaxation": {
+    "automatic": false,
+    "requires": "explicit_user_authorization"
+  }
+}

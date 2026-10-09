@@ -1,0 +1,99 @@
+{
+ "contracts": {
+  "ran": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0
+ },
+ "spec_v2": {
+  "ran": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0
+ },
+ "safety": {
+  "ran": 35,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0
+ },
+ "generalization": {
+  "ran": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0
+ },
+ "historical": {
+  "ran": 15,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 13
+ },
+ "rules": {
+  "ran": 9,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1
+ },
+ "e2e": {
+  "ran": 60,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 1
+ },
+ "f12": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "f13": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "f13_1": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "f14": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "f15": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "f15_1": {
+  "ran": 0,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "not_published": "requiere datos reales privados; se ejecuta en la copia privada"
+ },
+ "legacy_parity": {
+  "ran": 180,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "ok_line": "OK"
+ },
+ "TOTAL": {
+  "ran": 371,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 15
+ }
+}

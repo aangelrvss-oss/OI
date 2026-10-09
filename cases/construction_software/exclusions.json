@@ -1,0 +1,8 @@
+{
+ "schema": "oi_exclusions.v1",
+ "case_id": "construction_software",
+ "excluded_entities": [],
+ "excluded_sectors": [],
+ "excluded_geographies": [],
+ "note": "El usuario no indicó exclusiones. No se asume ninguna (p. ej. no se excluyen grandes grupos ni filiales de forma implícita)."
+}

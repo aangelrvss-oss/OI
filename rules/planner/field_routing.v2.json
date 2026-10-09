@@ -1,0 +1,441 @@
+{
+  "routing_version": "2.3.0",
+  "stages": [
+    "enrichment",
+    "evidence"
+  ],
+  "pseudo_fields": [
+    "restrictions.geography",
+    "restrictions.geography_exclude",
+    "restrictions.excluded_entities"
+  ],
+  "routing": {
+    "firmographic.industry": {
+      "stage": "enrichment",
+      "discovery_available": "unreliable",
+      "enrichment_available": true,
+      "verified_gate": true,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": {
+        "param": "organization_naics_codes|q_organization_keyword_tags",
+        "role": "recall_hint_not_evidence"
+      },
+      "evaluator": "industry_multilabel",
+      "source_fields": [
+        "industry",
+        "industries",
+        "secondary_industries",
+        "naics_codes",
+        "sic_codes"
+      ],
+      "capability_ref": "CAP-ENRICH-INDUSTRY",
+      "confidence_limitations": "Multi-etiqueta; la etiqueta principal puede ser engañosa; el filtro de discovery solo ayuda al recall."
+    },
+    "firmographic.employee_count": {
+      "stage": "enrichment",
+      "discovery_available": "none",
+      "enrichment_available": true,
+      "verified_gate": true,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": {
+        "param": "organization_num_employees_ranges",
+        "role": "recall_hint_not_evidence"
+      },
+      "evaluator": "employee_count_estimate",
+      "source_fields": [
+        "estimated_num_employees"
+      ],
+      "capability_ref": "CAP-ENRICH-EMPLOYEES",
+      "confidence_limitations": "ESTIMACIÓN (no exacta); inconsistente con descripción y headcount departamental; no se evalúa en discovery."
+    },
+    "hiring.ops_admin_roles": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_job_postings",
+      "deep_research": "top_n",
+      "cost_class": "credit_observed_top_n",
+      "discovery_filter": null,
+      "evaluator": "job_title_lexical",
+      "source_fields": [
+        "title"
+      ],
+      "capability_ref": "CAP-JOBS-FIELDS",
+      "confidence_limitations": "Solo títulos de oferta (sin departamento ni descripción): coincidencia léxica."
+    },
+    "hiring.finance_admin_roles": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_job_postings",
+      "deep_research": "top_n",
+      "cost_class": "credit_observed_top_n",
+      "discovery_filter": null,
+      "evaluator": "job_title_lexical",
+      "source_fields": [
+        "title"
+      ],
+      "capability_ref": "CAP-JOBS-FIELDS",
+      "confidence_limitations": "Solo títulos de oferta."
+    },
+    "hiring.site_management_roles": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_job_postings",
+      "deep_research": "top_n",
+      "cost_class": "credit_observed_top_n",
+      "discovery_filter": null,
+      "evaluator": "job_title_lexical",
+      "source_fields": [
+        "title"
+      ],
+      "capability_ref": "CAP-JOBS-FIELDS",
+      "confidence_limitations": "Solo títulos de oferta."
+    },
+    "growth.employee_growth_pct": {
+      "stage": "enrichment",
+      "discovery_available": "none",
+      "enrichment_available": true,
+      "verified_gate": true,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": null,
+      "evaluator": "growth_window_mapping",
+      "source_fields": [
+        "organization_headcount_six_month_growth",
+        "organization_headcount_twelve_month_growth",
+        "organization_headcount_twenty_four_month_growth"
+      ],
+      "capability_ref": "CAP-ENRICH-GROWTH",
+      "confidence_limitations": "Ventanas 6/12/24 meses en fracción; no hay campo de 365 días: toda equivalencia se registra como INFERRED."
+    },
+    "growth.hiring_velocity": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_job_postings",
+      "deep_research": "top_n",
+      "cost_class": "credit_observed_top_n",
+      "discovery_filter": null,
+      "evaluator": "job_postings_counts",
+      "source_fields": [
+        "posted_at",
+        "last_seen_at"
+      ],
+      "capability_ref": "CAP-JOBS-GROWTH",
+      "confidence_limitations": "Conteo y fechas de ofertas; NO equivale a crecimiento."
+    },
+    "growth.funding_event": {
+      "stage": "enrichment",
+      "discovery_available": "none",
+      "enrichment_available": true,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": null,
+      "evaluator": "dated_event_window",
+      "source_fields": [
+        "funding_events",
+        "latest_funding_round_date",
+        "latest_funding_stage"
+      ],
+      "capability_ref": "CAP-ENRICH-FUNDING",
+      "confidence_limitations": "Solo eventos detectados por Apollo; cobertura desconocida."
+    },
+    "growth.geographic_expansion": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Evidencia externa sin auditar."
+    },
+    "growth.new_locations": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Evidencia externa sin auditar."
+    },
+    "growth.acquisitions": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Evidencia externa sin auditar."
+    },
+    "web.digital_transformation_mentions": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Firecrawl sin auditar; requiere dominio."
+    },
+    "web.management_stack_visible": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Firecrawl sin auditar; requiere dominio."
+    },
+    "web.invoicing_stack_visible": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Firecrawl sin auditar; requiere dominio."
+    },
+    "digital.has_website": {
+      "stage": "enrichment",
+      "discovery_available": "partial",
+      "enrichment_available": true,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": null,
+      "evaluator": "field_presence",
+      "source_fields": [
+        "website_url",
+        "primary_domain"
+      ],
+      "capability_ref": "CAP-ENRICH-DOMAIN",
+      "confidence_limitations": "Apollo NO es autoritativo para señales digitales."
+    },
+    "digital.local_visibility_rank": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "openrush",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-OPENRUSH",
+      "confidence_limitations": "OpenRush condicional y sin auditar; requiere dominio."
+    },
+    "digital.site_technical_issue_count": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "openrush",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-OPENRUSH",
+      "confidence_limitations": "OpenRush condicional y sin auditar; requiere dominio."
+    },
+    "candidate.skill": {
+      "stage": null,
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": null,
+      "deep_research": null,
+      "cost_class": null,
+      "discovery_filter": null,
+      "evaluator": null,
+      "source_fields": [],
+      "capability_ref": null,
+      "confidence_limitations": null
+    },
+    "candidate.location_city": {
+      "stage": null,
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": null,
+      "deep_research": null,
+      "cost_class": null,
+      "discovery_filter": null,
+      "evaluator": null,
+      "source_fields": [],
+      "capability_ref": null,
+      "confidence_limitations": null
+    },
+    "restrictions.geography": {
+      "stage": "enrichment",
+      "discovery_available": "partial",
+      "enrichment_available": true,
+      "verified_gate": true,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": {
+        "param": "organization_locations",
+        "role": "recall_hint_not_evidence"
+      },
+      "evaluator": "location_dual_source",
+      "source_fields": [
+        "city",
+        "state",
+        "country",
+        "raw_address"
+      ],
+      "capability_ref": "CAP-ENRICH-LOCATION",
+      "confidence_limitations": "Estructura y raw_address pueden entrar en conflicto: se compara, nunca se asume."
+    },
+    "restrictions.geography_exclude": {
+      "stage": "enrichment",
+      "discovery_available": "partial",
+      "enrichment_available": true,
+      "verified_gate": true,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_enrichment",
+      "deep_research": null,
+      "cost_class": "credit_observed",
+      "discovery_filter": null,
+      "evaluator": "location_dual_source",
+      "source_fields": [
+        "city",
+        "state",
+        "country",
+        "raw_address"
+      ],
+      "capability_ref": "CAP-ENRICH-LOCATION",
+      "confidence_limitations": "Igual que geography."
+    },
+    "restrictions.excluded_entities": {
+      "stage": "discovery_prefilter",
+      "discovery_available": "partial",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": true,
+      "evidence_source": null,
+      "deep_research": null,
+      "cost_class": "free",
+      "discovery_filter": null,
+      "evaluator": "entity_exclusion_match",
+      "source_fields": [
+        "name",
+        "domain"
+      ],
+      "capability_ref": "CAP-LOOKUP-DOMAIN-FIELD",
+      "confidence_limitations": "Coincidencia determinista por nombre/dominio normalizado."
+    },
+    "hiring.technical_roles": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "apollo_job_postings",
+      "deep_research": "top_n",
+      "cost_class": "credit_observed_top_n",
+      "discovery_filter": null,
+      "evaluator": "job_title_lexical",
+      "source_fields": [
+        "title"
+      ],
+      "capability_ref": "CAP-JOBS-FIELDS",
+      "confidence_limitations": "Solo títulos de oferta (sin departamento ni descripción): coincidencia léxica con familias de términos; una oferta no prueba necesidad."
+    },
+    "project.facility_activity": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Sin fuente autorizada/auditada en esta configuración: se informa UNKNOWN y nunca se simula."
+    },
+    "growth.signal": {
+      "stage": "evidence",
+      "discovery_available": "none",
+      "enrichment_available": false,
+      "verified_gate": false,
+      "pre_enrichment_gate": false,
+      "evidence_source": "firecrawl",
+      "deep_research": "top_n",
+      "cost_class": "external_unaudited",
+      "discovery_filter": null,
+      "evaluator": "external_evidence",
+      "source_fields": [],
+      "capability_ref": "CAP-FIRECRAWL",
+      "confidence_limitations": "Señal cualitativa por evidencia externa sin auditar (Firecrawl/web) o por ofertas de empleo (Apollo, de pago). Presencia dentro de la ventana; NO es un porcentaje."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+ "rules_version": "1.0.0",
+ "description": "Cómo se ASIGNA evidence_strength (fiabilidad del DATO) a partir de la clase de fuente y el estado de la afirmación. Reglas, no criterio libre; ordenadas, gana la primera que cumple. NO mide utilidad comercial: un email general OFICIAL de atención al cliente es evidencia HIGH y contacto GENERIC/SUPPORT (eso lo decide contact_quality y channel.purpose). Cambio respecto a la auditoría §3.4: allí un canal oficial 'de otro propósito' bajaba a MEDIUM, mezclando los dos ejes; aquí se separan.",
+ "freshness_days_for_dated_sector_source": 365,
+ "rules": [
+  {"id": "NOT_A_FACT", "when": {"claim_status": ["INFERRED", "ESTIMATED", "UNKNOWN", "CONFLICTING"]}, "strength": "UNKNOWN"},
+  {"id": "NOT_FOUND_OR_UNVERIFIED", "when": {"source_class": ["NOT_FOUND", "UNVERIFIED"]}, "strength": "UNKNOWN"},
+  {"id": "OFFICIAL_AT_ORIGIN", "when": {"source_class": ["OFFICIAL"], "claim_status": ["KNOWN"]}, "strength": "HIGH"},
+  {"id": "DATED_SECTOR_SOURCE", "when": {"source_class": ["SECTOR_SOURCE", "PROFESSIONAL_DIRECTORY"], "claim_status": ["KNOWN"], "dated_within_freshness": [true]}, "strength": "MEDIUM"},
+  {"id": "CORROBORATED", "when": {"source_class": ["SECTOR_SOURCE", "PROFESSIONAL_DIRECTORY", "OTHER_VERIFIABLE"], "claim_status": ["KNOWN"], "corroborated": [true]}, "strength": "MEDIUM"},
+  {"id": "SINGLE_UNCORROBORATED", "when": {"source_class": ["SECTOR_SOURCE", "PROFESSIONAL_DIRECTORY", "OTHER_VERIFIABLE"], "claim_status": ["KNOWN"]}, "strength": "LOW"}
+ ],
+ "default": "UNKNOWN"
+}

@@ -1,0 +1,250 @@
+{
+  "rules_version": "1.1.0",
+  "description": "Qué hacer con una oportunidad, como DATOS. Reglas ordenadas: gana la primera cuyas condiciones se cumplen. Condiciones sobre hechos ya calculados (sin reloj ni red). Nada aquí autoriza gasto: cualquier paso de pago o sin permiso se marca requires_authorization=true y el sistema se detiene. v1.1.0 (F15): añade VERIFY_EVIDENCE, que depende del ESTADO REAL de la evidencia (organización ya enriquecida + puertas bloqueantes sin PASS/KNOWN), no del nombre de ningún experimento.",
+  "facts": [
+    "human",
+    "qualification",
+    "fit",
+    "identity",
+    "enrichment_state",
+    "has_recommendation",
+    "grade",
+    "selection_blocked",
+    "unresolved_contradictions",
+    "org_enrichment",
+    "evidence_gap"
+  ],
+  "rules": [
+    {
+      "id": "REJECTED",
+      "when": {
+        "human": [
+          "REJECT"
+        ]
+      },
+      "then": {
+        "action": "NO_ACTION",
+        "summary": "Descartada por la revisión humana.",
+        "next_step": null,
+        "blocking_reasons": [],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "NOT_ELIGIBLE",
+      "when": {
+        "qualification": [
+          "NOT_ELIGIBLE"
+        ]
+      },
+      "then": {
+        "action": "NO_ACTION",
+        "summary": "No cumple las condiciones mínimas del modelo de decisión.",
+        "next_step": null,
+        "blocking_reasons": [],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "IDENTITY_MISMATCH",
+      "when": {
+        "identity": [
+          "KNOWN_MISMATCH"
+        ]
+      },
+      "then": {
+        "action": "NO_ACTION",
+        "summary": "La entidad devuelta no corresponde a la empresa buscada.",
+        "next_step": null,
+        "blocking_reasons": [
+          "IDENTITY_MISMATCH"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "AWAITING_USER",
+      "when": {
+        "enrichment_state": [
+          "AWAITING_USER_DECISION",
+          "PENDING"
+        ],
+        "human": [
+          "MAYBE"
+        ]
+      },
+      "then": {
+        "action": "DEFER",
+        "summary": "Dudosa: no se ha investigado todavía y hace falta que el usuario decida si se investiga.",
+        "next_step": "Decidir si se inicia la investigación gratuita de esta empresa.",
+        "blocking_reasons": [
+          "AWAITING_USER_DECISION"
+        ],
+        "requires_authorization": true
+      }
+    },
+    {
+      "id": "PROFILE_BLOCKED",
+      "when": {
+        "selection_blocked": [
+          true
+        ]
+      },
+      "then": {
+        "action": "HUMAN_REVIEW",
+        "summary": "No se puede recomendar a quién contactar: falta clasificar qué se ofrece.",
+        "next_step": "Indicar offering.kind en el Search Spec.",
+        "blocking_reasons": [
+          "CONTACT_PROFILE_NOT_SELECTABLE"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "VERIFY_EVIDENCE",
+      "when": {
+        "human": [
+          null
+        ],
+        "org_enrichment": [
+          "COMPLETED"
+        ],
+        "evidence_gap": [
+          true
+        ],
+        "qualification": [
+          "PENDING_EVIDENCE",
+          "UNKNOWN"
+        ]
+      },
+      "then": {
+        "action": "VERIFY_EVIDENCE",
+        "summary": "El enriquecimiento ya se hizo, pero faltan comprobaciones críticas con evidencia KNOWN (web oficial, documento oficial o revisión humana).",
+        "next_step": "Comprobar con fuentes oficiales o revisión humana las puertas pendientes: {gaps}.",
+        "blocking_reasons": [
+          "EVIDENCE_MISSING"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "QUALIFICATION_PENDING",
+      "when": {
+        "human": [
+          null
+        ],
+        "qualification": [
+          "PENDING_EVIDENCE",
+          "UNKNOWN",
+          "NOT_ASSESSED"
+        ],
+        "has_recommendation": [
+          true
+        ]
+      },
+      "then": {
+        "action": "HUMAN_REVIEW",
+        "summary": "La cualificación está pendiente de evidencia: aún no se sabe si la empresa encaja, aunque haya un contacto disponible.",
+        "next_step": "Resolver la cualificación pendiente (p. ej. definir el criterio sin decidir) antes de contactar.",
+        "blocking_reasons": [
+          "QUALIFICATION_PENDING"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "CONTACT_READY",
+      "when": {
+        "human": [
+          "ACCEPT",
+          null
+        ],
+        "has_recommendation": [
+          true
+        ],
+        "grade": [
+          "A",
+          "B",
+          "C"
+        ],
+        "unresolved_contradictions": [
+          false
+        ]
+      },
+      "then": {
+        "action": "CONTACT",
+        "summary": "Hay un contacto recomendado con evidencia; el encaje {fit_note}.",
+        "next_step": "{contact_next_action}",
+        "blocking_reasons": [],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "REVIEW_BEFORE_CONTACT",
+      "when": {
+        "has_recommendation": [
+          true
+        ],
+        "unresolved_contradictions": [
+          true
+        ]
+      },
+      "then": {
+        "action": "HUMAN_REVIEW",
+        "summary": "Hay contacto recomendado pero también contradicciones de datos sin resolver.",
+        "next_step": "Revisar las contradicciones antes de contactar.",
+        "blocking_reasons": [
+          "UNRESOLVED_CONTRADICTIONS"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "NO_ACTIONABLE_CONTACT",
+      "when": {
+        "enrichment_state": [
+          "LEVEL1_DONE",
+          "FREE_ENRICHMENT_EXHAUSTED",
+          "LEVEL1_BLOCKED"
+        ],
+        "has_recommendation": [
+          false
+        ]
+      },
+      "then": {
+        "action": "HUMAN_REVIEW",
+        "summary": "La investigación gratuita no encontró un contacto accionable.",
+        "next_step": "Investigar manualmente (abrir la web oficial en el navegador); decidir antes de cualquier gasto.",
+        "blocking_reasons": [
+          "NO_ACTIONABLE_CONTACT"
+        ],
+        "requires_authorization": false
+      }
+    },
+    {
+      "id": "NEEDS_ENRICHMENT",
+      "when": {
+        "enrichment_state": [
+          "PENDING",
+          "LEVEL0_DONE"
+        ]
+      },
+      "then": {
+        "action": "ENRICH_FIRST",
+        "summary": "Aún no se ha buscado a quién contactar.",
+        "next_step": "Ejecutar la investigación de contacto gratuita (nivel 1).",
+        "blocking_reasons": [],
+        "requires_authorization": false
+      }
+    }
+  ],
+  "default": {
+    "action": "HUMAN_REVIEW",
+    "summary": "Ninguna regla determina la acción: requiere revisión humana.",
+    "next_step": null,
+    "blocking_reasons": [
+      "NO_RULE_MATCHED"
+    ],
+    "requires_authorization": false
+  }
+}
